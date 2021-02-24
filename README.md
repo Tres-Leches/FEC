@@ -39,4 +39,4 @@ Teammates can comment and approve pushed commits. Resolve commits locally, commi
 Before you merge, resolve merge conflicts if you have made changes to the repo. When your pull requst is approved and conflict-free, add code to the 'main' branch. Merge from the pull request in GitHub.
 
 https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow
->>>>>>> c0f735b75d911c6bc78231d49e7e99bd085024de
+
