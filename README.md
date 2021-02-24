@@ -1,5 +1,3 @@
-=======
-=======
 # FEC
 GIT SET-UP INSTRUCTIONS
 
