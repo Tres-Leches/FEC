@@ -1,4 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import ProductDetail from './components/Product Detail/Main';
+import RelatedItems from './components/Related Items/Main';
+import Reviews from './components/Reviews/Main';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,9 +16,12 @@ class App extends React.Component {
     return (
       <div>
         <h1> Hello from Apps!</h1>
+        <ProductDetail />
+        <RelatedItems />
+        <Reviews />
       </div>
     );
   }
 }
 
-export default App;
+ReactDOM.render(<App />, document.getElementById('app'));

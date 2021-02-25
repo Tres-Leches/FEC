@@ -16,3 +16,5 @@ server.use('/api', router);
 server.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+module.exports = server;
