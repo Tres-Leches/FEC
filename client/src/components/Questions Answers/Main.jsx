@@ -11,7 +11,7 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        Hello from Related Items
+        Hello from Questions and Answers
       </div>
     );
   }

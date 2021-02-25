@@ -4,19 +4,10 @@ const app = require('../server');
 describe('GET /api', function() {
   it('responds with json', function(done) {
     request(app)
-      .get('/api')
+      .get('/api/products')
       .set('Accept', 'application/json')
-      .expect('Content-Type', "text/html; charset=utf-8")
+      .expect('Content-Type', /json/)
       .expect(200, done);
   });
 });
 
-describe('POST /api', function() {
-  it('responds with json', function(done) {
-    request(app)
-      .post('/api')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', "text/html; charset=utf-8")
-      .expect(200, done);
-  });
-});
