@@ -8,6 +8,10 @@
     "build": "webpack -w",
     "start": "nodemon server/index.js"
   },
+  "jest": {
+    "snapshotSerializers": ["enzyme-to-json/serializer"],
+    "setupFiles": ["./spec/setupTests.js"]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Tres-Leches/FEC.git"
