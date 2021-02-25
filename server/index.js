@@ -8,7 +8,7 @@ const server = express();
 const port = 8000;
 
 server.use(express.json());
-server.use(express.static(path.join(__dirname, '../dist')));
+server.use(express.static(path.join(__dirname, '../client/dist')));
 server.use(morgan('dev'));
 server.use(cors());
 server.use('/api', router);
