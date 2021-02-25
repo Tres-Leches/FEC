@@ -6,7 +6,7 @@ describe('GET /api', function() {
     request(app)
       .get('/api')
       .set('Accept', 'application/json')
-      .expect('Content-Type', 'text/html; charset=utf-8')
+      .expect('Content-Type', /json/)
       .expect(200, done);
   });
 });
