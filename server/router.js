@@ -1,6 +1,6 @@
 const express = require('express');
 const axios = require('axios');
-const options = require('./config');
+const options = require('./config.js');
 
 const router = express.Router();
 /** ******************* PRODUCTS ROUTES ******************** */
