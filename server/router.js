@@ -46,10 +46,9 @@ router
   .route('/reviews/:id')
   .get((req, res) => {
     const productId = req.params.id;
-    options['params'] = {
+    options.params = {
       product_id: productId,
     };
-    console.log(options);
     axios.get('/reviews', options)
       .then((response) => {
         res.status(200).send(response.data);
@@ -57,12 +56,19 @@ router
       .catch((err) => {
         res.status(404).send(err);
       });
-  })
+  });
+
+router.route('/reviews')
   .post((req, res) => {
-    // let request = {
-    //   product_id: req.body.product_id
-    // }
-    console.log(req.body, typeof req.body);
+  //   let params = {
+  //     "product_id": 16154,
+  //     "rating": 5,
+  //     "summary": "Very good",
+  //     "body": "body ody ody ody",
+  //     "recommended": true,
+  //     "name": "tres-leches",
+  //     "email": "tres-leches@hackreactor.com"
+  // }
     axios.post('/reviews', req.body, options)
       .then(() => {
         res.status(201).send('posted');
