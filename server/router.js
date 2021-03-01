@@ -159,7 +159,7 @@ router.route('/qa/questions/:question_id/answers')
       .catch((err) => res.send(err));
   });
 
-router.route('qa/questions/:question_id/helpful')
+router.route('/qa/questions/:question_id/helpful')
   .put((req, res) => {
     const questionId = req.params.question_id;
     axios.put(`/qa/questions/${questionId}/helpful`, {}, options)
@@ -167,7 +167,7 @@ router.route('qa/questions/:question_id/helpful')
       .catch((err) => res.send(err));
   });
 
-router.route('qa/questions/:question_id/report')
+router.route('/qa/questions/:question_id/report')
   .put((req, res) => {
     const questionId = req.params.question_id;
     axios.put(`/qa/questions/${questionId}/report`, {}, options)
@@ -175,7 +175,7 @@ router.route('qa/questions/:question_id/report')
       .catch((err) => res.send(err));
   });
 
-router.route('qa/answers/:answer_id/helpful')
+router.route('/qa/answers/:answer_id/helpful')
   .put((req, res) => {
     const answerId = req.params.answer_id;
     axios.put(`/qa/answers/${answerId}/helpful`, {}, options)
@@ -183,7 +183,7 @@ router.route('qa/answers/:answer_id/helpful')
       .catch((err) => res.send(err));
   });
 
-router.route('qa/answers/:answer_id/report')
+router.route('/qa/answers/:answer_id/report')
   .put((req, res) => {
     const answerId = req.params.answer_id;
     axios.put(`/qa/answers/${answerId}/report`, {}, options)
