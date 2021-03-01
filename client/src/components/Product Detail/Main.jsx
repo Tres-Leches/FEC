@@ -11,7 +11,7 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id:16154,
+      product_id:16056,
       zoomed: false,
       styles: [],
       style: null
@@ -28,17 +28,23 @@ class Main extends React.Component {
   }
 
   render() {
-    let view;
-    this.state.zoomed ? view = <ExpandedView /> : view = <DefaultView />
-    return (
-      <div>
-        Hello from Product Detail
-        {view}
-        <ProductInfo />
-        <StyleSelector styles={this.state.styles} style={this.state.style}/>
-        <Add2Cart />
-      </div>
-    );
+    if(this.state.style){
+      let view;
+      this.state.zoomed ? view = <ExpandedView style={this.state.style} /> : view = <DefaultView style={this.state.style} />
+      return (
+        <div>
+          Hello from Product Detail
+          {view}
+          <ProductInfo productId={this.state.product_id}/>
+          <StyleSelector styles={this.state.styles} style={this.state.style} />
+          <Add2Cart style={this.state.style}/>
+        </div>
+      );
+    } else {
+      return (
+        <div></div>
+      )
+    }
   }
 }
 

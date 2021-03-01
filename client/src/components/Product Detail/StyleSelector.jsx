@@ -11,18 +11,14 @@ export default class StyleSelector extends React.Component {
 
 
   render() {
-    if(this.props.styles.length) {
-      return (
-        <div>
-          <em>Style > </em> {this.props.style.name} <br />
-          {this.props.styles.map((style, key) => (
-            <img key={key} src={style.photos[0].thumbnail_url} />
-          ))}
-        </div>
+    return (
+      <div>
+        <b>Style > </b> {this.props.style.name} <br />
+        {this.props.styles.map((style, key) => (
+          <img key={key} src={style.photos[0].thumbnail_url} />
+        ))}
+      </div>
 
-      );
-    } else {
-      return <div></div>
-    }
+    );
   }
 }

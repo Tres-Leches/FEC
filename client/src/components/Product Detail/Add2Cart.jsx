@@ -5,14 +5,25 @@ export default class Add2Cart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      // sku : this.props.style.skus[0]
+      max: 15,
     };
   }
 
   render() {
     return (
       <div>
-        Hello from Add2Cart
+        <select name = "size">
+            <option selected>Select Size</option>
+            {Object.keys(this.props.style.skus).map((sku, ind) => (
+              <option key={ind}>{this.props.style.skus[sku].size}</option>
+            ))}
+
+         </select>
+         <select name = "quantity">
+            <option selected>-</option>
+
+         </select>
       </div>
     );
   }
