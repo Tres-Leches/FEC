@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Question from './Question';
 
@@ -10,10 +11,13 @@ class QuestionsList extends React.Component {
   }
 
   render() {
+    const { questions } = this.props;
     return (
       <div>
         Hello from QuestionsList
-        <Question />
+        {questions.map((question) => (
+          <Question key={question.question_id} question={question} />
+        ))}
       </div>
     );
   }
