@@ -16,3 +16,5 @@ jspm_packages/
 #API
 config.js
 server.test.js
+
+client/dist/bundle.js
