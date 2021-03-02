@@ -14,14 +14,14 @@ export default class Add2Cart extends React.Component {
     return (
       <div>
         <select name = "size">
-            <option selected>Select Size</option>
+            <option >Select Size</option>
             {Object.keys(this.props.style.skus).map((sku, ind) => (
               <option key={ind}>{this.props.style.skus[sku].size}</option>
             ))}
 
          </select>
          <select name = "quantity">
-            <option selected>-</option>
+            <option >-</option>
 
          </select>
       </div>

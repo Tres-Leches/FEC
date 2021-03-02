@@ -11,11 +11,25 @@ export default class DefaultView extends React.Component {
 
   render() {
     return (
-      <div>
-        <img src={this.state.currentPhoto.url}/><br />
+      <div className="container">
+        <img src={this.state.currentPhoto.url}/>
+        <ul className="thumbnails">
         {this.props.style.photos.map((photo, key) => (
-          <img key={key} src={photo.thumbnail_url} />
+          <li key={key} id={"slide"+key} ><img src={photo.url} /> </li>
         ))}
+        </ul>
+
+        {/* <ul className="thumbnails">
+        {this.props.style.photos.map((photo, key) => (
+          <li key={key} id={"slide"+key}>
+            <a href={"#slide"+key}>
+              <img src={photo.thumbnail_url} />
+            </a>
+          </li>
+        ))}
+        </ul> */}
+
+
       </div>
 
     );

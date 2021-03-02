@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+// import './productDetail.css'
 
 import Add2Cart from './Add2Cart';
 import DefaultView from './DefaultView';
@@ -32,12 +33,15 @@ class Main extends React.Component {
       let view;
       this.state.zoomed ? view = <ExpandedView style={this.state.style} /> : view = <DefaultView style={this.state.style} />
       return (
-        <div>
-          Hello from Product Detail
-          {view}
-          <ProductInfo productId={this.state.product_id}/>
-          <StyleSelector styles={this.state.styles} style={this.state.style} />
-          <Add2Cart style={this.state.style}/>
+        <div className="overview">
+          <div className="view">
+            {view}
+          </div>
+          <div className="info">
+            <ProductInfo productId={this.state.product_id}/>
+            <StyleSelector styles={this.state.styles} style={this.state.style} />
+            <Add2Cart style={this.state.style}/>
+          </div>
         </div>
       );
     } else {
