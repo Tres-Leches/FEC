@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-// import './productDetail.css'
+import './productDetail.css'
+// import 'font-awesome/css/font-awesome.min.css';
 
 import Add2Cart from './Add2Cart';
 import DefaultView from './DefaultView';

@@ -30,12 +30,23 @@
 
 .overview {
   display:flex;
-  margin: auto 300px;
+  margin: 0px 300px;
 }
 
 .info{
-  margin:10px;
+  margin:40px 300px 40px 0px;
   justify-content: flex-end;
+  position:absolute;
+  left: 1100px
+}
+
+.reviews{
+  display: flex;
+}
+
+.linkReviews{
+  position:relative;
+  margin: auto 10px;
 }
 
 .view{
@@ -70,7 +81,7 @@
   /* line-height: 0; */
 }
 .thumbnails li {
-  flex: auto;
+  /* flex: auto; */
   list-style: none;
 }
 .thumbnails a {
@@ -81,14 +92,16 @@
   height: 70px;
   object-fit: cover;
   object-position: top;
-  margin: 0px;
-  padding:0px;
-  /* position:relative; */
-  /* left: -50px; */
+  margin: 7px auto;
+  position: relative;
+  left: -50px;
   /* top: 10px; */
 
 }
+.thumbnails img:hover, .circleThumbnails img:hover {
+  border: 3px solid black;
 
+}
 /* .slides {
   overflow: hidden;
   width: 75vmin;
@@ -118,7 +131,7 @@
 .circleThumbnails{
   display:flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
   /* margin: 10px; */
 }
 
@@ -127,5 +140,32 @@
   height: 70px;
   object-fit: cover;
   border-radius: 50%;
-  padding: 10px;
+  margin: 10px;
+}
+
+.selectors {
+  display:flex;
+  /* width: 300px; */
+  /* margin:0 auto; */
+}
+.sizeSelector select{
+  height: 60px;
+  width: 300%;
+
+}
+.quantitySelector select{
+  height: 60px;
+  width: 500%;
+  position:relative;
+  left:200px;
+}
+
+.add2Bag{
+  height: 60px;
+  width: 75%;
+}
+.add2Favorite{
+  height: 60px;
+  width: 15%;
+  margin-left:5%;
 }
