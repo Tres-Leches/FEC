@@ -31,10 +31,23 @@ Create a pull request on GitHub and add reviewers
 Teammates can comment and approve pushed commits. Resolve commits locally, commit, and push suggested changes. Updates will appear in the pull request.
 
 6. Merge your pull request
-'git checkout master'
+'git checkout main'
 'git pull'
-'git pull origin new-feature'
-'git push'
+'git checkout new-feature'
+'git merge main'
+Fix conflicts
+'git checkout new-feature'
+'git add' 'git commit'
+'git push origin new-feature'
+
+Alternatively, you can Rebase
+'git checkout new-feature'
+'git rebase main'
+Fix conflicts
+'git add .'
+'git rebase --continue'
+
+
 
 Before you merge, resolve merge conflicts if you have made changes to the repo. When your pull requst is approved and conflict-free, add code to the 'main' branch. Merge from the pull request in GitHub.
 
