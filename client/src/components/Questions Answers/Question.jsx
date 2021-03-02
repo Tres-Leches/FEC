@@ -22,8 +22,7 @@ class Question extends React.Component {
     const { question } = this.props;
     axios.get(`/api/qa/questions/${question.question_id}/answers`)
       .then((response) => {
-        this.setState({ answers: response.data.results },
-          () => { console.log('Answers: ', this.state.answers); });
+        this.setState({ answers: response.data.results });
       })
       .catch((err) => console.error(err));
   }

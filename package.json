@@ -32,11 +32,13 @@
     "bootstrap": "^4.6.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react-dom": "^16.14.0",
+    "underscore": "^1.12.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.1",
