@@ -18,7 +18,7 @@ export default class StyleSelector extends React.Component {
         </div>
           <div className="circleThumbnails">
           {this.props.styles.map((style, key) => (
-            <img key={key} src={style.photos[0].thumbnail_url} />
+            <img key={key} src={style.photos[0].thumbnail_url} onClick={()=> this.props.changeStyle(style)}/>
           ))}
         </div>
 

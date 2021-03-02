@@ -46,12 +46,11 @@ export default class ProductInfo extends React.Component {
   render() {
     if(this.state.rating){
       let str = this.state.rating.split('.')
-      console.log(str)
       let stars =[];
       for (let i = 0; i< Number(str[0]); i++){
-        stars.push(<FontAwesomeIcon icon={faStar} />)
+        stars.push(<FontAwesomeIcon key={i} icon={faStar} />)
       }
-      if (str.length > 1) stars.push(<FontAwesomeIcon icon={faStarHalfAlt}/>)
+      if (str.length > 1) stars.push(<FontAwesomeIcon key={stars.length} icon={faStarHalfAlt}/>)
       return (
         <div>
           <div className="reviews">

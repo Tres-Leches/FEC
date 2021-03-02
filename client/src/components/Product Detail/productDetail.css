@@ -53,7 +53,7 @@
   margin:10px;
 }
 
-.container {
+.display {
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-end;
@@ -75,6 +75,34 @@
 
 }
 
+.leftArrow {
+  position:absolute;
+  left: 400px;
+  bottom: 450px
+  /* height: 30px; */
+}
+.rightArrow {
+  position:absolute;
+  left: 1035px;
+  bottom: 450px
+  /* margin: 350px 500px; */
+  /* height: 30px; */
+}
+.upArrow {
+  position:absolute;
+  left: 338px;
+  top: 100px;
+}
+.downArrow {
+  position:absolute;
+  left: 338px;
+  bottom: 365px;
+}
+.leftArrow:hover, .rightArrow:hover, .upArrow:hover, .downArrow:hover {
+  border: 3px solid white;
+
+}
+
 .thumbnails {
   display: flex;
   flex-direction: column;
@@ -92,7 +120,7 @@
   height: 70px;
   object-fit: cover;
   object-position: top;
-  margin: 7px auto;
+  margin: 20px auto;
   position: relative;
   left: -50px;
   /* top: 10px; */
