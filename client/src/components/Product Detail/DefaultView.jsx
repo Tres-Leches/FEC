@@ -14,6 +14,7 @@ export default class DefaultView extends React.Component {
       currentPhoto: this.props.style.photos[0],
       currentInd: 0,
     };
+    this.changeCurrentPhoto = this.changeCurrentPhoto.bind(this)
   }
 
   componentDidUpdate(prevProps){
@@ -26,9 +27,9 @@ export default class DefaultView extends React.Component {
 
   arrowChangePhoto(direction) {
     if(direction === 'backward' && this.state.currentInd !== 0) {
-      this.setState({currentPhoto: this.props.style.photos[this.state.currentInd - 1], currentInd:this.state.currentInd - 1})
+      this.changeCurrentPhoto(this.props.style.photos[this.state.currentInd - 1])
     }else if(direction === 'forward' && this.state.currentInd !== this.props.style.photos.length-1) {
-      this.setState({currentPhoto: this.props.style.photos[this.state.currentInd + 1], currentInd:this.state.currentInd + 1})
+      this.changeCurrentPhoto(this.props.style.photos[this.state.currentInd + 1])
     }
   }
 
@@ -36,17 +37,17 @@ export default class DefaultView extends React.Component {
     return (
       <div className="display">
         <div className="mainDisplay">
-          <FontAwesomeIcon icon={faArrowLeft} size='lg' className="leftArrow" onClick={this.arrowChangePhoto.bind(this, 'backward')}/>
+          <FontAwesomeIcon icon={faArrowLeft} size='lg' className="leftArrow" onClick={() => {this.arrowChangePhoto('backward')}}/>
           <img src={this.state.currentPhoto.url}/>
-          <FontAwesomeIcon icon={faArrowRight} size='lg' className="rightArrow" onClick={this.arrowChangePhoto.bind(this, 'forward')}/>
+          <FontAwesomeIcon icon={faArrowRight} size='lg' className="rightArrow" onClick={() => {this.arrowChangePhoto('forward')}}/>
         </div>
-        <FontAwesomeIcon icon={faAngleUp} className="upArrow" onClick={this.arrowChangePhoto.bind(this, 'backward')}/>
+        <FontAwesomeIcon icon={faAngleUp} className="upArrow" onClick={() => {this.arrowChangePhoto('backward')}}/>
         <ul className="thumbnails">
         {this.props.style.photos.map((photo, key) => (
-          <li key={key} id={"slide"+key} ><img src={photo.url} onClick={this.changeCurrentPhoto.bind(this, photo)}/> </li>
+          <li key={key} id={"slide"+key} ><img src={photo.url} className={key===this.state.currentInd ? "clickedThumbnail" : ""} onClick={() => {this.changeCurrentPhoto(photo)}}/> </li>
         ))}
         </ul>
-        <FontAwesomeIcon icon={faAngleDown} className="downArrow" onClick={this.arrowChangePhoto.bind(this, 'forward')}/>
+        <FontAwesomeIcon icon={faAngleDown} className="downArrow" onClick={() => {this.arrowChangePhoto('forward')}}/>
 
         {/* <ul className="thumbnails">
         {this.props.style.photos.map((photo, key) => (
