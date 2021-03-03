@@ -34,6 +34,9 @@ class Main extends React.Component {
     axios.get(`/api/qa/questions/${productId}`)
       .then((response) => {
         const questions = response.data.results;
+        questions.sort((a, b) => (
+          b.question_helpfulness - a.question_helpfulness
+        ));
         this.setState({ questions });
       })
       .then(() => { this.filterQuestions(); })
