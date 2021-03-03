@@ -13,7 +13,8 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id:16056,
+      product_ids: [16392, 16465, 16056, 16084, 16154],
+      product_id: 16154,
       zoomed: false,
       styles: [],
       style: null
