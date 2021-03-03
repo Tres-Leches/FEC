@@ -1,15 +1,16 @@
 import React from 'react';
-import Modal from 'react-bootstrap/Modal';
+import { Modal, Form } from 'react-bootstrap';
 
-const QuestionForm = (props) => (
-  <form>
-  </form>
+const QuestionForm = () => (
+  <Form>
+
+  </Form>
 )
 
-class FormModal extends React.Component {
+class QuestionModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
 
     };
   }
@@ -26,4 +27,4 @@ class FormModal extends React.Component {
   }
 }
 
-export default FormModal;
+export default QuestionModal;
