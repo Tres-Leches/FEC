@@ -126,6 +126,7 @@ router.route('/qa/questions/:id')
     const productId = req.params.id;
     options.params = {
       product_id: productId,
+      count: 100,
     };
     axios.get('/qa/questions', options)
       .then((response) => {

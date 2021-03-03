@@ -9,6 +9,7 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      productId: '16392',
       questions: [],
       filteredQuestions: [],
       searchQuery: '',
@@ -72,7 +73,7 @@ class Main extends React.Component {
   }
 
   render() {
-    const { filteredQuestions, searchQuery } = this.state;
+    const { filteredQuestions, searchQuery, productId } = this.state;
 
     return (
       <div>
@@ -82,7 +83,11 @@ class Main extends React.Component {
           setSearchQuery={this.setSearchQuery}
           handleSearchSubmit={this.handleSearchSubmit}
         />
-        <QuestionsList questions={filteredQuestions} getQuestions={this.getQuestions} />
+        <QuestionsList
+          questions={filteredQuestions}
+          getQuestions={this.getQuestions}
+          productId={productId}
+        />
       </div>
     );
   }
