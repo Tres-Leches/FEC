@@ -14,7 +14,7 @@ class Main extends React.Component {
     super(props);
     this.state = {
       product_ids: [16392, 16465, 16056, 16084, 16154],
-      product_id: 16154,
+      product_id: 16060,
       zoomed: false,
       styles: [],
       style: null
@@ -31,7 +31,7 @@ class Main extends React.Component {
   }
 
   changeStyle(style){
-    this.setState({style},()=>{console.log('changestyle',this.state.style.photos)})
+    this.setState({style})
   }
 
   render() {
