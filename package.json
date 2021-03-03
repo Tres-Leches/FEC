@@ -38,6 +38,7 @@
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "react": "^16.14.0",
+    "react-bootstrap": "^1.5.1",
     "react-dom": "^16.14.0",
     "react-moment": "^1.1.1",
     "underscore": "^1.12.0"

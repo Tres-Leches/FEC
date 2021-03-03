@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import Question from './Question';
+import QuestionModal from './QuestionModal';
 import './questions.css';
 
 class QuestionsList extends React.Component {
@@ -8,6 +9,7 @@ class QuestionsList extends React.Component {
     super(props);
     this.state = {
       isExpand: false,
+      showQuestionModal: false,
     };
     this.toggleExpand = this.toggleExpand.bind(this);
   }
@@ -34,6 +36,7 @@ class QuestionsList extends React.Component {
             ))}
           </div>
           <button type="button" onClick={this.toggleExpand}>More Answered Questions</button>
+          {/* <QuestionModal /> */}
         </div>
       );
     }
