@@ -82,7 +82,7 @@ class Main extends React.Component {
           setSearchQuery={this.setSearchQuery}
           handleSearchSubmit={this.handleSearchSubmit}
         />
-        <QuestionsList questions={filteredQuestions} />
+        <QuestionsList questions={filteredQuestions} getQuestions={this.getQuestions} />
       </div>
     );
   }

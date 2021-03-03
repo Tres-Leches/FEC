@@ -1,28 +1,65 @@
+/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import axios from 'axios';
+import Moment from 'react-moment';
 
 class Answer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      disabled: false,
+      reported: false,
     };
+    this.updateAnsHelpfulness = this.updateAnsHelpfulness.bind(this);
+    this.toggleAnsReported = this.toggleAnsReported.bind(this);
+  }
+
+  updateAnsHelpfulness() {
+    const { answer, getAnswers } = this.props;
+    const { disabled } = this.state;
+    if (disabled) {
+      return;
+    }
+    axios.put(`/api/qa/answers/${answer.answer_id}/helpful`)
+      .then(() => {
+        this.setState({ disabled: true });
+        getAnswers();
+      })
+      .catch((err) => console.error(err));
+  }
+
+  toggleAnsReported() {
+    const { answer } = this.props;
+    const { reported } = this.state;
+    if (reported) {
+      return;
+    }
+    axios.put(`/api/qa/answers/${answer.answer_id}/report`)
+      .then(() => {
+        this.setState({ reported: true });
+      })
+      .catch((err) => console.error(err));
   }
 
   render() {
     const { answer } = this.props;
+    const { disabled, reported } = this.state;
+
     return (
-      <div>
+      <div className="answer-body">
         A:
         {answer.body}
-        By:
-        {answer.answerer_name}
-        | Helpful?
-        <button type="button">
-          Yes
-        </button>
-        {`(${answer.helpfulness})`}
-        <button type="button">Report</button>
+        <div className="answer-info">
+          by &nbsp;
+          {answer.answerer_name}
+          , &nbsp;
+          <Moment format="LL">{answer.date}</Moment>
+          &nbsp; | Helpful?
+          <button type="button" onClick={this.updateAnsHelpfulness} disabled={disabled}>Yes</button>
+          {`(${answer.helpfulness})`}
+          <button type="button" onClick={this.toggleAnsReported} disabled={reported}>{reported ? 'Reported' : 'Report'}</button>
+        </div>
       </div>
     );
   }
