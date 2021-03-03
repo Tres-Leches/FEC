@@ -1,7 +1,15 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import axios from 'axios';
+import * as yup from 'yup';
 import './questions.css';
+
+let schema = yup.object().shape({
+  body: yup.string().required().max(1000),
+  name: yup.string().required().max(60),
+  email: yup.string().required().max(60).email(),
+  product_id: yup.number().positive().integer(),
+});
 
 class QuestionModal extends React.Component {
   constructor(props) {
@@ -27,17 +35,22 @@ class QuestionModal extends React.Component {
     const { closeModal, productId, getQuestions } = this.props;
     const { userQuestion, userNickname, userEmail } = this.state;
     e.preventDefault();
-    axios.post(`/api/qa/questions/${productId}`, {
-      body: userQuestion,
-      name: userNickname,
-      email: userEmail,
-      product_id: Number(productId),
-    })
-      .then(() => {
-        getQuestions();
-        closeModal();
+    schema
+      .validate({
+        body: userQuestion,
+        name: userNickname,
+        email: userEmail,
+        product_id: Number(productId),
       })
-      .catch((err) => console.error(err));
+      .then((value) => {
+        axios.post(`/api/qa/questions/${productId}`, value)
+          .then(() => {
+            getQuestions();
+            closeModal();
+          })
+          .catch((err) => console.error(err));
+      })
+      .catch((err) => (window.alert(err)));
   }
 
   render() {

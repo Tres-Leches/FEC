@@ -56,9 +56,23 @@ class Answer extends React.Component {
           , &nbsp;
           <Moment format="LL">{answer.date}</Moment>
           &nbsp; | Helpful?
-          <button type="button" onClick={this.updateAnsHelpfulness} disabled={disabled}>Yes</button>
+          <button
+            type="button"
+            className="button-link"
+            onClick={this.updateAnsHelpfulness}
+            disabled={disabled}
+          >
+            Yes
+          </button>
           {`(${answer.helpfulness})`}
-          <button type="button" onClick={this.toggleAnsReported} disabled={reported}>{reported ? 'Reported' : 'Report'}</button>
+          <button
+            type="button"
+            className="button-link"
+            onClick={this.toggleAnsReported}
+            disabled={reported}
+          >
+            {reported ? 'Reported' : 'Report'}
+          </button>
         </div>
       </div>
     );
