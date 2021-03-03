@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-// import './productDetail.css'
+import './productDetail.css'
+// import 'font-awesome/css/font-awesome.min.css';
 
 import Add2Cart from './Add2Cart';
 import DefaultView from './DefaultView';
@@ -28,10 +29,15 @@ class Main extends React.Component {
       .catch(err => console.error(err))
   }
 
+  changeStyle(style){
+    this.setState({style},()=>{console.log('changestyle',this.state.style.photos)})
+  }
+
   render() {
     if(this.state.style){
       let view;
       this.state.zoomed ? view = <ExpandedView style={this.state.style} /> : view = <DefaultView style={this.state.style} />
+      // console.log('passed to defaultview', this.state.style.photos)
       return (
         <div className="overview">
           <div className="view">
@@ -39,7 +45,7 @@ class Main extends React.Component {
           </div>
           <div className="info">
             <ProductInfo productId={this.state.product_id}/>
-            <StyleSelector styles={this.state.styles} style={this.state.style} />
+            <StyleSelector styles={this.state.styles} style={this.state.style} changeStyle={this.changeStyle.bind(this)}/>
             <Add2Cart style={this.state.style}/>
           </div>
         </div>

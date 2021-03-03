@@ -17,9 +17,17 @@ export default class StyleSelector extends React.Component {
           <b>Style > </b> {this.props.style.name}
         </div>
           <div className="circleThumbnails">
-          {this.props.styles.map((style, key) => (
-            <img key={key} src={style.photos[0].thumbnail_url} />
-          ))}
+          {this.props.styles.map((style, key) => {
+            let input;
+            this.props.style === style ? input = <input class='style-checkbox' type="checkbox" checked></input> : input = "";
+            return(
+              <div className ="checkbox-wrapper">
+                <img key={key} src={style.photos[0].thumbnail_url} onClick={()=> this.props.changeStyle(style)}/>
+              {input}
+              </div>
+
+            )
+          })}
         </div>
 
       </div>

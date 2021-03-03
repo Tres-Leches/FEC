@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
+
 export default class Add2Cart extends React.Component {
   constructor(props) {
     super(props);
@@ -13,17 +16,24 @@ export default class Add2Cart extends React.Component {
   render() {
     return (
       <div>
-        <select name = "size">
-            <option >Select Size</option>
-            {Object.keys(this.props.style.skus).map((sku, ind) => (
-              <option key={ind}>{this.props.style.skus[sku].size}</option>
-            ))}
+        <div className="selectors">
+          <div className="sizeSelector">
+            <select name = "size" >
+                <option >Select Size</option>
+                {Object.keys(this.props.style.skus).map((sku, ind) => (
+                  <option key={ind}>{this.props.style.skus[sku].size}</option>
+                ))}
+            </select>
+          </div>
+          <div className="quantitySelector">
+            <select name = "quantity">
+                <option >-</option>
+            </select>
+          </div>
+        </div>
 
-         </select>
-         <select name = "quantity">
-            <option >-</option>
-
-         </select>
+         <br/>
+         <button className="add2Bag">Add to Bag +</button><button className="add2Favorite"><FontAwesomeIcon icon={faStar} /></button>
       </div>
     );
   }
