@@ -3,7 +3,7 @@
 
 import React from 'react';
 import axios from 'axios';
-import Answer from './Answer';
+import AnswerList from './AnswerList';
 
 class Question extends React.Component {
   constructor(props) {
@@ -55,9 +55,8 @@ class Question extends React.Component {
         <button type="button" onClick={this.updateHelpfulness} disabled={disabled}>Yes</button>
         {`(${question.question_helpfulness})`}
         <button type="button">Add Answer</button>
-        {answers.map((answer) => (
-          <Answer key={answer.answer_id} answer={answer} />
-        ))}
+        <AnswerList answers={answers} getAnswers={this.getAnswers} />
+
       </div>
     );
   }
