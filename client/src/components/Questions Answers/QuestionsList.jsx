@@ -9,9 +9,11 @@ class QuestionsList extends React.Component {
     super(props);
     this.state = {
       isExpand: false,
-      showQuestionModal: false,
+      show: false,
     };
     this.toggleExpand = this.toggleExpand.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   toggleExpand() {
@@ -19,10 +21,19 @@ class QuestionsList extends React.Component {
     this.setState({ isExpand: !isExpand });
   }
 
+  showModal() {
+    this.setState({ show: true });
+  }
+
+  closeModal() {
+    this.setState({ show: false });
+  }
+
   render() {
-    const { questions, getQuestions } = this.props;
-    const { isExpand } = this.state;
+    const { questions, getQuestions, productId } = this.props;
+    const { isExpand, show } = this.state;
     const initialQ = questions.slice(0, 2);
+
     if (!isExpand) {
       return (
         <div>
@@ -35,8 +46,15 @@ class QuestionsList extends React.Component {
               />
             ))}
           </div>
-          <button type="button" onClick={this.toggleExpand}>More Answered Questions</button>
-          {/* <QuestionModal /> */}
+          <button type="button" onClick={this.toggleExpand}>MORE ANSWERED QUESTIONS</button>
+          <button type="button" onClick={this.showModal}>ADD A QUESTION</button>
+          <QuestionModal
+            show={show}
+            showModal={this.showModal}
+            closeModal={this.closeModal}
+            productId={productId}
+            getQuestions={getQuestions}
+          />
         </div>
       );
     }
@@ -51,7 +69,14 @@ class QuestionsList extends React.Component {
             />
           ))}
         </div>
-        <button type="button" onClick={this.toggleExpand}>Less Questions</button>
+        <button type="button" onClick={this.toggleExpand}>COLLAPSE QUESTIONS</button>
+        <button type="button" onClick={this.showModal}>ADD A QUESTION</button>
+        <QuestionModal
+          show={show}
+          showModal={this.showModal}
+          closeModal={this.closeModal}
+          productId={productId}
+        />
       </div>
     );
   }
