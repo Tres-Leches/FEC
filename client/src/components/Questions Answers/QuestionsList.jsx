@@ -22,11 +22,23 @@ class QuestionsList extends React.Component {
   }
 
   showModal() {
-    this.setState({ show: true });
+    this.setState({ show: true }, () => {
+      const { show } = this.state;
+      if (show) {
+        document.body.style.overflow = 'hidden';
+        document.getElementsByClassName('scroll').overflow = 'hidden';
+      }
+    });
   }
 
   closeModal() {
-    this.setState({ show: false });
+    this.setState({ show: false }, () => {
+      const { show } = this.state;
+      if (!show) {
+        document.body.style.overflow = 'unset';
+        document.getElementsByClassName('scroll').overflow = 'unset';
+      }
+    });
   }
 
   render() {

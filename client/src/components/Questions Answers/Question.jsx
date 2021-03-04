@@ -4,6 +4,7 @@
 import React from 'react';
 import axios from 'axios';
 import AnswerList from './AnswerList';
+import AnswerModal from './AnswerModal';
 
 class Question extends React.Component {
   constructor(props) {
@@ -11,9 +12,11 @@ class Question extends React.Component {
     this.state = {
       answers: [],
       disabled: false,
+      show: false,
     };
     this.getAnswers = this.getAnswers.bind(this);
     this.updateHelpfulness = this.updateHelpfulness.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount() {
@@ -43,9 +46,22 @@ class Question extends React.Component {
       .catch((err) => console.error(err));
   }
 
+  toggleModal() {
+    const { show } = this.state;
+    this.setState({ show: !show }, () => {
+      if (!show) {
+        document.body.style.overflow = 'hidden';
+        document.getElementsByClassName('scroll').overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'unset';
+        document.getElementsByClassName('scroll').overflow = 'unset';
+      }
+    });
+  }
+
   render() {
     const { question } = this.props;
-    const { answers, disabled } = this.state;
+    const { answers, disabled, show } = this.state;
 
     return (
       <div>
@@ -54,8 +70,17 @@ class Question extends React.Component {
         Helpful?
         <button type="button" onClick={this.updateHelpfulness} disabled={disabled}>Yes</button>
         {`(${question.question_helpfulness})`}
-        <button type="button">Add Answer</button>
-        <AnswerList answers={answers} getAnswers={this.getAnswers} />
+        <button type="button" onClick={this.toggleModal}>Add Answer</button>
+        <AnswerModal
+          show={show}
+          toggleModal={this.toggleModal}
+          questionId={question.question_id}
+          getAnswers={this.getAnswers}
+        />
+        <AnswerList
+          answers={answers}
+          getAnswers={this.getAnswers}
+        />
 
       </div>
     );

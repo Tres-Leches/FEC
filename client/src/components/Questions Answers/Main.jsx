@@ -77,7 +77,6 @@ class Main extends React.Component {
 
     return (
       <div>
-        Hello from Questions and Answers
         <SearchBar
           searchQuery={searchQuery}
           setSearchQuery={this.setSearchQuery}

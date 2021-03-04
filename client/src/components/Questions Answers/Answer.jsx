@@ -3,6 +3,7 @@
 import React from 'react';
 import axios from 'axios';
 import Moment from 'react-moment';
+import Image from './Image';
 
 class Answer extends React.Component {
   constructor(props) {
@@ -45,11 +46,22 @@ class Answer extends React.Component {
   render() {
     const { answer } = this.props;
     const { disabled, reported } = this.state;
+    const havePhotos = answer.photos.length > 0
 
     return (
       <div className="answer-body">
-        A:
         {answer.body}
+        {
+          havePhotos
+            ? (
+              <div className="answer-photos">
+                {answer.photos.map((photo) => (
+                  <Image key={photo.id} photo={photo} />
+                ))}
+              </div>
+            )
+            : null
+        }
         <div className="answer-info">
           by &nbsp;
           {answer.answerer_name}

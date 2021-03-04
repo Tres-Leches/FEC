@@ -1,14 +1,14 @@
 .scroll {
-  max-height: 200px;
+  max-height: 500px;
   overflow-y: scroll;
 }
 
-/* MODAL */
+/* QUESTION MODAL */
 /* Background effect. It covers the entire site */
-.question-modal {
+.qa-modal {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Overlay effect: translucent background: black w/ partial opacity */
-    z-index: 1; /* Overlay effect: positioned over other containers */
+    z-index: 2; /* Overlay effect: positioned over other containers */
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     position: fixed; /* Fix position on the top-left corner*/
@@ -18,7 +18,7 @@
     padding-top: 80px; /* Location of the content container */
 }
 /* Modal content */
-.question-modal-content {
+.qa-modal-content {
     background-color: white;
     width: 70%; /* Width in proportion to its parent container*/
     max-width: 640px; /* Max width where it stops expanding */
@@ -40,4 +40,44 @@
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+/*  IMAGE MODAL */
+.img-modal {
+    text-align: center;
+}
+
+.img-modal-dialog {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Overlay effect: translucent background: black w/ partial opacity */
+    position: fixed;
+    top: 20%;
+    left: 0;
+    display: inline-block;
+    border: transparent;
+    padding: 0;
+    z-index: 2;
+    width: auto;
+}
+
+.image {
+    max-height: calc(100vh - 225px);
+}
+
+.answer-photos {
+    display: flex;
+    flex-direction: row;
+}
+
+.small-container {
+    padding: 5px;
+}
+
+.small-img {
+    border: 2px solid transparent;
+    border-color: #aaaaaa;
+    image-rendering: pixelated;
+    height: 100px;
+    width: 150px;
+    margin: 5px;
 }
