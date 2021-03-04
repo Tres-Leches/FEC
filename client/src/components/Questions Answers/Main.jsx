@@ -76,7 +76,10 @@ class Main extends React.Component {
     const { filteredQuestions, searchQuery, productId } = this.state;
 
     return (
-      <div>
+      <div className="qa-main">
+        <div className="qa-main-header">
+          QUESTIONS AND ANSWERS
+        </div>
         <SearchBar
           searchQuery={searchQuery}
           setSearchQuery={this.setSearchQuery}

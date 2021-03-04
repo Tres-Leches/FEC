@@ -46,22 +46,18 @@ class Answer extends React.Component {
   render() {
     const { answer } = this.props;
     const { disabled, reported } = this.state;
-    const havePhotos = answer.photos.length > 0
+    const havePhotos = answer.photos.length > 0;
 
     return (
       <div className="answer-body">
         {answer.body}
-        {
-          havePhotos
-            ? (
-              <div className="answer-photos">
-                {answer.photos.map((photo) => (
-                  <Image key={photo.id} photo={photo} />
-                ))}
-              </div>
-            )
-            : null
-        }
+        {havePhotos && (
+          <div className="answer-photos">
+            {answer.photos.map((photo) => (
+              <Image key={photo.id} photo={photo} />
+            ))}
+          </div>
+        )}
         <div className="answer-info">
           by &nbsp;
           {answer.answerer_name}

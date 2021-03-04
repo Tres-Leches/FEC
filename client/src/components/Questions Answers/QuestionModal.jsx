@@ -46,10 +46,10 @@ class QuestionModal extends React.Component {
         axios.post(`/api/qa/questions/${productId}`, value)
           .then(() => {
             getQuestions();
-            closeModal();
           })
           .catch((err) => console.error(err));
       })
+      .then(() => closeModal())
       .catch((err) => (window.alert(err)));
   }
 

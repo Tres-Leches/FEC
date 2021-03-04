@@ -10,8 +10,10 @@ const AnswerList = (props) => {
 
   if (isExpand) {
     return (
-      <div>
-        A:
+      <div className="answer-wrapper">
+        <div className="answer-header">
+          A:
+        </div>
         {answers.map((answer) => (
           <Answer
             key={answer.answer_id}
@@ -24,8 +26,10 @@ const AnswerList = (props) => {
     );
   }
   return (
-    <div>
-      A:
+    <div className="answer-wrapper">
+      <div className="answer-header">
+        A:
+      </div>
       {initialAns.map((answer) => (
         <Answer
           key={answer.answer_id}
@@ -33,13 +37,8 @@ const AnswerList = (props) => {
           getAnswers={getAnswers}
         />
       ))}
-      {
-      isMore
-        ? (
-          <button type="button" onClick={() => setIsExpand(!isExpand)}>LOAD MORE ANSWERS</button>
-        )
-        : null
-      }
+      {isMore
+        && <button type="button" onClick={() => setIsExpand(!isExpand)}>LOAD MORE ANSWERS</button>}
     </div>
   );
 };

@@ -64,19 +64,27 @@ class Question extends React.Component {
     const { answers, disabled, show } = this.state;
 
     return (
-      <div>
-        Q:
-        {question.question_body}
-        Helpful?
-        <button type="button" onClick={this.updateHelpfulness} disabled={disabled}>Yes</button>
-        {`(${question.question_helpfulness})`}
-        <button type="button" onClick={this.toggleModal}>Add Answer</button>
-        <AnswerModal
-          show={show}
-          toggleModal={this.toggleModal}
-          questionId={question.question_id}
-          getAnswers={this.getAnswers}
-        />
+      <div className="qa-wrapper">
+        <div className="question-wrapper">
+          <div className="question-header">
+            Q:
+          </div>
+          <div className="question-body">
+            {question.question_body}
+          </div>
+          <div className="question-actions">
+            Helpful?
+            <button type="button" onClick={this.updateHelpfulness} disabled={disabled}>Yes</button>
+            {`(${question.question_helpfulness})`}
+            <button type="button" onClick={this.toggleModal}>Add Answer</button>
+            <AnswerModal
+              show={show}
+              toggleModal={this.toggleModal}
+              questionId={question.question_id}
+              getAnswers={this.getAnswers}
+            />
+          </div>
+        </div>
         <AnswerList
           answers={answers}
           getAnswers={this.getAnswers}
