@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-plusplus */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import axios from 'axios';
@@ -8,19 +10,20 @@ const schema = yup.object().shape({
   body: yup.string().required().max(1000),
   name: yup.string().required().max(60),
   email: yup.string().required().max(60).email(),
-  product_id: yup.number().positive().integer(),
 });
 
-class QuestionModal extends React.Component {
+class AnswerModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userQuestion: '',
+      userAnswer: '',
       userNickname: '',
       userEmail: '',
+      userPhotos: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFileUpload = this.handleFileUpload.bind(this);
   }
 
   handleChange(e) {
@@ -31,22 +34,32 @@ class QuestionModal extends React.Component {
     });
   }
 
+  handleFileUpload(e) {
+    const formData = new FormData();
+    const { files } = e.target;
+    for (let i = 0; i < files.length; i++) {
+      formData.append(`image[${i}]`, files[i]);
+    }
+  }
+
   handleSubmit(e) {
-    const { closeModal, productId, getQuestions } = this.props;
-    const { userQuestion, userNickname, userEmail } = this.state;
+    const { toggleModal, questionId, getAnswers } = this.props;
+    const {
+      userAnswer, userNickname, userEmail, userPhotos,
+    } = this.state;
     e.preventDefault();
     schema
       .validate({
-        body: userQuestion,
+        body: userAnswer,
         name: userNickname,
         email: userEmail,
-        product_id: Number(productId),
+        photos: userPhotos,
       })
       .then((value) => {
-        axios.post(`/api/qa/questions/${productId}`, value)
+        axios.post(`/api/qa/questions/${questionId}/answers`, value)
           .then(() => {
-            getQuestions();
-            closeModal();
+            getAnswers();
+            toggleModal();
           })
           .catch((err) => console.error(err));
       })
@@ -54,8 +67,8 @@ class QuestionModal extends React.Component {
   }
 
   render() {
-    const { show, closeModal } = this.props;
-    const { userQuestion, userNickname, userEmail } = this.state;
+    const { show, toggleModal } = this.props;
+    const { userAnswer, userNickname, userEmail } = this.state;
 
     if (!show) {
       return null;
@@ -67,20 +80,20 @@ class QuestionModal extends React.Component {
             className="close"
             role="button"
             tabIndex={0}
-            onClick={closeModal}
-            onKeyDown={closeModal}
+            onClick={toggleModal}
+            onKeyDown={toggleModal}
           >
             &times;
           </span>
-          <h2>Post your question</h2>
+          <h2>Post your answer</h2>
           <form onSubmit={this.handleSubmit}>
-            <label htmlFor="user-question">
-              Your Question*
+            <label htmlFor="user-answer">
+              Your Answer*
               <br />
               <textarea
-                name="userQuestion"
-                placeholder="What is your question?"
-                value={userQuestion}
+                name="userAnswer"
+                placeholder="What is your answer?"
+                value={userAnswer}
                 onChange={this.handleChange}
               />
             </label>
@@ -105,7 +118,7 @@ class QuestionModal extends React.Component {
               <input
                 type="text"
                 name="userEmail"
-                placeholder="Example: jackson@hackreactor.com"
+                placeholder="Example: jack@email.com"
                 value={userEmail}
                 onChange={this.handleChange}
               />
@@ -113,7 +126,19 @@ class QuestionModal extends React.Component {
               For privacy reasons, do not use your full name or email address.
             </label>
             <br />
-            <input type="button" onClick={closeModal} value="Cancel" />
+            <label htmlFor="user-photos">
+              Your Photos
+              <br />
+              <input
+                type="file"
+                multiple
+                onChange={this.handleFileUpload}
+              />
+              <br />
+              For privacy reasons, do not use your full name or email address.
+            </label>
+            <br />
+            <input type="button" onClick={toggleModal} value="Cancel" />
             <input type="submit" value="Post" />
           </form>
         </div>
@@ -122,4 +147,4 @@ class QuestionModal extends React.Component {
   }
 }
 
-export default QuestionModal;
+export default AnswerModal;

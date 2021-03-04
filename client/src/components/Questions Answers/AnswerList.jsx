@@ -11,6 +11,7 @@ const AnswerList = (props) => {
   if (isExpand) {
     return (
       <div>
+        A:
         {answers.map((answer) => (
           <Answer
             key={answer.answer_id}
@@ -24,6 +25,7 @@ const AnswerList = (props) => {
   }
   return (
     <div>
+      A:
       {initialAns.map((answer) => (
         <Answer
           key={answer.answer_id}
