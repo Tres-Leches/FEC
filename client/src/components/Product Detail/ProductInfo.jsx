@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+import Rating from 'react-rating';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
+import { faStar as fullStar} from '@fortawesome/free-solid-svg-icons';
+import { faStar as emptyStar} from '@fortawesome/free-regular-svg-icons';
 
 
 export default class ProductInfo extends React.Component {
@@ -19,7 +20,6 @@ export default class ProductInfo extends React.Component {
   componentDidMount(){
     axios.get(`/api/products/${this.props.productId}`)
     .then((response) => {
-      // console.log(response.data)
       this.setState({product: response.data})
     })
     .then(()=>{
@@ -38,23 +38,20 @@ export default class ProductInfo extends React.Component {
         count += Number(response.data.ratings[rating]);
         total += Number(rating)*Number(response.data.ratings[rating])
       }
-      this.setState({rating: (Math.round(total/count * 2) / 2).toFixed(2), reviews: count})
+      this.setState({rating: (Math.round(total/count * 4) / 4).toFixed(2), reviews: count})
     })
     .catch(err => console.error(err))
   }
 
   render() {
-    if(this.state.rating){
-      let str = this.state.rating.split('.')
-      let stars =[];
-      for (let i = 0; i< Number(str[0]); i++){
-        stars.push(<FontAwesomeIcon key={i} icon={faStar} />)
-      }
-      if (str.length > 1) stars.push(<FontAwesomeIcon key={stars.length} icon={faStarHalfAlt}/>)
+    if(this.state.product){
       return (
         <div>
-          <div className="reviews">
-            {stars}
+          <div className="reviews" style={this.state.reviews ? {visibility:"visible"} : {visibility:"hidden"}}>
+            <Rating initialRating={this.state.rating} fractions={4} readonly
+              emptySymbol={<FontAwesomeIcon icon={emptyStar} />}
+              fullSymbol={<FontAwesomeIcon icon={fullStar} />}
+            />
             <h5 className="linkReviews"> Read all {this.state.reviews} reviews </h5>
           </div>
           <h3>{this.state.product.category}</h3>
@@ -63,9 +60,7 @@ export default class ProductInfo extends React.Component {
         </div>
       );
   } else {
-    return (
-      <div></div>
-    )
+    return (<div></div>)
   }
 }
 }

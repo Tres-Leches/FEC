@@ -26,7 +26,7 @@ export default class Add2Cart extends React.Component {
             </select>
           </div>
           <div className="quantitySelector">
-            <select name = "quantity">
+            <select name = "quantity" disabled>
                 <option >-</option>
             </select>
           </div>
