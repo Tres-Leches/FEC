@@ -3,8 +3,7 @@
 import React from 'react';
 
 const SearchBar = ({ searchQuery, setSearchQuery }) => (
-  <div>
-    Hello from SearchBar
+  <div className="searchbar">
     <form>
       <input type="text" value={searchQuery || ''} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={setSearchQuery} />
       <input type="submit" value="Submit" />

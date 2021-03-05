@@ -7,18 +7,32 @@ import './questions.css';
 class QuestionsList extends React.Component {
   constructor(props) {
     super(props);
+    const { questions } = this.props;
     this.state = {
-      isExpand: false,
       show: false,
+      questionsLen: 2,
+      remainLen: questions.length - 2,
     };
-    this.toggleExpand = this.toggleExpand.bind(this);
     this.showModal = this.showModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.updateQuestionLen = this.updateQuestionLen.bind(this);
+    this.resetQuestionLen = this.resetQuestionLen.bind(this);
   }
 
-  toggleExpand() {
-    const { isExpand } = this.state;
-    this.setState({ isExpand: !isExpand });
+  updateQuestionLen() {
+    const { questionsLen, remainLen } = this.state;
+    this.setState({
+      questionsLen: questionsLen + 2,
+      remainLen: remainLen - 2,
+    });
+  }
+
+  resetQuestionLen() {
+    const { questions } = this.props;
+    this.setState({
+      questionsLen: 2,
+      remainLen: questions.length - 2,
+    });
   }
 
   showModal() {
@@ -43,14 +57,14 @@ class QuestionsList extends React.Component {
 
   render() {
     const { questions, getQuestions, productId } = this.props;
-    const { isExpand, show } = this.state;
-    const initialQ = questions.slice(0, 2);
+    const { show, questionsLen, remainLen } = this.state;
 
-    if (!isExpand) {
+    // if (!isExpand) {
+    if (questions) {
       return (
         <div>
           <div className="scroll">
-            {initialQ.map((question) => (
+            {questions.slice(0, questionsLen).map((question) => (
               <Question
                 key={question.question_id}
                 question={question}
@@ -58,7 +72,9 @@ class QuestionsList extends React.Component {
               />
             ))}
           </div>
-          <button type="button" onClick={this.toggleExpand}>MORE ANSWERED QUESTIONS</button>
+          {remainLen > 0
+            ? <button type="button" onClick={this.updateQuestionLen}>{`MORE ANSWERED QUESTIONS (${remainLen})`}</button>
+            : <button type="button" onClick={this.resetQuestionLen}>COLLAPSE QUESTIONS</button>}
           <button type="button" onClick={this.showModal}>ADD A QUESTION</button>
           <QuestionModal
             show={show}
@@ -70,27 +86,29 @@ class QuestionsList extends React.Component {
         </div>
       );
     }
-    return (
-      <div>
-        <div className="scroll">
-          {questions.map((question) => (
-            <Question
-              key={question.question_id}
-              question={question}
-              getQuestions={getQuestions}
-            />
-          ))}
-        </div>
-        <button type="button" onClick={this.toggleExpand}>COLLAPSE QUESTIONS</button>
-        <button type="button" onClick={this.showModal}>ADD A QUESTION</button>
-        <QuestionModal
-          show={show}
-          showModal={this.showModal}
-          closeModal={this.closeModal}
-          productId={productId}
-        />
-      </div>
-    );
+    return null;
+    // }
+    // return (
+    //   <div>
+    //     <div className="scroll">
+    //       {questions.map((question) => (
+    //         <Question
+    //           key={question.question_id}
+    //           question={question}
+    //           getQuestions={getQuestions}
+    //         />
+    //       ))}
+    //     </div>
+    //     <button type="button" onClick={this.toggleExpand}>COLLAPSE QUESTIONS</button>
+    //     <button type="button" onClick={this.showModal}>ADD A QUESTION</button>
+    //     <QuestionModal
+    //       show={show}
+    //       showModal={this.showModal}
+    //       closeModal={this.closeModal}
+    //       productId={productId}
+    //     />
+    //   </div>
+    // );
   }
 }
 
