@@ -71,13 +71,16 @@ export default class DefaultView extends React.Component {
           <img src={this.state.currentPhoto.url}/>
           <FontAwesomeIcon icon={faArrowRight} size='lg' className="rightArrow" onClick={() => {this.arrowChangePhoto('forward')}}/>
         </div>
+      <div className="thumbnailContainer">
         <FontAwesomeIcon icon={faAngleUp} className="upArrow" onClick={() => {this.arrowChangePhoto('backward')}}/>
-        <ul className="thumbnails">
-        {thumbnails.map((photo, key) => (
-          <li key={key} id={"slide"+key} ><img src={photo.url} className={key + this.state.startInd === this.state.currentInd ? "clickedThumbnail" : ""} onClick={() => {this.changeCurrentPhoto(photo)}}/> </li>
-        ))}
-        </ul>
-        <FontAwesomeIcon icon={faAngleDown} className="downArrow" onClick={() => {this.arrowChangePhoto('forward')}}/>
+          <ul className="thumbnails">
+          {thumbnails.map((photo, key) => (
+            <li key={key} id={"slide"+key} ><img src={photo.url} className={key + this.state.startInd === this.state.currentInd ? "clickedThumbnail" : ""} onClick={() => {this.changeCurrentPhoto(photo)}}/> </li>
+          ))}
+          </ul>
+          <FontAwesomeIcon icon={faAngleDown} className="downArrow" onClick={() => {this.arrowChangePhoto('forward')}}/>
+      </div>
+
 
         {/* <ul className="thumbnails">
         {this.props.style.photos.map((photo, key) => (
