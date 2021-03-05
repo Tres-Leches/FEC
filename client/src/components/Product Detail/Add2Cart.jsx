@@ -71,7 +71,11 @@ export default class Add2Cart extends React.Component {
         </div>
 
          <br/>
-         <button className="add2Bag" style={sizes.length ? {visibility: "visible"} : {visibility:"hidden"}}>Add to Bag +</button><button className="add2Favorite"><FontAwesomeIcon icon={faStar} /></button>
+         <div className="add2">
+          <button className="add2Bag" style={sizes.length ? {visibility: "visible"} : {visibility:"hidden"}}>Add to Bag +</button>
+          <button className="add2Favorite"><FontAwesomeIcon icon={faStar} /></button>
+         </div>
+
       </div>
     );
   }

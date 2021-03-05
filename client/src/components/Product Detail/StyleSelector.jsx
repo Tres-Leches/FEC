@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+
 export default class StyleSelector extends React.Component {
   constructor(props) {
     super(props);
@@ -8,7 +11,6 @@ export default class StyleSelector extends React.Component {
 
     };
   }
-
 
   render() {
     return (
@@ -20,12 +22,12 @@ export default class StyleSelector extends React.Component {
           <b>Style > </b> {this.props.style.name}
           <div className="circleThumbnails">
           {this.props.styles.map((style, key) => {
-            let input;
-            this.props.style === style ? input = <input className='style-checkbox' type="checkbox" defaultChecked></input> : input = "";
+            let checkbox;
+            this.props.style === style ? checkbox = <FontAwesomeIcon className='style-checkbox' icon={faCheckCircle}/>: checkbox = "";
             return(
               <div className = {this.props.style === style ? "checkbox-wrapper firstCircleThumbnail" : "checkbox-wrapper"} key={key}>
                 <img src={style.photos[0].thumbnail_url} onClick={()=> this.props.changeStyle(style)}/>
-                {input}
+                {checkbox}
               </div>
             )
           })}

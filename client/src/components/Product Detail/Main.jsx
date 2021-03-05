@@ -9,6 +9,7 @@ import ExpandedView from './ExpandedView';
 import ProductInfo from './ProductInfo';
 import StyleSelector from './StyleSelector';
 import Share from './Share';
+import EndInfo from './EndInfo';
 
 class Main extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class Main extends React.Component {
       product_ids: [16392, 16465, 16056, 16084, 16154, 16060, 16072, 16073],
       product_id: 16056,
       zoomed: false,
+      product: null,
       styles: [],
       style: null
     };
@@ -29,6 +31,11 @@ class Main extends React.Component {
         this.setState({styles: response.data.results, style: response.data.results[0]})
       })
       .catch(err => console.error(err))
+    axios.get(`/api/products/${this.state.product_id}`)
+      .then((response) => {
+        this.setState({product: response.data})
+      })
+      .catch(err => console.error(err))
   }
 
   changeStyle(style){
@@ -36,7 +43,7 @@ class Main extends React.Component {
   }
 
   render() {
-    if(this.state.style){
+    if(this.state.style && this.state.product){
       let view;
       this.state.zoomed ? view = <ExpandedView style={this.state.style} /> : view = <DefaultView style={this.state.style} />
       // console.log('passed to defaultview', this.state.style.photos)
@@ -44,12 +51,16 @@ class Main extends React.Component {
         <div className="overview">
           <div className="view">
             {view}
-          </div>
-          <div className="info">
-            <ProductInfo productId={this.state.product_id}/>
+            <div className="info">
+            <ProductInfo product={this.state.product} productId={this.state.product_id}/>
             <StyleSelector styles={this.state.styles} style={this.state.style} changeStyle={this.changeStyle.bind(this)}/>
             <Add2Cart style={this.state.style}/>
             <Share />
+          </div>
+          </div>
+
+          <div className="viewLastInfo">
+            <EndInfo product={this.state.product}/>
           </div>
         </div>
       );
