@@ -56,7 +56,6 @@ export default class ProductInfo extends React.Component {
           </div>
           <h3>{this.state.product.category}</h3>
           <h1>{this.state.product.name}</h1>
-          <h4>${this.state.product.default_price}</h4>
         </div>
       );
   } else {

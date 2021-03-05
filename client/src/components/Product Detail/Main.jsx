@@ -8,13 +8,14 @@ import DefaultView from './DefaultView';
 import ExpandedView from './ExpandedView';
 import ProductInfo from './ProductInfo';
 import StyleSelector from './StyleSelector';
+import Share from './Share';
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_ids: [16392, 16465, 16056, 16084, 16154, 16060],
-      product_id: 16060,
+      product_ids: [16392, 16465, 16056, 16084, 16154, 16060, 16072, 16073],
+      product_id: 16056,
       zoomed: false,
       styles: [],
       style: null
@@ -47,6 +48,7 @@ class Main extends React.Component {
           <div className="info">
             <ProductInfo productId={this.state.product_id}/>
             <StyleSelector styles={this.state.styles} style={this.state.style} changeStyle={this.changeStyle.bind(this)}/>
+            <Share />
             <Add2Cart style={this.state.style}/>
           </div>
         </div>
