@@ -40,10 +40,15 @@
 /* QUESTION LIST  */
 .question-wrapper {
     display: flex;
+    justify-content: space-between;
+}
+
+.question-header-body {
+    display: flex;
+    font-weight: bolder;
 }
 
 .question-header {
-    font-weight: bolder;
     margin-right: 10px;
 }
 
@@ -53,6 +58,10 @@
 }
 
 .question-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
     font-family: 'Roboto', sans-serif;
     font-size: 10px;
     color: rgb(88,88,88);
@@ -61,7 +70,7 @@
 .question-info #actions {
     background: none!important;
     border: none;
-    padding: 0!important;
+    padding: 0px 2px 0px 7px;
     text-decoration: underline;
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
@@ -70,7 +79,30 @@
 }
 
 /* ANSWER LIST  */
+.answer-header-bodylist-container {
+    display: flex;
+}
+
+.answer-header {
+    font-weight: bolder;
+}
+
+.answer-body-container {
+    margin-left: 10px;
+    margin-bottom: 12px;
+}
+
+.answer-body {
+    font-size: 13px;
+    margin-top: 3px;
+    color: rgb(88,88,88);
+}
+
 .answer-info {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-top: 5px;
     font-family: 'Roboto', sans-serif;
     font-size: 10px;
     color: rgb(88,88,88);
@@ -79,7 +111,7 @@
 .answer-info button {
     background: none!important;
     border: none;
-    padding: 0!important;
+    padding: 0px 2px 0px 7px;
     text-decoration: underline;
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
@@ -87,15 +119,29 @@
     color: rgb(88,88,88);
 }
 
-.answer-wrapper #load-button {
+.answer-info-actions {
+    display: flex;
+}
+
+.answerlist-wrapper {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.answerlist-wrapper #load-button {
     background: none!important;
     border: none;
     padding: 0!important;
+    margin-left: 25px;
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 12px;
     color: black
+}
+
+.text-divider {
+    margin: 0px 10px 0px 10px;
 }
 
 /* QUESTION MODAL */
@@ -165,7 +211,7 @@
 }
 
 .small-container {
-    padding: 5px;
+    padding: 5px 5px 0px 0px;
 }
 
 .small-img {
@@ -174,5 +220,5 @@
     image-rendering: pixelated;
     height: 100px;
     width: 150px;
-    margin: 5px;
+    margin: 5px 5px 0px 0px;
 }

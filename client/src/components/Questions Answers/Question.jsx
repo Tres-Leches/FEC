@@ -32,12 +32,13 @@ class Question extends React.Component {
       .catch((err) => console.error(err));
   }
 
-  updateHelpfulness() {
+  updateHelpfulness(e) {
     const { question, getQuestions } = this.props;
     const { disabled } = this.state;
     if (disabled) {
       return;
     }
+    e.target.style.textDecoration = 'none';
     axios.put(`/api/qa/questions/${question.question_id}/helpful`)
       .then(() => {
         this.setState({ disabled: true });
@@ -66,17 +67,33 @@ class Question extends React.Component {
     return (
       <div className="qa-wrapper">
         <div className="question-wrapper">
-          <div className="question-header">
-            Q:
-          </div>
-          <div className="question-body">
-            {question.question_body}
+          <div className="question-header-body">
+            <div className="question-header">
+              Q:
+            </div>
+            <div className="question-body">
+              {question.question_body}
+            </div>
           </div>
           <div className="question-info">
             Helpful?
-            <button type="button" id="actions" onClick={this.updateHelpfulness} disabled={disabled}>Yes</button>
-            {`(${question.question_helpfulness})`}
-            <button type="button" id="actions" onClick={this.toggleModal}>Add Answer</button>
+            <button
+              type="button"
+              id="actions"
+              style={{ textDecoration: 'underline' }}
+              onClick={this.updateHelpfulness}
+              disabled={disabled}
+            >
+              Yes
+            </button>
+            {`(${question.question_helpfulness}) |  `}
+            <button
+              type="button"
+              id="actions"
+              onClick={this.toggleModal}
+            >
+              Add Answer
+            </button>
           </div>
           <AnswerModal
             show={show}

@@ -10,33 +10,41 @@ const AnswerList = (props) => {
 
   if (isExpand) {
     return (
-      <div className="answer-wrapper">
-        <div className="answer-header">
-          A:
+      <div className="answerlist-wrapper">
+        <div className="answer-header-bodylist-container">
+          <div className="answer-header">
+            A:
+          </div>
+          <div className="answer-bodylist">
+            {answers.map((answer) => (
+              <Answer
+                key={answer.answer_id}
+                answer={answer}
+                getAnswers={getAnswers}
+              />
+            ))}
+          </div>
         </div>
-        {answers.map((answer) => (
-          <Answer
-            key={answer.answer_id}
-            answer={answer}
-            getAnswers={getAnswers}
-          />
-        ))}
         <button type="button" id="load-button" onClick={() => setIsExpand(!isExpand)}>COLLAPSE ANSWERS</button>
       </div>
     );
   }
   return (
-    <div className="answer-wrapper">
-      <div className="answer-header">
-        A:
+    <div className="answerlist-wrapper">
+      <div className="answer-header-bodylist-container">
+        <div className="answer-header">
+          A:
+        </div>
+        <div className="answer-bodylist">
+          {initialAns.map((answer) => (
+            <Answer
+              key={answer.answer_id}
+              answer={answer}
+              getAnswers={getAnswers}
+            />
+          ))}
+        </div>
       </div>
-      {initialAns.map((answer) => (
-        <Answer
-          key={answer.answer_id}
-          answer={answer}
-          getAnswers={getAnswers}
-        />
-      ))}
       {isMore
         && <button type="button" id="load-button" onClick={() => setIsExpand(!isExpand)}>LOAD MORE ANSWERS</button>}
     </div>
