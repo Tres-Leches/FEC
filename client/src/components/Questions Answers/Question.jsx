@@ -72,18 +72,18 @@ class Question extends React.Component {
           <div className="question-body">
             {question.question_body}
           </div>
-          <div className="question-actions">
+          <div className="question-info">
             Helpful?
-            <button type="button" onClick={this.updateHelpfulness} disabled={disabled}>Yes</button>
+            <button type="button" id="actions" onClick={this.updateHelpfulness} disabled={disabled}>Yes</button>
             {`(${question.question_helpfulness})`}
-            <button type="button" onClick={this.toggleModal}>Add Answer</button>
-            <AnswerModal
-              show={show}
-              toggleModal={this.toggleModal}
-              questionId={question.question_id}
-              getAnswers={this.getAnswers}
-            />
+            <button type="button" id="actions" onClick={this.toggleModal}>Add Answer</button>
           </div>
+          <AnswerModal
+            show={show}
+            toggleModal={this.toggleModal}
+            questionId={question.question_id}
+            getAnswers={this.getAnswers}
+          />
         </div>
         <AnswerList
           answers={answers}

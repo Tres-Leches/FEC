@@ -21,7 +21,7 @@ const AnswerList = (props) => {
             getAnswers={getAnswers}
           />
         ))}
-        <button type="button" onClick={() => setIsExpand(!isExpand)}>COLLAPSE ANSWERS</button>
+        <button type="button" id="load-button" onClick={() => setIsExpand(!isExpand)}>COLLAPSE ANSWERS</button>
       </div>
     );
   }
@@ -38,7 +38,7 @@ const AnswerList = (props) => {
         />
       ))}
       {isMore
-        && <button type="button" onClick={() => setIsExpand(!isExpand)}>LOAD MORE ANSWERS</button>}
+        && <button type="button" id="load-button" onClick={() => setIsExpand(!isExpand)}>LOAD MORE ANSWERS</button>}
     </div>
   );
 };
