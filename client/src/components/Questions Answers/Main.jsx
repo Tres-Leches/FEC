@@ -16,6 +16,7 @@ class Main extends React.Component {
     };
     this.getQuestions = this.getQuestions.bind(this);
     this.setSearchQuery = this.setSearchQuery.bind(this);
+    this.resetSearchQuery = this.resetSearchQuery.bind(this);
     this.filterQuestions = this.filterQuestions.bind(this);
   }
 
@@ -37,10 +38,17 @@ class Main extends React.Component {
         questions.sort((a, b) => (
           b.question_helpfulness - a.question_helpfulness
         ));
-        this.setState({ questions });
+        this.setState({ questions }, () => {
+          this.filterQuestions();
+        });
       })
-      .then(() => { this.filterQuestions(); })
       .catch((err) => console.error(err));
+  }
+
+  resetSearchQuery() {
+    this.setState({ searchQuery: '' }, () => {
+      this.filterQuestions();
+    });
   }
 
   filterQuestions() {
@@ -74,26 +82,24 @@ class Main extends React.Component {
 
   render() {
     const { filteredQuestions, searchQuery, productId } = this.state;
-    if (filteredQuestions.length) {
-      return (
-        <div className="qa-main">
-          <div className="qa-main-header">
-            QUESTIONS AND ANSWERS
-          </div>
-          <SearchBar
-            searchQuery={searchQuery}
-            setSearchQuery={this.setSearchQuery}
-            handleSearchSubmit={this.handleSearchSubmit}
-          />
-          <QuestionsList
-            questions={filteredQuestions}
-            getQuestions={this.getQuestions}
-            productId={productId}
-          />
+    return (
+      <div className="qa-main">
+        <div className="qa-main-header">
+          QUESTIONS AND ANSWERS
         </div>
-      );
-    }
-    return null;
+        <SearchBar
+          searchQuery={searchQuery}
+          setSearchQuery={this.setSearchQuery}
+          resetSearchQuery={this.resetSearchQuery}
+          handleSearchSubmit={this.handleSearchSubmit}
+        />
+        <QuestionsList
+          questions={filteredQuestions}
+          getQuestions={this.getQuestions}
+          productId={productId}
+        />
+      </div>
+    );
   }
 }
 

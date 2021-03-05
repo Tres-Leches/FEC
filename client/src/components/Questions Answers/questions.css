@@ -1,11 +1,101 @@
 .qa-main {
     margin: auto;
-    width: 50%;
+    width: 60%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.qa-main-header {
+    font-weight: 300;
+}
+
+/* SEARCHBAR  */
+.searchbar-wrapper {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.searchbar-form {
+    display: flex;
+    width: 100%;
+}
+
+#icon {
+    position: absolute;
+    padding: 10px;
+}
+
+#search-field {
+    padding: 10px;
+    padding-left: 35px;
+    width: 93%;
+    font-family: 'Roboto';
+    font-weight: 500;
+}
+
+.search-reset {
+    position: relative;
+    left: -20px;
+    top: 10px;
+}
+
+/* QUESTION LIST  */
+.question-wrapper {
+    display: flex;
+}
+
+.question-header {
+    font-weight: bolder;
+    margin-right: 10px;
 }
 
 .scroll {
   max-height: 500px;
   overflow-y: scroll;
+}
+
+.question-info {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    color: rgb(88,88,88);
+}
+
+.question-info #actions {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    color: rgb(88,88,88);
+}
+
+/* ANSWER LIST  */
+.answer-info {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    color: rgb(88,88,88);
+}
+
+.answer-info button {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    color: rgb(88,88,88);
+}
+
+.answer-wrapper #load-button {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: black
 }
 
 /* QUESTION MODAL */

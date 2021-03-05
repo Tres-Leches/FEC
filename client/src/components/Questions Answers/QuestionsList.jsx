@@ -19,11 +19,18 @@ class QuestionsList extends React.Component {
     this.resetQuestionLen = this.resetQuestionLen.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    const { questions } = this.props;
+    if (questions !== prevProps.questions) {
+      this.resetQuestionLen();
+    }
+  }
+
   updateQuestionLen() {
     const { questionsLen, remainLen } = this.state;
     this.setState({
-      questionsLen: questionsLen + 2,
-      remainLen: remainLen - 2,
+      questionsLen: questionsLen + 5,
+      remainLen: remainLen - 5,
     });
   }
 
@@ -59,7 +66,6 @@ class QuestionsList extends React.Component {
     const { questions, getQuestions, productId } = this.props;
     const { show, questionsLen, remainLen } = this.state;
 
-    // if (!isExpand) {
     if (questions) {
       return (
         <div>
@@ -72,9 +78,10 @@ class QuestionsList extends React.Component {
               />
             ))}
           </div>
-          {remainLen > 0
-            ? <button type="button" onClick={this.updateQuestionLen}>{`MORE ANSWERED QUESTIONS (${remainLen})`}</button>
-            : <button type="button" onClick={this.resetQuestionLen}>COLLAPSE QUESTIONS</button>}
+          {(remainLen > 0)
+            && <button type="button" onClick={this.updateQuestionLen}>{`MORE ANSWERED QUESTIONS (${remainLen})`}</button>}
+          {(remainLen <= 0 && questions.length > 2)
+            && <button type="button" onClick={this.resetQuestionLen}>COLLAPSE QUESTIONS</button>}
           <button type="button" onClick={this.showModal}>ADD A QUESTION</button>
           <QuestionModal
             show={show}
@@ -87,28 +94,6 @@ class QuestionsList extends React.Component {
       );
     }
     return null;
-    // }
-    // return (
-    //   <div>
-    //     <div className="scroll">
-    //       {questions.map((question) => (
-    //         <Question
-    //           key={question.question_id}
-    //           question={question}
-    //           getQuestions={getQuestions}
-    //         />
-    //       ))}
-    //     </div>
-    //     <button type="button" onClick={this.toggleExpand}>COLLAPSE QUESTIONS</button>
-    //     <button type="button" onClick={this.showModal}>ADD A QUESTION</button>
-    //     <QuestionModal
-    //       show={show}
-    //       showModal={this.showModal}
-    //       closeModal={this.closeModal}
-    //       productId={productId}
-    //     />
-    //   </div>
-    // );
   }
 }
 
