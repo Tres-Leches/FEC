@@ -19,6 +19,13 @@ class QuestionsList extends React.Component {
     this.resetQuestionLen = this.resetQuestionLen.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    const { questions } = this.props;
+    if (questions !== prevProps.questions) {
+      this.resetQuestionLen();
+    }
+  }
+
   updateQuestionLen() {
     const { questionsLen, remainLen } = this.state;
     this.setState({
