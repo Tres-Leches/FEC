@@ -48,8 +48,8 @@ class Main extends React.Component {
           <div className="info">
             <ProductInfo productId={this.state.product_id}/>
             <StyleSelector styles={this.state.styles} style={this.state.style} changeStyle={this.changeStyle.bind(this)}/>
-            <Share />
             <Add2Cart style={this.state.style}/>
+            <Share />
           </div>
         </div>
       );
