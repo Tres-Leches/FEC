@@ -66,7 +66,6 @@ class QuestionsList extends React.Component {
     const { questions, getQuestions, productId } = this.props;
     const { show, questionsLen, remainLen } = this.state;
 
-    // if (!isExpand) {
     if (questions) {
       return (
         <div>
@@ -94,28 +93,7 @@ class QuestionsList extends React.Component {
       );
     }
     return null;
-    // }
-    // return (
-    //   <div>
-    //     <div className="scroll">
-    //       {questions.map((question) => (
-    //         <Question
-    //           key={question.question_id}
-    //           question={question}
-    //           getQuestions={getQuestions}
-    //         />
-    //       ))}
-    //     </div>
-    //     <button type="button" onClick={this.toggleExpand}>COLLAPSE QUESTIONS</button>
-    //     <button type="button" onClick={this.showModal}>ADD A QUESTION</button>
-    //     <QuestionModal
-    //       show={show}
-    //       showModal={this.showModal}
-    //       closeModal={this.closeModal}
-    //       productId={productId}
-    //     />
-    //   </div>
-    // );
+
   }
 }
 
