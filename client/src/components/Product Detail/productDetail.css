@@ -1,13 +1,11 @@
+/*********** MAIN CONTAINERS ***************/
 .overview {
-  display:flex;
-  max-height: 100%;
+  min-height: 100%;
+  max-width: 100%;
   margin: 20px 285px;
-  position:relative;
-  justify-content: space-between;
-  flex-wrap:wrap;
+  position: relative;
 }
 .view{
-  /* flex-grow: 3; */
   position: relative;
   display:flex;
   flex-wrap:nowrap;
@@ -15,69 +13,44 @@
 }
 
 .info{
+
   display:flex;
   flex-direction: column;
   /* flex-grow:2; */
   margin: 9px 0px 9px 20px;
   position: relative;
-  left: 800px;
+  /* left: 0px; */
 }
 .viewLastInfo{
   flex-grow: 5;
 }
 
-.reviews{
-  display: flex;
-}
-
-.linkReviews{
-  position:relative;
-  margin: auto 10px;
-}
+/*********** LEFT DISPLAY ***************/
 
 .display {
-  display: flex;
+   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-end;
 }
 .mainDisplay{
-  display:flex;
-  align-items: flex-end;
-  position:absolute;
-
+   display:flex;
+  /* align-items: flex-start; */
+  position: relative;
 }
 .mainDisplay img{
   /* position:absolute; */
-  width: 800px;
-  height: 650px;
+  max-width: 800px;
+  max-height: 650px;
   object-fit: cover;
 }
 .mainDisplay img:hover {
   cursor:zoom-in;
 }
 
-.leftArrow, .rightArrow {
-  position:absolute;
-  bottom: 200px;
-  z-index: 2;
-}
-.leftArrow {
-  left: 100px;
-  order:2;
-
-}
-.rightArrow {
-  left: 765px;
-  order:3;
-}
-
-.thumbnailContainer {
-  position: absolute;
-  left: -25px;
-  max-height: fit-content;
-}
+/*********** ARROWS ***************/
 .upArrow, .downArrow {
   position: relative;
+  z-index:4;
   left: 70px;
 }
 .upArrow {
@@ -85,6 +58,16 @@
 }
 .downArrow {
   bottom: 10px;
+}
+.leftArrow, .rightArrow {
+  position:absolute;
+  align-self:center;
+}
+.leftArrow {
+  left: 100px;
+}
+.rightArrow {
+  right:10px;
 }
 
 .leftArrow, .rightArrow, .upArrow, .downArrow, .thumbnails img, .circleThumbnails img{
@@ -95,6 +78,13 @@
   cursor:pointer;
 }
 
+/*********** VERTICAL THUMBNAILS ***************/
+.thumbnailContainer {
+  position: absolute;
+  /* top:10px; */
+  left: -25px;
+  max-height: fit-content;
+}
 .thumbnails {
   display: flex;
   flex-direction: column;
@@ -128,36 +118,21 @@
   /* position: relative; */
 }
 
+/*********** RIGHT SIDE INFO ***************/
+.reviews{
+  display: flex;
+}
+
+.linkReviews{
+  position:relative;
+  margin: auto 10px;
+}
+
 .circleThumbnails img:hover{
   border: 3px solid black;
   cursor:pointer;
 }
-/* .slides {
-  overflow: hidden;
-  width: 75vmin;
-  height: 100vmin;
 
-}
-.slides  li {
-  width: 75vmin;
-  height: 100vmin;
-  position: absolute;
-  z-index: 1;
-  list-style: none;
-}
-
-.slides  img {
-  height: 100vmin;
-  object-fit: cover;
-  object-position: top;
-} */
-
-/* .slides li:target {
-  z-index: 3;
-  -webkit-animation: slide 1s 1;
-} */
-
-/* .slides li:not(:target) { -webkit-animation: hidden 1s 1; } */
 .circleThumbnails{
   display:flex;
   flex-wrap: wrap;
@@ -187,6 +162,7 @@
   color:slategray;
 }
 
+/*********** BOTTOM RIGHT SIDE ***************/
 .selectors {
   display:flex;
   justify-content:space-between;
@@ -228,6 +204,8 @@
   width: 425px;
 }
 
+/*********** BOTTOM INFO ***************/
+
 .endInfo {
   display:flex;
   position: relative;
@@ -258,3 +236,56 @@
   /* color: green; */
 }
 
+/*********** EXPANDED VIEW ***************/
+.expandedView {
+  position: fixed;
+  /* top: -90px;
+  left: -290px; */
+  /* background-color: black; */
+  background:  rgba(40,40,40, .75);
+  height: 100vh;
+  width: 100vw;
+  z-index:5;
+  overflow-y: scroll;
+}
+
+[aria-hidden="true"] { visibility: hidden; }
+[aria-hidden="false"] { visibility: visible; }
+
+.noscroll {
+  overflow: hidden;
+}
+
+.expandedView div{
+  margin: 1vh auto;
+  width: 65vw;
+  padding: 30px;
+  min-height: 90vh;
+  background: rgba(255,255,255, .95);
+}
+/* .slides {
+  overflow: hidden;
+  width: 75vmin;
+  height: 100vmin;
+
+}
+.slides  li {
+  width: 75vmin;
+  height: 100vmin;
+  position: absolute;
+  z-index: 1;
+  list-style: none;
+}
+
+.slides  img {
+  height: 100vmin;
+  object-fit: cover;
+  object-position: top;
+} */
+
+/* .slides li:target {
+  z-index: 3;
+  -webkit-animation: slide 1s 1;
+} */
+
+/* .slides li:not(:target) { -webkit-animation: hidden 1s 1; } */

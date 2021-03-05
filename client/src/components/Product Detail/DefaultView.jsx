@@ -24,11 +24,15 @@ export default class DefaultView extends React.Component {
   }
 
   componentDidUpdate(prevProps){
-    if(this.props.style !== prevProps.style) this.setState({
-      currentPhoto: this.props.style.photos[0], currentInd: 0,
-      startInd: 0,
-      endInd: this.props.style.photos.length >= 7 ? 6 : this.props.style.photos.length -1
-    })
+    if(this.props.style !== prevProps.style) {
+      this.setState({
+        currentPhoto: this.props.style.photos[0], currentInd: 0,
+        startInd: 0,
+        endInd: this.props.style.photos.length >= 7 ? 6 : this.props.style.photos.length -1
+      },
+      () => this.props.changeMainPhoto(this.props.style.photos[0])
+      )
+    }
   }
 
   changeCurrentPhoto(photo) {
@@ -49,6 +53,7 @@ export default class DefaultView extends React.Component {
       startInd: newStart,
       endInd: newEnd
     });
+    this.props.changeMainPhoto(photo)
   }
 
   arrowChangePhoto(direction) {
@@ -67,18 +72,18 @@ export default class DefaultView extends React.Component {
     return (
       <div className="display">
         <div className="mainDisplay">
-          <FontAwesomeIcon icon={faArrowLeft} size='lg' className="leftArrow" onClick={() => {this.arrowChangePhoto('backward')}}/>
-          <img src={this.state.currentPhoto.url}/>
-          <FontAwesomeIcon icon={faArrowRight} size='lg' className="rightArrow" onClick={() => {this.arrowChangePhoto('forward')}}/>
+          <FontAwesomeIcon icon={faArrowLeft} size='lg' className="leftArrow" onClick={() => {this.arrowChangePhoto('backward')}} aria-hidden={this.state.currentInd === 0}/>
+          <img src={this.state.currentPhoto.url} onClick={this.props.changeView}/>
+          <FontAwesomeIcon icon={faArrowRight} size='lg' className="rightArrow" onClick={() => {this.arrowChangePhoto('forward')}} aria-hidden={this.state.currentInd === this.props.style.photos.length-1}/>
         </div>
       <div className="thumbnailContainer">
-        <FontAwesomeIcon icon={faAngleUp} className="upArrow" onClick={() => {this.arrowChangePhoto('backward')}}/>
+        <FontAwesomeIcon icon={faAngleUp} className="upArrow" onClick={() => {this.arrowChangePhoto('backward')}} aria-hidden={this.state.currentInd === 0}/>
           <ul className="thumbnails">
           {thumbnails.map((photo, key) => (
             <li key={key} id={"slide"+key} ><img src={photo.url} className={key + this.state.startInd === this.state.currentInd ? "clickedThumbnail" : ""} onClick={() => {this.changeCurrentPhoto(photo)}}/> </li>
           ))}
           </ul>
-          <FontAwesomeIcon icon={faAngleDown} className="downArrow" onClick={() => {this.arrowChangePhoto('forward')}}/>
+          <FontAwesomeIcon icon={faAngleDown} className="downArrow" onClick={() => {this.arrowChangePhoto('forward')}} aria-hidden={this.state.currentInd === this.props.style.photos.length-1}/>
       </div>
 
 

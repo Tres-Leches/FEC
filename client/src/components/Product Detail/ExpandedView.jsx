@@ -11,8 +11,11 @@ export default class ExpandedView extends React.Component {
 
   render() {
     return (
-      <div>
-        Hello from ExpandedView
+      <div className="expandedView">
+        <div>
+
+        </div>
+        {/* <img src={this.state.currentPhoto.url}/> */}
       </div>
     );
   }

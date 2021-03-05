@@ -23,7 +23,7 @@ export default class StyleSelector extends React.Component {
           <div className="circleThumbnails">
           {this.props.styles.map((style, key) => {
             let checkbox;
-            this.props.style === style ? checkbox = <FontAwesomeIcon className='style-checkbox' icon={faCheckCircle}/>: checkbox = "";
+            this.props.style === style ? checkbox = <FontAwesomeIcon className='style-checkbox' aria-hidden="false" icon={faCheckCircle}/>: checkbox = "";
             return(
               <div className = {this.props.style === style ? "checkbox-wrapper firstCircleThumbnail" : "checkbox-wrapper"} key={key}>
                 <img src={style.photos[0].thumbnail_url} onClick={()=> this.props.changeStyle(style)}/>

@@ -11,7 +11,7 @@ var EndInfo = (props) => (
     <div className="features">
       {props.product.features.map((feature, key)=>(
         <div className="feature" key={key}>
-          <FontAwesomeIcon icon={faCheck} className= "featureCheck"/>
+          <FontAwesomeIcon icon={faCheck} className= "featureCheck" aria-hidden="false"/>
           {feature.feature} : {feature.value}
         </div>
       ))}

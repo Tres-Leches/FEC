@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import $ from 'jquery';
 import './productDetail.css';
-// import 'font-awesome/css/font-awesome.min.css';
 
 import Add2Cart from './Add2Cart';
 import DefaultView from './DefaultView';
@@ -20,15 +20,15 @@ class Main extends React.Component {
       zoomed: false,
       product: null,
       styles: [],
-      style: null
+      style: null,
+      mainPhoto: null,
     };
   }
 
   componentDidMount() {
     axios.get(`/api/products/${this.state.product_id}/styles`)
       .then((response) => {
-        // console.log(data)
-        this.setState({styles: response.data.results, style: response.data.results[0]})
+        this.setState({styles: response.data.results, style: response.data.results[0], mainPhoto: response.data.results[0].photos[0]})
       })
       .catch(err => console.error(err))
     axios.get(`/api/products/${this.state.product_id}`)
@@ -38,29 +38,40 @@ class Main extends React.Component {
       .catch(err => console.error(err))
   }
 
-  changeStyle(style){
+  changeStyle(style) {
     this.setState({style})
+  }
+
+  changeMainPhoto (photo) {
+    this.setState({mainPhoto: photo})
+  }
+
+  changeView() {
+
   }
 
   render() {
     if(this.state.style && this.state.product){
-      let view;
-      this.state.zoomed ? view = <ExpandedView style={this.state.style} /> : view = <DefaultView style={this.state.style} />
-      // console.log('passed to defaultview', this.state.style.photos)
+      let expand;
+      this.state.zoomed ? expand = <ExpandedView style={this.state.style} /> : expand = "";
       return (
-        <div className="overview">
-          <div className="view">
-            {view}
-            <div className="info">
-            <ProductInfo product={this.state.product} productId={this.state.product_id}/>
-            <StyleSelector styles={this.state.styles} style={this.state.style} changeStyle={this.changeStyle.bind(this)}/>
-            <Add2Cart style={this.state.style}/>
-            <Share />
-          </div>
-          </div>
+        <div>
+          {expand}
+          <div className="overview">
 
-          <div className="viewLastInfo">
-            <EndInfo product={this.state.product}/>
+            <div className="view">
+              <DefaultView style={this.state.style} changeView={this.changeView.bind(this)} changeMainPhoto={this.changeMainPhoto.bind(this)}/>
+              <div className="info">
+              <ProductInfo product={this.state.product} productId={this.state.product_id}/>
+              <StyleSelector styles={this.state.styles} style={this.state.style} changeStyle={this.changeStyle.bind(this)}/>
+              <Add2Cart style={this.state.style}/>
+              <Share />
+            </div>
+            </div>
+
+            <div className="viewLastInfo">
+              <EndInfo product={this.state.product}/>
+            </div>
           </div>
         </div>
       );
