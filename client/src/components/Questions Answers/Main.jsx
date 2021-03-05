@@ -74,24 +74,26 @@ class Main extends React.Component {
 
   render() {
     const { filteredQuestions, searchQuery, productId } = this.state;
-
-    return (
-      <div className="qa-main">
-        <div className="qa-main-header">
-          QUESTIONS AND ANSWERS
+    if (filteredQuestions.length) {
+      return (
+        <div className="qa-main">
+          <div className="qa-main-header">
+            QUESTIONS AND ANSWERS
+          </div>
+          <SearchBar
+            searchQuery={searchQuery}
+            setSearchQuery={this.setSearchQuery}
+            handleSearchSubmit={this.handleSearchSubmit}
+          />
+          <QuestionsList
+            questions={filteredQuestions}
+            getQuestions={this.getQuestions}
+            productId={productId}
+          />
         </div>
-        <SearchBar
-          searchQuery={searchQuery}
-          setSearchQuery={this.setSearchQuery}
-          handleSearchSubmit={this.handleSearchSubmit}
-        />
-        <QuestionsList
-          questions={filteredQuestions}
-          getQuestions={this.getQuestions}
-          productId={productId}
-        />
-      </div>
-    );
+      );
+    }
+    return null;
   }
 }
 
