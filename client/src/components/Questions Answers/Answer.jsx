@@ -16,12 +16,13 @@ class Answer extends React.Component {
     this.toggleAnsReported = this.toggleAnsReported.bind(this);
   }
 
-  updateAnsHelpfulness() {
+  updateAnsHelpfulness(e) {
     const { answer, getAnswers } = this.props;
     const { disabled } = this.state;
     if (disabled) {
       return;
     }
+    e.target.style.textDecoration = 'none';
     axios.put(`/api/qa/answers/${answer.answer_id}/helpful`)
       .then(() => {
         this.setState({ disabled: true });
@@ -30,12 +31,13 @@ class Answer extends React.Component {
       .catch((err) => console.error(err));
   }
 
-  toggleAnsReported() {
+  toggleAnsReported(e) {
     const { answer } = this.props;
     const { reported } = this.state;
     if (reported) {
       return;
     }
+    e.target.style.textDecoration = 'none';
     axios.put(`/api/qa/answers/${answer.answer_id}/report`)
       .then(() => {
         this.setState({ reported: true });
@@ -49,8 +51,10 @@ class Answer extends React.Component {
     const havePhotos = answer.photos.length > 0;
 
     return (
-      <div className="answer-body">
-        {answer.body}
+      <div className="answer-body-container">
+        <div className="answer-body">
+          {answer.body}
+        </div>
         {havePhotos && (
           <div className="answer-photos">
             {answer.photos.map((photo) => (
@@ -59,28 +63,36 @@ class Answer extends React.Component {
           </div>
         )}
         <div className="answer-info">
-          by &nbsp;
-          {answer.answerer_name}
-          , &nbsp;
-          <Moment format="LL">{answer.date}</Moment>
-          &nbsp; | Helpful?
-          <button
-            type="button"
-            className="button-link"
-            onClick={this.updateAnsHelpfulness}
-            disabled={disabled}
-          >
-            Yes
-          </button>
-          {`(${answer.helpfulness})`}
-          <button
-            type="button"
-            className="button-link"
-            onClick={this.toggleAnsReported}
-            disabled={reported}
-          >
-            {reported ? 'Reported' : 'Report'}
-          </button>
+          <div className="answer-author">
+            by &nbsp;
+            {answer.answerer_name}
+            , &nbsp;
+            <Moment format="LL">{answer.date}</Moment>
+          </div>
+          <div className="text-divider"> | </div>
+          <div className="answer-info-actions">
+            Helpful?
+            <button
+              type="button"
+              className="button-link"
+              style={{ textDecoration: 'underline' }}
+              onClick={this.updateAnsHelpfulness}
+              disabled={disabled}
+            >
+              Yes
+            </button>
+            {`(${answer.helpfulness})`}
+            <div className="text-divider"> | </div>
+            <button
+              type="button"
+              className="button-link"
+              style={{ textDecoration: 'underline' }}
+              onClick={this.toggleAnsReported}
+              disabled={reported}
+            >
+              {reported ? 'Reported' : 'Report'}
+            </button>
+          </div>
         </div>
       </div>
     );

@@ -63,59 +63,59 @@ class QuestionModal extends React.Component {
     return (
       <div className="qa-modal">
         <div className="qa-modal-content">
-          <span
-            className="close"
-            role="button"
-            tabIndex={0}
-            onClick={closeModal}
-            onKeyDown={closeModal}
-          >
-            &times;
-          </span>
-          <h2>Post your question</h2>
+          <div className="qa-modal-header">
+            <h2>Post your question</h2>
+            <span
+              className="close"
+              role="button"
+              tabIndex={0}
+              onClick={closeModal}
+              onKeyDown={closeModal}
+            >
+              &times;
+            </span>
+          </div>
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="user-question">
-              Your Question*
-              <br />
+              <span className="label">Your Question </span>
+              <span className="required">*</span>
               <textarea
                 name="userQuestion"
-                placeholder="What is your question?"
+                placeholder=" What is your question?"
                 value={userQuestion}
                 onChange={this.handleChange}
               />
             </label>
-            <br />
             <label htmlFor="user-nickname">
-              Your Nickname*
-              <br />
+              <span className="label">Nickname </span>
+              <span className="required">*</span>
               <input
                 type="text"
                 name="userNickname"
-                placeholder="Example: jackson11!"
+                placeholder=" Example: jackson11"
                 value={userNickname}
                 onChange={this.handleChange}
               />
-              <br />
-              For privacy reasons, do not use your full name or email address.
+              <span className="disclaimer">For privacy reasons, do not use your full name or email address.</span>
             </label>
-            <br />
             <label htmlFor="user-email">
-              Your Email*
-              <br />
+              <span className="label">Email </span>
+              <span className="required">*</span>
               <input
                 type="text"
                 name="userEmail"
-                placeholder="Example: jackson@hackreactor.com"
+                placeholder=" Example: jackson@hackreactor.com"
                 value={userEmail}
                 onChange={this.handleChange}
               />
-              <br />
-              For privacy reasons, do not use your full name or email address.
+              <span className="disclaimer">For privacy reasons, do not use your full name or email address.</span>
             </label>
-            <br />
-            <input type="button" onClick={closeModal} value="Cancel" />
-            <input type="submit" value="Post" />
+            <label htmlFor="form-actions">
+              <input type="button" onClick={closeModal} value="Cancel" />
+              <input type="submit" value="Post" />
+            </label>
           </form>
+          <div className="qa-modal-footer" />
         </div>
       </div>
     );

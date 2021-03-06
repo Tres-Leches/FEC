@@ -4,6 +4,7 @@
 import React from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
+import Image from './Image';
 import './questions.css';
 
 const schema = yup.object().shape({
@@ -19,11 +20,24 @@ class AnswerModal extends React.Component {
       userAnswer: '',
       userNickname: '',
       userEmail: '',
-      userPhotos: [],
+      userPhotos: [], // array of stringURL
+      files: [], // obj of img obj
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { show } = this.props;
+    if (show !== prevProps.show) {
+      this.setState({
+        userAnswer: '',
+        userNickname: '',
+        userEmail: '',
+        files: [],
+      });
+    }
   }
 
   handleChange(e) {
@@ -35,11 +49,14 @@ class AnswerModal extends React.Component {
   }
 
   handleFileUpload(e) {
-    const formData = new FormData();
-    const { files } = e.target;
-    for (let i = 0; i < files.length; i++) {
-      formData.append(`image[${i}]`, files[i]);
-    }
+    const { files } = this.state;
+    const filesArr = [...e.target.files].map((file) => {
+      const imgObj = { url: URL.createObjectURL(file) };
+      return imgObj;
+    });
+    this.setState({
+      files: files.concat(filesArr),
+    });
   }
 
   handleSubmit(e) {
@@ -68,7 +85,9 @@ class AnswerModal extends React.Component {
 
   render() {
     const { show, toggleModal } = this.props;
-    const { userAnswer, userNickname, userEmail } = this.state;
+    const {
+      userAnswer, userNickname, userEmail, files,
+    } = this.state;
 
     if (!show) {
       return null;
@@ -76,71 +95,70 @@ class AnswerModal extends React.Component {
     return (
       <div className="qa-modal">
         <div className="qa-modal-content">
-          <span
-            className="close"
-            role="button"
-            tabIndex={0}
-            onClick={toggleModal}
-            onKeyDown={toggleModal}
-          >
-            &times;
-          </span>
-          <h2>Post your answer</h2>
+          <div className="qa-modal-header">
+            <h2>Post your answer</h2>
+            <span
+              className="close"
+              role="button"
+              tabIndex={0}
+              onClick={toggleModal}
+              onKeyDown={toggleModal}
+            >
+              &times;
+            </span>
+          </div>
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="user-answer">
-              Your Answer*
-              <br />
+              <span className="label">Your Answer </span>
+              <span className="required">*</span>
               <textarea
                 name="userAnswer"
-                placeholder="What is your answer?"
+                placeholder=" What is your answer?"
                 value={userAnswer}
                 onChange={this.handleChange}
               />
             </label>
-            <br />
             <label htmlFor="user-nickname">
-              Your Nickname*
-              <br />
+              <span className="label">Your Nickname </span>
+              <span className="required">*</span>
               <input
                 type="text"
                 name="userNickname"
-                placeholder="Example: jackson11!"
+                placeholder=" Example: jackson11"
                 value={userNickname}
                 onChange={this.handleChange}
               />
-              <br />
-              For privacy reasons, do not use your full name or email address.
+              <span className="disclaimer">For privacy reasons, do not use your full name or email address.</span>
             </label>
-            <br />
             <label htmlFor="user-email">
-              Your Email*
-              <br />
+              <span className="label">Your Email </span>
+              <span className="required">*</span>
               <input
                 type="text"
                 name="userEmail"
-                placeholder="Example: jack@email.com"
+                placeholder=" Example: jack@email.com"
                 value={userEmail}
                 onChange={this.handleChange}
               />
-              <br />
-              For privacy reasons, do not use your full name or email address.
+              <span className="disclaimer">For privacy reasons, do not use your full name or email address.</span>
             </label>
-            <br />
             <label htmlFor="user-photos">
-              Your Photos
-              <br />
+              <span className="label">Your Photos </span>
               <input
                 type="file"
                 multiple
                 onChange={this.handleFileUpload}
               />
-              <br />
-              For privacy reasons, do not use your full name or email address.
+              {files.length > 0 && files.map((fileURL) => (
+                <Image key={fileURL.url} photo={fileURL} />
+              ))}
             </label>
-            <br />
-            <input type="button" onClick={toggleModal} value="Cancel" />
-            <input type="submit" value="Post" />
+            <label htmlFor="form-actions">
+              <input type="button" onClick={toggleModal} value="Cancel" />
+              <input type="submit" value="Post" />
+            </label>
           </form>
+          <div className="qa-modal-footer" />
         </div>
       </div>
     );
