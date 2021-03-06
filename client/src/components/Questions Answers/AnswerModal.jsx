@@ -1,3 +1,7 @@
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/no-did-update-set-state */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-plusplus */
 /* eslint-disable react/prop-types */
@@ -71,7 +75,7 @@ class AnswerModal extends React.Component {
   handleSubmit(e) {
     const { toggleModal, questionId, getAnswers } = this.props;
     const {
-      userAnswer, userNickname, userEmail, userPhotos, files,
+      userAnswer, userNickname, userEmail, files,
     } = this.state;
     const promises = [];
     e.preventDefault();
@@ -108,10 +112,9 @@ class AnswerModal extends React.Component {
         file: imgURL,
         upload_preset: preset,
       })
-        .then((response) => {
-          console.log(response);
-          return response.data.url;
-        })
+        .then((response) => (
+          response.data.url
+        ))
         .catch((err) => err)
     );
   }
