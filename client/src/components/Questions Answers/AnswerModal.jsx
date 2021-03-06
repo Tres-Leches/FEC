@@ -4,6 +4,7 @@
 import React from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
+import Image from './Image';
 import './questions.css';
 
 const schema = yup.object().shape({
@@ -19,11 +20,24 @@ class AnswerModal extends React.Component {
       userAnswer: '',
       userNickname: '',
       userEmail: '',
-      userPhotos: [],
+      userPhotos: [], // array of stringURL
+      files: [], // obj of img obj
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { show } = this.props;
+    if (show !== prevProps.show) {
+      this.setState({
+        userAnswer: '',
+        userNickname: '',
+        userEmail: '',
+        files: [],
+      });
+    }
   }
 
   handleChange(e) {
@@ -35,11 +49,14 @@ class AnswerModal extends React.Component {
   }
 
   handleFileUpload(e) {
-    const formData = new FormData();
-    const { files } = e.target;
-    for (let i = 0; i < files.length; i++) {
-      formData.append(`image[${i}]`, files[i]);
-    }
+    const { files } = this.state;
+    const filesArr = [...e.target.files].map((file) => {
+      const imgObj = { url: URL.createObjectURL(file) };
+      return imgObj;
+    });
+    this.setState({
+      files: files.concat(filesArr),
+    });
   }
 
   handleSubmit(e) {
@@ -68,7 +85,9 @@ class AnswerModal extends React.Component {
 
   render() {
     const { show, toggleModal } = this.props;
-    const { userAnswer, userNickname, userEmail } = this.state;
+    const {
+      userAnswer, userNickname, userEmail, files,
+    } = this.state;
 
     if (!show) {
       return null;
@@ -130,6 +149,9 @@ class AnswerModal extends React.Component {
                 multiple
                 onChange={this.handleFileUpload}
               />
+              {files.length > 0 && files.map((fileURL) => (
+                <Image key={fileURL.url} photo={fileURL} />
+              ))}
             </label>
             <label htmlFor="form-actions">
               <input type="button" onClick={toggleModal} value="Cancel" />

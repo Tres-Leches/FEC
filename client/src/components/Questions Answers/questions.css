@@ -225,6 +225,7 @@
 
 .qa-modal-content form {
     margin: 20px;
+    height: 400px;
     overflow: auto;
 }
 
@@ -299,7 +300,10 @@
 }
 
 .image {
-    max-height: calc(100vh - 225px);
+    height: calc(100vh - 225px);
+    max-width: 100%;
+    object-fit: contain;
+    margin: auto;
 }
 
 .answer-photos {
