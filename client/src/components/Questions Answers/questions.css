@@ -180,12 +180,31 @@
     background-color: white;
     width: 70%; /* Width in proportion to its parent container*/
     max-width: 640px; /* Max width where it stops expanding */
-    height: 70%; /* Height in proportion to its parent container */
+    height: auto; /* Height in proportion to its parent container */
     margin: auto; /* Auto margin according to the element width */
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 20px; /* Optional. Rounds container corners */
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
 }
+
+.qa-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+
+}
+
+.qa-modal-footer {
+    display: flex;
+    padding: 1rem 1rem;
+    border-top: 1px solid #dee2e6;
+    border-bottom-left-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+}
+
 /* Close button */
 .close {
    color: #aaaaaa;
@@ -199,6 +218,67 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.qa-modal-content h2 {
+    margin: 5px;
+}
+
+.qa-modal-content form {
+    margin: 20px;
+    overflow: auto;
+}
+
+.qa-modal-content form label {
+    display: block;
+    margin: 0px 0px 15px 0px;
+}
+
+.qa-modal-content .label {
+    padding-top: 8px;
+    padding-right: 5px;
+}
+
+.qa-modal-content .required {
+    display: inline-block;
+    color: red;
+}
+
+.qa-modal-content textarea {
+    display: block;
+    width: 80%;
+    height: 100px;
+    font-family: 'Roboto';
+    font-weight: 500;
+}
+
+.qa-modal-content input[type=text],
+.qa-modal-content input[type=file] {
+    display: block;
+    font-size: 12px;
+    width: 50%;
+    height: 20px;
+    margin: 3px 0px 5px 0px;
+}
+
+.qa-modal-content input[type=button],
+.qa-modal-content input[type=submit] {
+    background: white;
+    border: 1px solid;
+    padding: 12px;
+    margin: 10px 10px 10px 0px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: black;
+}
+
+.qa-modal-content .disclaimer {
+    display: block;
+    font-size: 10px;
+}
+
+
 
 /*  IMAGE MODAL */
 .img-modal {
