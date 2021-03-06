@@ -4,7 +4,7 @@ class MetaData extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      meta: this.props.
     };
   }
 

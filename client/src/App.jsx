@@ -193,6 +193,7 @@ class App extends React.Component {
 
   render() {
     const { productId, product, isDark } = this.state;
+<<<<<<< HEAD
     if(this.state.stylesData.length){
       return (
         <div>
@@ -230,6 +231,46 @@ class App extends React.Component {
     } else {
       return(<div></div>)
     }
+=======
+
+    return (
+      <div>
+<<<<<<< HEAD
+          <React.Fragment>
+            <Header
+              isDark={isDark}
+              changeMode={this.changeMode}
+            />
+            <ProductDetailTracker
+              productId={productId}
+              product={product}
+              isDark={isDark}
+            />
+            <RelatedItemsTracker
+              productId={productId}
+              product={product}
+              changeProductId={this.changeProductId}
+              isDark={isDark}
+            />
+            <QuestionsAnswersTracker
+              productId={productId}
+              isDark={isDark}
+            />
+            <ReviewsTracker
+              productId={productId}
+              product={product}
+              isDark={isDark}
+            />
+          </React.Fragment>
+=======
+        <h1> Hello from Apps!</h1>
+        {/* <ProductDetail />
+        <QuestionsAnswers /> */}
+        <Reviews />
+>>>>>>> implements review list and review tile in text
+      </div>
+    );
+>>>>>>> implements review list and review tile in text
   }
 }
 
