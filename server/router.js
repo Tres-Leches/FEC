@@ -3,6 +3,8 @@ const axios = require('axios');
 const options = require('./config.js');
 
 const router = express.Router();
+/** ******************* CLOUDINARY ROUTE ******************** */
+
 /** ******************* PRODUCTS ROUTES ******************** */
 
 // get all products

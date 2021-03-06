@@ -31,7 +31,7 @@ class Main extends React.Component {
   }
 
   getQuestions() {
-    const productId = 16392; // Placeholder
+    const productId = 16056; // Placeholder
     axios.get(`/api/qa/questions/${productId}`)
       .then((response) => {
         const questions = response.data.results;

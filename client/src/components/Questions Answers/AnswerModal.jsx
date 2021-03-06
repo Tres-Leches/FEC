@@ -7,6 +7,9 @@ import * as yup from 'yup';
 import Image from './Image';
 import './questions.css';
 
+const HOST_URL = 'https://api.cloudinary.com/v1_1/drpklcnse/auto/upload';
+const preset = 'piptu8gm';
+
 const schema = yup.object().shape({
   body: yup.string().required().max(1000),
   name: yup.string().required().max(60),
@@ -21,11 +24,12 @@ class AnswerModal extends React.Component {
       userNickname: '',
       userEmail: '',
       userPhotos: [], // array of stringURL
-      files: [], // obj of img obj
+      files: [], // array of img obj url as base64
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
+    this.hostImagesAsync = this.hostImagesAsync.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -50,37 +54,66 @@ class AnswerModal extends React.Component {
 
   handleFileUpload(e) {
     const { files } = this.state;
-    const filesArr = [...e.target.files].map((file) => {
-      const imgObj = { url: URL.createObjectURL(file) };
-      return imgObj;
-    });
-    this.setState({
-      files: files.concat(filesArr),
-    });
+    Promise.all([...e.target.files].map((file) => (
+      new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.addEventListener('load', (ev) => {
+          resolve({ url: ev.target.result });
+        });
+        reader.addEventListener('error', reject);
+        reader.readAsDataURL(file);
+      }))))
+      .then((images) => {
+        this.setState({ files: files.concat(images) });
+      });
   }
 
   handleSubmit(e) {
     const { toggleModal, questionId, getAnswers } = this.props;
     const {
-      userAnswer, userNickname, userEmail, userPhotos,
+      userAnswer, userNickname, userEmail, userPhotos, files,
     } = this.state;
+    const promises = [];
     e.preventDefault();
-    schema
-      .validate({
-        body: userAnswer,
-        name: userNickname,
-        email: userEmail,
-        photos: userPhotos,
-      })
-      .then((value) => {
-        axios.post(`/api/qa/questions/${questionId}/answers`, value)
-          .then(() => {
-            getAnswers();
-            toggleModal();
+    // Submit to Image Host API
+    for (let i = 0; i < files.length; i++) {
+      promises.push(this.hostImagesAsync(files[i].url));
+    }
+
+    Promise.all(promises)
+      .then((results) => {
+        this.setState({ userPhotos: results }, () => {
+          schema.validate({
+            body: userAnswer,
+            name: userNickname,
+            email: userEmail,
+            photos: this.state.userPhotos,
           })
-          .catch((err) => console.error(err));
+            .then((value) => {
+              axios.post(`/api/qa/questions/${questionId}/answers`, value)
+                .then(() => {
+                  getAnswers();
+                  toggleModal();
+                });
+            })
+            .catch((err) => (window.alert(err)));
+        });
       })
-      .catch((err) => (window.alert(err)));
+      .catch((err) => console.error(err));
+  }
+
+  hostImagesAsync(imgURL) {
+    return (
+      axios.post(`${HOST_URL}`, {
+        file: imgURL,
+        upload_preset: preset,
+      })
+        .then((response) => {
+          console.log(response);
+          return response.data.url;
+        })
+        .catch((err) => err)
+    );
   }
 
   render() {
