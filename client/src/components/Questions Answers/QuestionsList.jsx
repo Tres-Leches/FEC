@@ -85,7 +85,7 @@ class QuestionsList extends React.Component {
 
     if (questions) {
       return (
-        <div>
+        <div className="questionslist-container">
           <div className="scroll" onScroll={this.handleListScroll}>
             {questions.slice(0, questionsLen).map((question) => (
               <Question
@@ -95,11 +95,31 @@ class QuestionsList extends React.Component {
               />
             ))}
           </div>
-          {(remainLen > 0)
-            && <button type="button" onClick={this.updateQuestionLen}>{`MORE ANSWERED QUESTIONS (${remainLen})`}</button>}
-          {(remainLen <= 0 && questions.length > 2)
-            && <button type="button" onClick={this.resetQuestionLen}>COLLAPSE QUESTIONS</button>}
-          <button type="button" onClick={this.showModal}>ADD A QUESTION</button>
+          {(remainLen > 0) && (
+            <button
+              type="button"
+              className="questionslist-actions"
+              onClick={this.updateQuestionLen}
+            >
+              {`MORE ANSWERED QUESTIONS (${remainLen})`}
+            </button>
+          )}
+          {(remainLen <= 0 && questions.length > 2) && (
+            <button
+              type="button"
+              className="questionslist-actions"
+              onClick={this.resetQuestionLen}
+            >
+              COLLAPSE QUESTIONS
+            </button>
+          )}
+          <button
+            type="button"
+            className="questionslist-actions"
+            onClick={this.showModal}
+          >
+            ADD A QUESTION &nbsp; +
+          </button>
           <QuestionModal
             show={show}
             showModal={this.showModal}

@@ -86,7 +86,8 @@ class Question extends React.Component {
             >
               Yes
             </button>
-            {`(${question.question_helpfulness}) |  `}
+            {`(${question.question_helpfulness})`}
+            <div className="text-divider"> | </div>
             <button
               type="button"
               id="actions"

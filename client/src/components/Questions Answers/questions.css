@@ -1,6 +1,6 @@
 .qa-main {
     margin: auto;
-    width: 60%;
+    width: 55%;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -38,6 +38,21 @@
 }
 
 /* QUESTION LIST  */
+.qa-wrapper {
+    margin-bottom: 20px;
+}
+.questionslist-actions {
+    background: white;
+    border: 1px solid;
+    padding: 12px;
+    margin: 10px 10px 10px 0px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: black;
+}
+
 .question-wrapper {
     display: flex;
     justify-content: space-between;
@@ -60,11 +75,12 @@
 .question-info {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-right: 10px;
+    align-items: baseline;
+    margin: 3px 15px 0px 15px;
     font-family: 'Roboto', sans-serif;
     font-size: 10px;
     color: rgb(88,88,88);
+    min-width: 165px;
 }
 
 .question-info #actions {
@@ -93,6 +109,7 @@
 }
 
 .answer-body {
+    font-weight: 500;
     font-size: 13px;
     margin-top: 3px;
     color: rgb(88,88,88);

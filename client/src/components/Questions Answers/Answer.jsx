@@ -69,9 +69,7 @@ class Answer extends React.Component {
             , &nbsp;
             <Moment format="LL">{answer.date}</Moment>
           </div>
-          <div className="text-divider">
-            |
-          </div>
+          <div className="text-divider"> | </div>
           <div className="answer-info-actions">
             Helpful?
             <button
@@ -84,9 +82,7 @@ class Answer extends React.Component {
               Yes
             </button>
             {`(${answer.helpfulness})`}
-            <div className="text-divider">
-              |
-            </div>
+            <div className="text-divider"> | </div>
             <button
               type="button"
               className="button-link"
