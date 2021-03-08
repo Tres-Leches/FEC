@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
 
 class ReviewList extends React.Component {
@@ -6,7 +7,7 @@ class ReviewList extends React.Component {
     super(props);
     this.state = {
       reviewCount: 2,
-      reviews: this.props.reviews
+      reviews: this.props.reviews,
     };
   }
 
@@ -14,14 +15,26 @@ class ReviewList extends React.Component {
     console.log(this.state);
   }
 
+  handleMoreReviews() {
+    this.setState({
+      reviewCount: this.state.reviewCount + 2,
+    });
+  }
+
+  getReviews() {
+    axios.get(`/api/reviews/${this.state.reviews.product}`)
+      .then((res) => (this.setState({ reviews: res.data })));
+  }
+
   render() {
     return (
       <div>
-        {this.state.reviews.slice(0, this.state.reviewCount).map(
-          (reviews, index) => (<ReviewTile review={reviews} key={reviews.review_id} />)
+        <div>{`${this.state.reviews.results.length} reviews, sorted by `}</div>
+        {this.state.reviews.results.slice(0, this.state.reviewCount).map(
+          (reviews) => (<ReviewTile review={reviews} key={reviews.review_id} getReviews={this.getReviews.bind(this)} />),
         )}
-        <button>MORE REVIEWS</button>
-        <button>ADD A REVIEW +</button>
+        <button type="button" className="moreReviews" onClick={this.handleMoreReviews.bind(this)}>MORE REVIEWS</button>
+        <button type="button" className="addReview">ADD A REVIEW +</button>
       </div>
     );
   }

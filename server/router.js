@@ -68,6 +68,7 @@ router
     const productId = req.params.id;
     options.params = {
       product_id: productId,
+      count:1000
     };
     axios.get('/reviews', options)
       .then((response) => {

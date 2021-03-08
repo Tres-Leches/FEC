@@ -36,7 +36,7 @@ class Main extends React.Component {
     }
     return (
       <div>
-        <ReviewList reviews={this.state.reviews.results} />
+        <ReviewList reviews={this.state.reviews} />
       </div>
     );
   }
