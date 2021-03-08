@@ -22,6 +22,14 @@ class ReviewTile extends React.Component {
       });
   }
 
+  onReportClick() {
+    axios.put(`api/reviews/${this.props.review.review_id}/report`)
+      .then(() => {
+        this.setState({reported: true});
+        this.props.getReviews();
+      });
+  }
+
   render() {
     return (
       <div>
@@ -63,6 +71,7 @@ class ReviewTile extends React.Component {
             type="button"
             style={{ textDecoration: 'underline' }}
             disabled={this.state.reported}
+            onClick={this.onReportClick.bind(this)}
           >
             Report
           </button>
