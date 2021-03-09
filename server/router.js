@@ -46,6 +46,19 @@ router
       });
   });
 
+router
+  .route('/products/:id/related')
+  .get((req, res) => {
+    const productId = req.params.id;
+    axios.get(`/products/${productId}/related`, options)
+      .then((response) => {
+        res.status(200).send(response.data);
+      })
+      .catch((err) => {
+        res.status(404).send(err);
+      });
+  });
+
 /** ******************* REVIEWS ROUTES ******************** */
 
 // get all reviews from product id
