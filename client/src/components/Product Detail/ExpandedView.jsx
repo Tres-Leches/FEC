@@ -59,8 +59,6 @@ export default class ExpandedView extends React.Component {
   }
 
   render() {
-    document.body.style.overflow = 'hidden';
-
     return (
       <div className="expandedView">
           {this.state.zoomMore ?

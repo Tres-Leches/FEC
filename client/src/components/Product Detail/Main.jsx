@@ -53,7 +53,16 @@ class Main extends React.Component {
   render() {
     if(this.state.style && this.state.product){
       let expand;
-      this.state.zoomed ? expand = <ExpandedView style={this.state.style} mainPhoto={this.state.mainPhoto} changeMainPhoto={this.changeMainPhoto.bind(this)} changeView={this.changeView.bind(this)}/> : expand = "";
+      if (this.state.zoomed) {
+        expand = <ExpandedView style={this.state.style}
+          mainPhoto={this.state.mainPhoto}
+          changeMainPhoto={this.changeMainPhoto.bind(this)}
+          changeView={this.changeView.bind(this)}/> ;
+        document.body.style.overflow = 'hidden';
+      } else {
+        expand = "";
+        document.body.style.overflow = 'visible';
+      }
       return (
         <div>
           {expand}
