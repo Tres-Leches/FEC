@@ -36,8 +36,8 @@ class Main extends React.Component {
     const { relatedProducts } = this.state;
 
     return (
-      <div>
-        Hello from Related Items.
+      <div className="related-main">
+        <div className="related-title">RELATED PRODUCTS</div>
         <RelatedCarousel relatedProducts={relatedProducts} />
       </div>
     );

@@ -1,6 +1,18 @@
+.related-main {
+    font-family: 'Roboto', 'sans-serif';
+    margin: auto;
+    width: 55%;
+    margin-bottom: 50px;
+}
+
+.related-title {
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
 .card {
-    width:100%;
     height: 550px;
+    width: 100%;
     object-fit: cover;
     object-position: 50% 50%;
 }
