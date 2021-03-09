@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import $ from 'jquery';
+import Select from 'react-select';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
@@ -9,10 +10,9 @@ export default class Add2Cart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // sku : this.props.style.skus[0]
       selectedSize: "",
       selectedQuantity: null,
-      quantity: 0,
+      quantity: 'default',
 
     };
   }
@@ -20,24 +20,34 @@ export default class Add2Cart extends React.Component {
   componentDidUpdate(prevProps){
 
     if (this.props.style !== prevProps.style) {
-      $(".sizeSelector select").val("");
+      $(".sizeSelector").val("");
       this.setState({quantity: 0})
     }
   }
 
   changeQuantity(e) {
+    console.log(e.target)
     this.setState({quantity: e.target.value >= 15 ? 15 : e.target.value})
   }
+
+  addHandler(e) {
+    let size = $('#sizeSelector').val()
+    if (size !== 'default') {
+      alert('Added to cart')
+    } else if (size === 'default'){
+      var el = $('#sizeSelector'); // grab the input (jQuery)
+      var event = new MouseEvent('mousedown'); // create the event listener
+      el.dispatchEvent(event); // attach the event listener to the element
+      alert('Select size')
+    }
+  }
+
 
   render() {
     let sizes = Object.keys(this.props.style.skus).map((sku, ind) => {
       if(this.props.style.skus[sku].quantity){
         return(
-        <option key={ind}
-          value={this.props.style.skus[sku].quantity}
-        >
-          {this.props.style.skus[sku].size}
-        </option>
+        {value: `${this.props.style.skus[sku].quantity}`,label: `${this.props.style.skus[sku].size}`}
         )
       }
     })
@@ -45,21 +55,31 @@ export default class Add2Cart extends React.Component {
     for(let i = 1; i<=this.state.quantity;i++) {
       quantities.push(<option key={i}>{i}</option>);
     }
+
+    // let customStyles = {
+    //   dropdownIndicatorStyles =
+    //   },
+    //   }
+    // }
+
     return (
       <div>
         <div className="selectors">
-          <div className="sizeSelector">
+          <div>
             {sizes.length ?
-              <select name = "size" onChange={this.changeQuantity.bind(this)}>
-                <option value="">Select Size</option>
-                {sizes}
-              </select>
+              <Select className="sizeSelector" id="sizeSelector" name="size" placeholder="Select Size" onChange={this.changeQuantity.bind(this)}
+              options={sizes}
+              // value={sizes.filter(obj => obj.value === selectedValue)}
+              styles={{control: styles => ({...styles, height: '60px'})}}
+              components={{IndicatorSeparator:() => null }}/>
              :
-             <select disabled><option>OUT OF STOCK</option></select>}
+             <Select placeholder="OUT OF STOCK"
+             isDisabled="true"
+             components={{IndicatorSeparator:() => null }}/>}
           </div>
           <div className="quantitySelector" >
-            {this.state.quantity ?
-              <select name = "quantity" >
+            {this.state.quantity !== 'default'?
+              <select id="quantitySelector" name="quantity" >
                 {quantities}
               </select>
             :
@@ -71,7 +91,11 @@ export default class Add2Cart extends React.Component {
         </div>
 
          <br/>
-         <button className="add2Bag" style={sizes.length ? {visibility: "visible"} : {visibility:"hidden"}}>Add to Bag +</button><button className="add2Favorite"><FontAwesomeIcon icon={faStar} /></button>
+         <div className="add2">
+          <button className="add2Bag" onClick={this.addHandler.bind(this)} style={sizes.length ? {visibility: "visible"} : {visibility:"hidden"}}>Add to Bag +</button>
+          <button className="add2Favorite"><FontAwesomeIcon icon={faStar} aria-hidden="false"/></button>
+         </div>
+
       </div>
     );
   }

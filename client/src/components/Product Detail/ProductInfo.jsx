@@ -11,22 +11,13 @@ export default class ProductInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product : null,
       rating: null,
       reviews: 0,
     };
   }
 
   componentDidMount(){
-    axios.get(`/api/products/${this.props.productId}`)
-    .then((response) => {
-      this.setState({product: response.data})
-    })
-    .then(()=>{
-      this.getRating.call(this);
-    })
-    .catch(err => console.error(err))
-
+    this.getRating.call(this);
   }
 
   getRating(){
@@ -44,18 +35,19 @@ export default class ProductInfo extends React.Component {
   }
 
   render() {
-    if(this.state.product){
+    if(this.props.product){
       return (
         <div>
           <div className="reviews" style={this.state.reviews ? {visibility:"visible"} : {visibility:"hidden"}}>
             <Rating initialRating={this.state.rating} fractions={4} readonly
-              emptySymbol={<FontAwesomeIcon icon={emptyStar} />}
-              fullSymbol={<FontAwesomeIcon icon={fullStar} />}
+              emptySymbol={<FontAwesomeIcon icon={emptyStar} aria-hidden="false"/>}
+              fullSymbol={<FontAwesomeIcon icon={fullStar} aria-hidden="false"/>}
+
             />
             <h5 className="linkReviews"> Read all {this.state.reviews} reviews </h5>
           </div>
-          <h3>{this.state.product.category}</h3>
-          <h1>{this.state.product.name}</h1>
+          <h3>{this.props.product.category}</h3>
+          <h1>{this.props.product.name}</h1>
         </div>
       );
   } else {
