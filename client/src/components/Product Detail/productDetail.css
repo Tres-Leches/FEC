@@ -16,10 +16,8 @@
 
   display:flex;
   flex-direction: column;
-  /* flex-grow:2; */
   margin: 9px 0px 9px 20px;
   position: relative;
-  /* left: 0px; */
 }
 .viewLastInfo{
   flex-grow: 5;
@@ -28,17 +26,15 @@
 /*********** LEFT DISPLAY ***************/
 
 .display {
-   display: flex;
+  display: flex;
   flex-direction: row-reverse;
   justify-content: flex-end;
 }
 .mainDisplay{
    display:flex;
-  /* align-items: flex-start; */
   position: relative;
 }
 .mainDisplay img{
-  /* position:absolute; */
   max-width: 800px;
   max-height: 650px;
   object-fit: cover;
@@ -50,14 +46,13 @@
 /*********** ARROWS ***************/
 .upArrow, .downArrow {
   position: relative;
-  z-index:4;
   left: 70px;
 }
 .upArrow {
-  top: 10px;
+  top: 20px;
 }
 .downArrow {
-  bottom: 10px;
+  bottom: 20px;
 }
 .leftArrow, .rightArrow {
   position:absolute;
@@ -81,41 +76,28 @@
 /*********** VERTICAL THUMBNAILS ***************/
 .thumbnailContainer {
   position: absolute;
-  /* top:10px; */
+  top: -20px;
   left: -25px;
   max-height: fit-content;
 }
 .thumbnails {
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-end; */
   overflow: visible hidden;
   max-height: 100%;
-  /* width: auto; */
-  /* margin: 25px 0; */
-  /* padding:0; */
-  /* line-height: 0; */
   position:relative;
-  /* left:257px;
-  top: 10px; */
 }
 .thumbnails li {
-  /* flex: auto; */
   list-style: none;
 }
 .thumbnails a {
   display: block;
 }
 .thumbnails img {
-  /* display:flex;
-  flex:column;
-  justify-content: flex-end; */
   width: 70px;
   height: 70px;
   object-fit: cover;
   object-position: top;
-  margin: 0 auto;
-  /* position: relative; */
 }
 
 /*********** RIGHT SIDE INFO ***************/
@@ -162,18 +144,17 @@
   color:slategray;
 }
 
-/*********** BOTTOM RIGHT SIDE ***************/
+/*********** SELECTORS AND ADD2BAG ***************/
 .selectors {
   display:flex;
   justify-content:space-between;
   align-items: flex-start;
   width: 425px;
-  /* margin:0 auto; */
 }
-.sizeSelector select{
-  height: 60px;
+.sizeSelector {
   width: 270px;
 }
+
 .quantitySelector {
   width: 130px;
 }
@@ -209,8 +190,6 @@
 .endInfo {
   display:flex;
   position: relative;
-  /* top: 650px;
-  left: -980px; */
   height:100%;
   width: 100%;
 }
@@ -233,12 +212,12 @@
 }
 .featureCheck{
   margin: 0px 20px;
-  /* color: green; */
 }
 
 /*********** EXPANDED VIEW ***************/
 .expandedView {
   position: fixed;
+  display:flex;
   /* top: -90px;
   left: -290px; */
   /* background-color: black; */
@@ -246,23 +225,94 @@
   height: 100vh;
   width: 100vw;
   z-index:5;
-  overflow-y: scroll;
+  margin:0 auto;
+  overflow: hidden;
+  top: 0; right: 0; bottom: 0; left: 0; ;
 }
 
 [aria-hidden="true"] { visibility: hidden; }
 [aria-hidden="false"] { visibility: visible; }
 
 .noscroll {
-  overflow: hidden;
+  overflow-y: hidden;
+  position:fixed;
+}
+.closeIcon {
+  position:absolute;
+  right: 1vw;
+  top:1vh;
 }
 
 .expandedView div{
-  margin: 1vh auto;
-  width: 65vw;
-  padding: 30px;
+  display:flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 70vw;
   min-height: 90vh;
-  background: rgba(255,255,255, .95);
+  background: white;
+
 }
+.expandedViewIcons {
+  /* border: 3px solid black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly !important;
+  max-width:fit-content;
+  padding: 0 15px;
+}
+.expandedImgContainer{
+  /* border: 3px solid black; */
+  /* margin: 0 1vh; */
+  padding-right:1vh;
+  max-width: 50vw;
+  max-height: 100vh;
+  position:relative;
+  display:flex;
+  background:inherit;
+}
+.expandedImgContainer img{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+.expandedImgContainer img:hover {
+  cursor: crosshair;
+}
+
+.expandedLeftArrow, .expandedRightArrow {
+  position: relative;
+  top: 60vh;
+  margin: 20px;
+}
+.expandedRighttArrow {
+  right:0;
+}
+.expandedLeftArrow {
+  left:0;
+}
+
+.zoomedImgContainer {
+  max-width: 65vw;
+  max-height: 91vh;
+  background-repeat: no-repeat !important;
+  background-size: 250% !important;
+}
+
+.zoomedImgContainer:hover img {
+  opacity:0;
+}
+
+/* .zoomedImgContainer img{
+  width: 250%;
+  height: 250%;
+  object-fit: cover;
+  position:relative;
+  pointer-events:none;
+} */
+.zoomedView img:hover{
+  cursor: url("minus.png"), auto;
+}
+
 /* .slides {
   overflow: hidden;
   width: 75vmin;

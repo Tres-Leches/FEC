@@ -11,8 +11,8 @@ export default class DefaultView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPhoto: this.props.style.photos[0],
-      currentInd: 0,
+      currentPhoto: this.props.mainPhoto,
+      currentInd: this.props.style.photos.indexOf(this.props.mainPhoto),
       startInd: 0,
       endInd: 0,
     };
@@ -32,6 +32,16 @@ export default class DefaultView extends React.Component {
       },
       () => this.props.changeMainPhoto(this.props.style.photos[0])
       )
+    }
+    else if(this.props.mainPhoto !== prevProps.mainPhoto) {
+      let ind = this.props.style.photos.indexOf(this.props.mainPhoto);
+      console.log(ind)
+      this.setState({
+        currentPhoto: this.props.mainPhoto,
+        currentInd: ind,
+        startInd: ind > 6 ? ind - 6 : 0,
+        endInd: ind > 6 ? ind : 7 > this.props.style.photos.length ? this.props.style.photos.length -1 : 6,
+      })
     }
   }
 
@@ -85,19 +95,6 @@ export default class DefaultView extends React.Component {
           </ul>
           <FontAwesomeIcon icon={faAngleDown} className="downArrow" onClick={() => {this.arrowChangePhoto('forward')}} aria-hidden={this.state.currentInd === this.props.style.photos.length-1}/>
       </div>
-
-
-        {/* <ul className="thumbnails">
-        {this.props.style.photos.map((photo, key) => (
-          <li key={key} id={"slide"+key}>
-            <a href={"#slide"+key}>
-              <img src={photo.thumbnail_url} />
-            </a>
-          </li>
-        ))}
-        </ul> */}
-
-
       </div>
 
     );

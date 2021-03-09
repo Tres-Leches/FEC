@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import $ from 'jquery';
 import './productDetail.css';
 
 import Add2Cart from './Add2Cart';
@@ -16,7 +15,7 @@ class Main extends React.Component {
     super(props);
     this.state = {
       product_ids: [16392, 16465, 16056, 16084, 16154, 16060, 16072, 16073],
-      product_id: 16056,
+      product_id: 16060,
       zoomed: false,
       product: null,
       styles: [],
@@ -47,20 +46,21 @@ class Main extends React.Component {
   }
 
   changeView() {
+    this.setState({zoomed: !this.state.zoomed})
 
   }
 
   render() {
     if(this.state.style && this.state.product){
       let expand;
-      this.state.zoomed ? expand = <ExpandedView style={this.state.style} /> : expand = "";
+      this.state.zoomed ? expand = <ExpandedView style={this.state.style} mainPhoto={this.state.mainPhoto} changeMainPhoto={this.changeMainPhoto.bind(this)} changeView={this.changeView.bind(this)}/> : expand = "";
       return (
         <div>
           {expand}
           <div className="overview">
 
             <div className="view">
-              <DefaultView style={this.state.style} changeView={this.changeView.bind(this)} changeMainPhoto={this.changeMainPhoto.bind(this)}/>
+              <DefaultView style={this.state.style} changeView={this.changeView.bind(this)} mainPhoto={this.state.mainPhoto} changeMainPhoto={this.changeMainPhoto.bind(this)}/>
               <div className="info">
               <ProductInfo product={this.state.product} productId={this.state.product_id}/>
               <StyleSelector styles={this.state.styles} style={this.state.style} changeStyle={this.changeStyle.bind(this)}/>
