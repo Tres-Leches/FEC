@@ -230,9 +230,6 @@
   top: 0; right: 0; bottom: 0; left: 0; ;
 }
 
-[aria-hidden="true"] { visibility: hidden; }
-[aria-hidden="false"] { visibility: visible; }
-
 .noscroll {
   overflow-y: hidden;
   position:fixed;
@@ -292,8 +289,8 @@
 }
 
 .zoomedImgContainer {
-  max-width: 65vw;
-  max-height: 91vh;
+  max-width: vw;
+  max-height: 100vh;
   background-repeat: no-repeat !important;
   background-size: 250% !important;
 }

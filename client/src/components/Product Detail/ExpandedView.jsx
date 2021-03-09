@@ -71,16 +71,16 @@ export default class ExpandedView extends React.Component {
             <div>
               <div className="expandedViewIcons">
                 {this.props.style.photos.map((photo, key) =>
-                  <FontAwesomeIcon key={key} icon={faImage} size="2x" aria-hidden="false"
+                  <FontAwesomeIcon key={key} icon={faImage} size="2x"
                     style = {this.state.currentInd === key ? {color: "darkcyan"}: {color: "slategray"}}
                     onClick={() => {this.changePhoto(photo)}}/>
                 )}
               </div>
               <div className="expandedImgContainer">
-                <FontAwesomeIcon icon={faTimesCircle} size="2x" className="closeIcon" aria-hidden="false" onClick={this.props.changeView}/>
-                <FontAwesomeIcon icon={faArrowLeft} size="2x" className="expandedLeftArrow" aria-hidden={this.state.currentInd === 0 ? "true" : "false"} onClick={() => {this.changePhoto(null, "backward")}}/>
+                <FontAwesomeIcon icon={faTimesCircle} size="2x" className="closeIcon" onClick={this.props.changeView}/>
+                <FontAwesomeIcon icon={faArrowLeft} size="2x" className="expandedLeftArrow" style={this.state.currentInd === 0 ? {visibility:"hidden"} : {visibility:"visible"}} onClick={() => {this.changePhoto(null, "backward")}}/>
                 <img src={this.state.currentPhoto} onClick={this.changeZoom.bind(this)}/>
-                <FontAwesomeIcon icon={faArrowRight} size="2x" className="expandedRightArrow" aria-hidden={this.state.currentInd === this.props.style.photos.length -1 ? "true" : "false"} onClick={() => {this.changePhoto(null, "forward")}}/>
+                <FontAwesomeIcon icon={faArrowRight} size="2x" className="expandedRightArrow" style={this.state.currentInd === this.props.style.photos.length-1 ? {visibility:"hidden"} : {visibility:"visible"}} onClick={() => {this.changePhoto(null, "forward")}}/>
               </div>
 
             </div>

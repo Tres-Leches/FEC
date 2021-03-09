@@ -35,7 +35,6 @@ export default class DefaultView extends React.Component {
     }
     else if(this.props.mainPhoto !== prevProps.mainPhoto) {
       let ind = this.props.style.photos.indexOf(this.props.mainPhoto);
-      console.log(ind)
       this.setState({
         currentPhoto: this.props.mainPhoto,
         currentInd: ind,
@@ -82,18 +81,18 @@ export default class DefaultView extends React.Component {
     return (
       <div className="display">
         <div className="mainDisplay">
-          <FontAwesomeIcon icon={faArrowLeft} size='lg' className="leftArrow" onClick={() => {this.arrowChangePhoto('backward')}} aria-hidden={this.state.currentInd === 0}/>
+          <FontAwesomeIcon icon={faArrowLeft} size='lg' className="leftArrow" onClick={() => {this.arrowChangePhoto('backward')}} style={this.state.currentInd === 0 ? {visibility:"hidden"} : {visibility:"visible"}}/>
           <img src={this.state.currentPhoto.url} onClick={this.props.changeView}/>
-          <FontAwesomeIcon icon={faArrowRight} size='lg' className="rightArrow" onClick={() => {this.arrowChangePhoto('forward')}} aria-hidden={this.state.currentInd === this.props.style.photos.length-1}/>
+          <FontAwesomeIcon icon={faArrowRight} size='lg' className="rightArrow" onClick={() => {this.arrowChangePhoto('forward')}} style={this.state.currentInd === this.props.style.photos.length-1 ? {visibility:"hidden"} : {visibility:"visible"}}/>
         </div>
       <div className="thumbnailContainer">
-        <FontAwesomeIcon icon={faAngleUp} className="upArrow" onClick={() => {this.arrowChangePhoto('backward')}} aria-hidden={this.state.currentInd === 0}/>
+        <FontAwesomeIcon icon={faAngleUp} className="upArrow" onClick={() => {this.arrowChangePhoto('backward')}} style={this.state.currentInd === 0 ? {visibility:"hidden"} : {visibility:"visible"}}/>
           <ul className="thumbnails">
           {thumbnails.map((photo, key) => (
             <li key={key} id={"slide"+key} ><img src={photo.url} className={key + this.state.startInd === this.state.currentInd ? "clickedThumbnail" : ""} onClick={() => {this.changeCurrentPhoto(photo)}}/> </li>
           ))}
           </ul>
-          <FontAwesomeIcon icon={faAngleDown} className="downArrow" onClick={() => {this.arrowChangePhoto('forward')}} aria-hidden={this.state.currentInd === this.props.style.photos.length-1}/>
+          <FontAwesomeIcon icon={faAngleDown} className="downArrow" onClick={() => {this.arrowChangePhoto('forward')}} style={this.state.currentInd === this.props.style.photos.length-1 ? {visibility:"hidden"} : {visibility:"visible"}}/>
       </div>
       </div>
 

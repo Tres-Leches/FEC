@@ -8,10 +8,10 @@ import { faInstagramSquare } from '@fortawesome/free-brands-svg-icons';
 
 var Share = () => (
   <div className="shareIcons">
-    <FontAwesomeIcon icon={faFacebookSquare} size="3x" aria-hidden="false"/>
-    <FontAwesomeIcon icon={faTwitterSquare} size="3x" aria-hidden="false"/>
-    <FontAwesomeIcon icon={faPinterestSquare} size="3x" aria-hidden="false"/>
-    <FontAwesomeIcon icon={faInstagramSquare} size="3x" aria-hidden="false"/>
+    <FontAwesomeIcon icon={faFacebookSquare} size="3x" />
+    <FontAwesomeIcon icon={faTwitterSquare} size="3x" />
+    <FontAwesomeIcon icon={faPinterestSquare} size="3x" />
+    <FontAwesomeIcon icon={faInstagramSquare} size="3x" />
 
   </div>
 

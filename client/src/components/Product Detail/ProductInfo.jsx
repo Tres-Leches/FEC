@@ -40,8 +40,8 @@ export default class ProductInfo extends React.Component {
         <div>
           <div className="reviews" style={this.state.reviews ? {visibility:"visible"} : {visibility:"hidden"}}>
             <Rating initialRating={this.state.rating} fractions={4} readonly
-              emptySymbol={<FontAwesomeIcon icon={emptyStar} aria-hidden="false"/>}
-              fullSymbol={<FontAwesomeIcon icon={fullStar} aria-hidden="false"/>}
+              emptySymbol={<FontAwesomeIcon icon={emptyStar}/>}
+              fullSymbol={<FontAwesomeIcon icon={fullStar}/>}
 
             />
             <h5 className="linkReviews"> Read all {this.state.reviews} reviews </h5>
