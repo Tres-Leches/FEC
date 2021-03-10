@@ -15,9 +15,9 @@ class Main extends React.Component {
     super(props);
     this.state = {
       product_ids: [16392, 16465, 16056, 16084, 16154, 16060, 16072, 16073],
-      product_id: 16060,
+      product_id: Number(this.props.productId),
       zoomed: false,
-      product: null,
+      product: this.props.product,
       styles: [],
       style: null,
       mainPhoto: null,
@@ -30,11 +30,18 @@ class Main extends React.Component {
         this.setState({styles: response.data.results, style: response.data.results[0], mainPhoto: response.data.results[0].photos[0]})
       })
       .catch(err => console.error(err))
-    axios.get(`/api/products/${this.state.product_id}`)
-      .then((response) => {
-        this.setState({product: response.data})
+    // axios.get(`/api/products/${this.state.product_id}`)
+    //   .then((response) => {
+    //     this.setState({product: response.data})
+    //   })
+    //   .catch(err => console.error(err))
+  }
+  componentDidUpdate(prevProps){
+    if(this.props.product !== prevProps.product) {
+      this.setState({
+        product: this.props.product,
       })
-      .catch(err => console.error(err))
+    }
   }
 
   changeStyle(style) {
