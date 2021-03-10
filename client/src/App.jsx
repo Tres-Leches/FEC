@@ -15,12 +15,14 @@ class App extends React.Component {
     };
 
     this.changeProductId = this.changeProductId.bind(this);
+    this.getProduct = this.getProduct.bind(this);
   }
 
   getProduct() {
-    axios.get(`/api/products/${this.state.product_id}`)
+    const { productId } = this.state;
+    axios.get(`/api/products/${productId}`)
       .then((response) => {
-        this.setState({product: response.data});
+        this.setState({ product: response.data });
       })
       .catch((err) => console.error(err));
   }
