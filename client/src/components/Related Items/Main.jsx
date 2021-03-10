@@ -14,8 +14,11 @@ class Main extends React.Component {
     this.getRelatedProducts = this.getRelatedProducts.bind(this);
   }
 
-  componentDidMount() {
-    this.getRelatedProducts();
+  componentDidUpdate(prevProps) {
+    const { product } = this.props;
+    if (product !== prevProps.product) {
+      this.getRelatedProducts();
+    }
   }
 
   getRelatedProducts() {
@@ -25,8 +28,10 @@ class Main extends React.Component {
         resp.data.forEach((relatedProduct) => {
           axios.get(`/api/products/${relatedProduct}/styles`)
             .then((res) => {
-              let productStyles = res.data;
-              this.setState({ relatedProducts: this.state.relatedProducts.concat(res.data) });
+              const productStyles = res.data;
+              productStyles.name = product.name;
+              productStyles.category = product.category;
+              this.setState({ relatedProducts: this.state.relatedProducts.concat(productStyles) });
             });
         });
       })
