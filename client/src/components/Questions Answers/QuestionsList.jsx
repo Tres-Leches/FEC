@@ -2,7 +2,6 @@
 import React from 'react';
 import Question from './Question';
 import QuestionModal from './QuestionModal';
-import './questions.css';
 
 class QuestionsList extends React.Component {
   constructor(props) {
@@ -118,7 +117,7 @@ class QuestionsList extends React.Component {
             className="questionslist-actions"
             onClick={this.showModal}
           >
-            ADD A QUESTION &nbsp; +
+            ADD A QUESTION +
           </button>
           <QuestionModal
             show={show}

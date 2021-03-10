@@ -1,3 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Main should render correctly in "debug" mode 1`] = `ShallowWrapper {}`;
+
+exports[`Render Question Modal should render question modal 1`] = `ShallowWrapper {}`;
+
+exports[`Render Questions List should render questions list 1`] = `ShallowWrapper {}`;
+
+exports[`Render Search Bar should render search bar 1`] = `ShallowWrapper {}`;
