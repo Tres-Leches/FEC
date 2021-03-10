@@ -15,7 +15,7 @@ class Main extends React.Component {
     super(props);
     this.state = {
       product_ids: [16392, 16465, 16056, 16084, 16154, 16060, 16072, 16073],
-      product_id: 16072,
+      product_id: 16060,
       zoomed: false,
       product: null,
       styles: [],
@@ -47,7 +47,6 @@ class Main extends React.Component {
 
   changeView() {
     this.setState({zoomed: !this.state.zoomed})
-
   }
 
   render() {
@@ -77,7 +76,6 @@ class Main extends React.Component {
               <Share />
             </div>
             </div>
-
             <div className="viewLastInfo">
               <EndInfo product={this.state.product}/>
             </div>

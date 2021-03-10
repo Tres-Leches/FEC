@@ -1,15 +1,26 @@
 
 .overview {
+  /* border: 3px solid black; */
   min-height: 100%;
-  max-width: 100%;
-  margin: 20px 285px;
-  position: relative;
-}
-.view{
+  /* width: fit-content; */
+  /* min-width: fit-content; */
+  margin: 20px 15%;
   position: relative;
   display:flex;
-  flex-wrap:nowrap;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+@media screen and (max-width: 1024px) {
+  .overview {
+    margin: 20px 1%;
+  }
+}
+
+.view {
+  position: relative;
+  display:flex;
+  /* flex-wrap:nowrap; */
+  justify-content: center;
 }
 
 .info{
@@ -19,7 +30,8 @@
   position: relative;
 }
 .viewLastInfo{
-  flex-grow: 5;
+  /* border: 3px solid black; */
+  width:fit-content;
 }
 
 /*********** LEFT DISPLAY ***************/
@@ -74,10 +86,11 @@
 
 /*********** VERTICAL THUMBNAILS ***************/
 .thumbnailContainer {
-  position: absolute;
+  position: relative;
   top: -20px;
-  left: -25px;
+  left: 85px;
   max-height: fit-content;
+
 }
 .thumbnails {
   display: flex;
@@ -187,18 +200,24 @@
 /*********** BOTTOM INFO ***************/
 
 .endInfo {
+  /* border: 3px solid black; */
   display:flex;
   position: relative;
   height:100%;
   width: 100%;
+  justify-content: center;
 }
 .slogan {
-  width:800px
+  /* border: 3px solid black; */
+  max-width:800px;
+  margin-left:0px !important;
 }
 .features {
+  /* border: 3px solid black; */
+
   border-left: 4px solid slategray;
   max-height: 100%;
-  max-width: 100%;
+  width: fit-content;
   margin: 15px 0px 15px 15px;
   display:flex;
   flex-direction:column;
