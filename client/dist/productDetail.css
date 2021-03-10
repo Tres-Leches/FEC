@@ -298,13 +298,6 @@
   opacity:0;
 }
 
-/* .zoomedImgContainer img{
-  width: 250%;
-  height: 250%;
-  object-fit: cover;
-  position:relative;
-  pointer-events:none;
-} */
 .zoomedView img:hover{
   cursor: url("minus.png"), auto;
 }

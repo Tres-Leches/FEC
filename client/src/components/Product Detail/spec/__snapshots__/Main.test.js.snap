@@ -1,3 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Add2Cart should render correctly with props 1`] = `ShallowWrapper {}`;
+
+exports[`DefaultView should render correctly 1`] = `ReactWrapper {}`;
+
+exports[`DefaultView should render correctly in "debug" mode 1`] = `ShallowWrapper {}`;
+
+exports[`DefaultView should render correctly with no props 1`] = `ShallowWrapper {}`;
+
+exports[`DefaultView should render correctly with props 1`] = `ShallowWrapper {}`;
+
+exports[`EndInfo should render correctly with no props 1`] = `ShallowWrapper {}`;
+
+exports[`EndInfo should render correctly with props 1`] = `ShallowWrapper {}`;
+
+exports[`ExpandedView should render correctly with props 1`] = `ShallowWrapper {}`;
+
 exports[`Main should render correctly in "debug" mode 1`] = `ShallowWrapper {}`;
+
+exports[`Main should render correctly with no props 1`] = `ShallowWrapper {}`;
+
+exports[`ProductInfo should render correctly 1`] = `ReactWrapper {}`;
+
+exports[`ProductInfo should render correctly in "debug" mode 1`] = `ShallowWrapper {}`;
+
+exports[`ProductInfo should render correctly with no props 1`] = `ShallowWrapper {}`;
+
+exports[`ProductInfo should render correctly with props 1`] = `ShallowWrapper {}`;
+
+exports[`Share should render correctly in "debug" mode 1`] = `ShallowWrapper {}`;
+
+exports[`Share should render correctly with no props 1`] = `ShallowWrapper {}`;
+
+exports[`Share should render correctly without any props 1`] = `ShallowWrapper {}`;
+
+exports[`StyleSelector should render correctly with props 1`] = `ShallowWrapper {}`;
