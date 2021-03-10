@@ -19,12 +19,13 @@ class Main extends React.Component {
   }
 
   getRelatedProducts() {
-    const { productId } = this.props;
+    const { productId, product } = this.props;
     axios.get(`/api/products/${productId}/related`)
-      .then((response) => {
-        response.data.forEach((relatedProduct) => {
+      .then((resp) => {
+        resp.data.forEach((relatedProduct) => {
           axios.get(`/api/products/${relatedProduct}/styles`)
             .then((res) => {
+              let productStyles = res.data;
               this.setState({ relatedProducts: this.state.relatedProducts.concat(res.data) });
             });
         });

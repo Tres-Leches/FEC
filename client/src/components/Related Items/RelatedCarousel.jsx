@@ -21,13 +21,7 @@ const RelatedCarousel = (props) => {
         chevronWidth={chevronWidth}
       >
         {relatedProducts.map((product) => (
-          <div key={product.product_id}>
-            <img
-              className="card"
-              src={product.results[0].photos[0].url}
-              alt={product.product_id}
-            />
-          </div>
+          <ProductCard key={product.product_id} product={product} />
         ))}
       </ItemsCarousel>
     </div>
