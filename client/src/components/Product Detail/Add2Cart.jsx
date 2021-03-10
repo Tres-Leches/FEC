@@ -31,7 +31,7 @@ export default class Add2Cart extends React.Component {
     if (this.state.selectedSize !== "") {
       alert('Added to cart')
     } else if (this.state.selectedSize === ""){
-      this.setState({clicked: true}, () => {alert('Select size')})
+      this.setState({clicked: true}, () => {alert('Please select size')})
     }
   }
 
