@@ -24,7 +24,6 @@ export default class Add2Cart extends React.Component {
   }
 
   changeQuantity(obj) {
-    console.log(obj)
     this.setState({quantity: obj.value >= 15 ? 15 : obj.value, selectedSize: obj.label, clicked: false})
   }
 
@@ -54,7 +53,6 @@ export default class Add2Cart extends React.Component {
         )
       }
     })
-    console.log(sizes)
     let quantities = [];
     for(let i = 1; i<=this.state.quantity;i++) {
       quantities.push(<option key={i}>{i}</option>);
