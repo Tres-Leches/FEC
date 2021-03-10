@@ -35,6 +35,12 @@ class App extends React.Component {
     this.setState({ productId });
   }
 
+  postClick(element, widget, time) {
+    axios.post('/api/interactions',{element, widget, time})
+    .then(()=> console.log("posted click"))
+    .catch(err => console.error(err))
+  }
+
   render() {
     const { productId, product } = this.state;
 

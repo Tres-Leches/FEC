@@ -205,4 +205,11 @@ router.route('/qa/answers/:answer_id/report')
       .catch((err) => res.send(err));
   });
 
+router.route('/interactions')
+  .post((req, res) => {
+    axios.post('/interactions', req.body, options)
+    .then(() => res.status(201).send('posted'))
+    .catch((err) => res.send(err));
+  })
+
 module.exports = router;
