@@ -2,7 +2,6 @@
 import React from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
-import './questions.css';
 
 const schema = yup.object().shape({
   body: yup.string().required().max(1000),
