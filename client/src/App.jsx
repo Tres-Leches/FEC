@@ -16,7 +16,6 @@ class App extends React.Component {
 
     this.changeProductId = this.changeProductId.bind(this);
     this.getProduct = this.getProduct.bind(this);
-    this.postClick = this.postClick.bind(this);
   }
 
   componentDidMount() {
@@ -51,22 +50,18 @@ class App extends React.Component {
         <ProductDetail
           productId={productId}
           product={product}
-          postClick={this.postClick}
         />
         <RelatedItems
           productId={productId}
           product={product}
           changeProductId={this.changeProductId}
-          postClick={this.postClick}
         />
         <QuestionsAnswers
           productId={productId}
-          postClick={this.postClick}
         />
         <Reviews
           productId={productId}
           product={product}
-          postClick={this.postClick}
         />
       </div>
     );
