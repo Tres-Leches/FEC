@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import './productDetail.css';
+// import './productDetail.css';
 
 import Add2Cart from './Add2Cart';
 import DefaultView from './DefaultView';
