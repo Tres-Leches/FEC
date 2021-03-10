@@ -16,6 +16,7 @@ class App extends React.Component {
 
     this.changeProductId = this.changeProductId.bind(this);
     this.getProduct = this.getProduct.bind(this);
+    this.postClick = this.postClick.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +36,12 @@ class App extends React.Component {
     this.setState({ productId });
   }
 
+  postClick(element, widget, time) {
+    axios.post('/api/interactions',{element, widget, time})
+    .then(()=> console.log("posted click"))
+    .catch(err => console.error(err))
+  }
+
   render() {
     const { productId, product } = this.state;
 
@@ -44,18 +51,22 @@ class App extends React.Component {
         <ProductDetail
           productId={productId}
           product={product}
+          postClick={this.postClick}
         />
         <RelatedItems
           productId={productId}
           product={product}
           changeProductId={this.changeProductId}
+          postClick={this.postClick}
         />
         <QuestionsAnswers
           productId={productId}
+          postClick={this.postClick}
         />
         <Reviews
           productId={productId}
           product={product}
+          postClick={this.postClick}
         />
       </div>
     );
