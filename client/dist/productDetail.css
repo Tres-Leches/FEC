@@ -197,6 +197,10 @@
   width: 425px;
 }
 
+.shareIcons a:visited {
+  color:darkcyan;
+}
+
 /*********** BOTTOM INFO ***************/
 
 .endInfo {
