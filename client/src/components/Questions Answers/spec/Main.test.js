@@ -5,7 +5,6 @@ import Main from './Main';
 describe('Main', () => {
   it('should render correctly in "debug" mode', () => {
     const component = shallow(<Main debug />);
-
     expect(component).toMatchSnapshot();
   });
 });

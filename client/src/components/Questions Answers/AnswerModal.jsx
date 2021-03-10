@@ -9,7 +9,6 @@ import React from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
 import Image from './Image';
-import './questions.css';
 
 const HOST_URL = 'https://api.cloudinary.com/v1_1/drpklcnse/auto/upload';
 const preset = 'piptu8gm';
