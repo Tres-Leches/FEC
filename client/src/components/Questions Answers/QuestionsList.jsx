@@ -117,7 +117,7 @@ class QuestionsList extends React.Component {
             className="questionslist-actions"
             onClick={this.showModal}
           >
-            ADD A QUESTION &nbsp; +
+            ADD A QUESTION +
           </button>
           <QuestionModal
             show={show}
