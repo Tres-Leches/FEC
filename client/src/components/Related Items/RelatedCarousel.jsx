@@ -24,7 +24,7 @@ const RelatedCarousel = (props) => {
           <div key={product.product_id}>
             <img
               className="card"
-              src={product.results[0].photos[0].thumbnail_url}
+              src={product.results[0].photos[0].url}
               alt={product.product_id}
             />
           </div>
