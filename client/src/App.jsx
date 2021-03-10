@@ -18,6 +18,10 @@ class App extends React.Component {
     this.getProduct = this.getProduct.bind(this);
   }
 
+  componentDidMount() {
+    this.getProduct();
+  }
+
   getProduct() {
     const { productId } = this.state;
     axios.get(`/api/products/${productId}`)
