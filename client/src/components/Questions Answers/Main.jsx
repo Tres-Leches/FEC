@@ -4,7 +4,7 @@ import axios from 'axios';
 import _ from 'underscore';
 import SearchBar from './SearchBar';
 import QuestionsList from './QuestionsList';
-import './questions.css';
+// import './questions.css';
 
 class Main extends React.Component {
   constructor(props) {
