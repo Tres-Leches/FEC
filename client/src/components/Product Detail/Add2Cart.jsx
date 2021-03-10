@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import $ from 'jquery';
 import Select from 'react-select';
@@ -13,54 +13,52 @@ export default class Add2Cart extends React.Component {
       selectedSize: "",
       selectedQuantity: null,
       quantity: 'default',
-
+      clicked: false,
     };
   }
 
   componentDidUpdate(prevProps){
-
     if (this.props.style !== prevProps.style) {
-      $(".sizeSelector").val("");
-      this.setState({quantity: 0})
+      this.setState({quantity: 'default', selectedSize: ""})
     }
   }
 
-  changeQuantity(e) {
-    console.log(e.target)
-    this.setState({quantity: e.target.value >= 15 ? 15 : e.target.value})
+  changeQuantity(obj) {
+    console.log(obj)
+    this.setState({quantity: obj.value >= 15 ? 15 : obj.value, selectedSize: obj.label, clicked: false})
   }
 
   addHandler(e) {
-    let size = $('#sizeSelector').val()
-    if (size !== 'default') {
+    if (this.state.selectedSize !== "") {
       alert('Added to cart')
-    } else if (size === 'default'){
-      var el = $('#sizeSelector'); // grab the input (jQuery)
-      var event = new MouseEvent('mousedown'); // create the event listener
-      el.dispatchEvent(event); // attach the event listener to the element
-      alert('Select size')
+    } else if (this.state.selectedSize === ""){
+      this.setState({clicked: true}, () => {alert('Select size')})
     }
   }
 
+  openMenu() {
+    this.setState({ clicked: true });
+    this.selectItem.focus();
+    //to do open react select menu
+  }
+  closeMenu() {
+    this.setState({ clicked: false });
+    //to do close react select menu
+  }
 
   render() {
-    let sizes = Object.keys(this.props.style.skus).map((sku, ind) => {
+    let sizes = [];
+    Object.keys(this.props.style.skus).forEach((sku, ind) => {
       if(this.props.style.skus[sku].quantity){
-        return(
-        {value: `${this.props.style.skus[sku].quantity}`,label: `${this.props.style.skus[sku].size}`}
+        sizes.push({value: `${this.props.style.skus[sku].quantity}`,label: `${this.props.style.skus[sku].size}`}
         )
       }
     })
+    console.log(sizes)
     let quantities = [];
     for(let i = 1; i<=this.state.quantity;i++) {
       quantities.push(<option key={i}>{i}</option>);
     }
-
-    // let customStyles = {
-    //   dropdownIndicatorStyles =
-    //   },
-    //   }
-    // }
 
     return (
       <div>
@@ -69,8 +67,12 @@ export default class Add2Cart extends React.Component {
             {sizes.length ?
               <Select className="sizeSelector" id="sizeSelector" name="size" placeholder="Select Size" onChange={this.changeQuantity.bind(this)}
               options={sizes}
-              // value={sizes.filter(obj => obj.value === selectedValue)}
-              styles={{control: styles => ({...styles, height: '60px'})}}
+              value= {this.state.selectedSize === "" ? null: [{value: this.state.selectedSize, label: this.state.selectedSize}]}
+              menuIsOpen={this.state.clicked}
+              onFocus={this.openMenu.bind(this)}
+              onBlur={this.closeMenu.bind(this)}
+              ref={node => (this.selectItem = node)}
+              styles={{container: styles => ({...styles, border: '1px solid black', borderRadius: '6%'}), control: styles => ({...styles, height: '60px', border: '1px solid black'})}}
               components={{IndicatorSeparator:() => null }}/>
              :
              <Select placeholder="OUT OF STOCK"

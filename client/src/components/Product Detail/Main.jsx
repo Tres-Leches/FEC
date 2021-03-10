@@ -15,7 +15,7 @@ class Main extends React.Component {
     super(props);
     this.state = {
       product_ids: [16392, 16465, 16056, 16084, 16154, 16060, 16072, 16073],
-      product_id: 16060,
+      product_id: 16072,
       zoomed: false,
       product: null,
       styles: [],
