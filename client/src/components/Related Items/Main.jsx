@@ -26,14 +26,16 @@ class Main extends React.Component {
 
   getRelatedProducts() {
     const { productId } = this.props;
+    const { relatedProducts } = this.state;
+    relatedProducts.length = 0;
     axios.get(`/api/products/${productId}/related`)
       .then((response) => {
         response.data.forEach((relatedProduct) => {
           this.getRating(relatedProduct)
             .then((rating) => {
               axios.get(`/api/products/${relatedProduct}`)
-                .then((resp) => resp.data)
-                .then((product) => {
+                .then((resp) => {
+                  const product = resp.data;
                   axios.get(`/api/products/${relatedProduct}/styles`)
                     .then((res) => {
                       const productStyles = res.data;
