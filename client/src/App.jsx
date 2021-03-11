@@ -23,8 +23,7 @@ class App extends React.Component {
   }
 
   getProduct() {
-    const { productId } = this.state;
-    axios.get(`/api/products/${productId}`)
+    axios.get(`/api/products/${this.state.productId}`)
       .then((response) => {
         this.setState({ product: response.data });
       })
@@ -32,7 +31,9 @@ class App extends React.Component {
   }
 
   changeProductId(productId) {
-    this.setState({ productId });
+    this.setState({ productId }, () => {
+      this.getProduct();
+    });
   }
 
   postClick(element, widget, time) {

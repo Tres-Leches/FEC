@@ -15,35 +15,36 @@ class Main extends React.Component {
     super(props);
     this.state = {
       product_ids: [16392, 16465, 16056, 16084, 16154, 16060, 16072, 16073],
-      product_id: 16060,
-      product: null,
-      // product_id: Number(this.props.productId),
-      // product: this.props.product,
+      // product_id: 16060,
+      // product: null,
+      product_id: Number(this.props.productId),
+      product: this.props.product,
       zoomed: false,
       styles: [],
       style: null,
       mainPhoto: null,
     };
+    this.getStyles = this.getStyles.bind(this);
   }
 
   componentDidMount() {
-    axios.get(`/api/products/${this.state.product_id}/styles`)
-      .then((response) => {
-        this.setState({styles: response.data.results, style: response.data.results[0], mainPhoto: response.data.results[0].photos[0]})
-      })
-      .catch(err => console.error(err))
-    axios.get(`/api/products/${this.state.product_id}`)
-      .then((response) => {
-        this.setState({product: response.data})
-      })
-      .catch(err => console.error(err))
+    this.getStyles();
   }
   componentDidUpdate(prevProps){
     if(this.props.product !== prevProps.product) {
       this.setState({
         product: this.props.product,
-      })
+        product_id: this.props.productId,
+      }, () => this.getStyles())
     }
+  }
+
+  getStyles() {
+    axios.get(`/api/products/${this.state.product_id}/styles`)
+      .then((response) => {
+        this.setState({styles: response.data.results, style: response.data.results[0], mainPhoto: response.data.results[0].photos[0]})
+      })
+      .catch(err => console.error(err))
   }
 
   changeStyle(style) {
