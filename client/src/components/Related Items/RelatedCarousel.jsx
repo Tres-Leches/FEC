@@ -4,6 +4,14 @@ import ItemsCarousel from 'react-items-carousel';
 import ProductCard from './ProductCard';
 import './relateditems.css';
 
+const style = {
+  button: {
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+  },
+};
+
 const RelatedCarousel = (props) => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const { relatedProducts } = props;
@@ -16,8 +24,9 @@ const RelatedCarousel = (props) => {
         activeItemIndex={activeItemIndex}
         numberOfCards={3}
         gutter={20}
-        leftChevron={<button>{'<'}</button>}
-        rightChevron={<button>{'>'}</button>}
+        leftChevron={<button style={style.button}>{'<'}</button>}
+        rightChevron={<button style={style.button}>{'>'}</button>}
+        outsideChevron
         chevronWidth={chevronWidth}
       >
         {relatedProducts.map((product) => (
