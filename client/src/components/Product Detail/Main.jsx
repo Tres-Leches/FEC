@@ -73,7 +73,7 @@ class Main extends React.Component {
         document.body.style.overflow = 'visible';
       }
       return (
-        <div>
+        <div className="productDetails">
           {expand}
           <div className="overview">
 
