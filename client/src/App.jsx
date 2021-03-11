@@ -264,8 +264,8 @@ class App extends React.Component {
           </React.Fragment>
 =======
         <h1> Hello from Apps!</h1>
-        <ProductDetail />
-        <QuestionsAnswers />
+        {/* <ProductDetail />
+        <QuestionsAnswers /> */}
         <Reviews />
 >>>>>>> implements review list and review tile in text
       </div>

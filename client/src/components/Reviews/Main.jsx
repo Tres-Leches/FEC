@@ -2,6 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
+import MetaData from './MetaData.jsx';
 
 class Main extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class Main extends React.Component {
     return (
       <div>
         <div>Ratings &amp; Reviews</div>
+        <MetaData metaData={this.state.metaData} />
         <ReviewList reviews={this.state.reviews} />
       </div>
     );

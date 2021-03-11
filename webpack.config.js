@@ -14,7 +14,12 @@ module.exports = {
   mode: 'development',
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: {
+      React: require('path').resolve('./node_modules/react'),
+      reactDOM: require('path').resolve('./node_modules/react-dom')
+    },
   },
+<<<<<<< HEAD
   plugins: [
     new CompressionPlugin({
     filename: '[path].gz[query]',
@@ -30,6 +35,9 @@ module.exports = {
       minRatio: 0.8
     })
   ],
+=======
+
+>>>>>>> Implemented rating and recommended radio input on reviewModal
   module: {
     rules: [
       {
@@ -38,11 +46,11 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: [
           'style-loader',
           'css-loader',
-        ]
+        ],
       },
       {
         test: /\.(png|jpg|gif)$/i,
