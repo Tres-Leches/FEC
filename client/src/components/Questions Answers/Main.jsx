@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
@@ -9,7 +10,6 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: '16392',
       questions: [],
       filteredQuestions: [],
       searchQuery: '',
@@ -24,6 +24,13 @@ class Main extends React.Component {
     this.getQuestions();
   }
 
+  componentDidUpdate(prevProps) {
+    const { productId } = this.props;
+    if (productId !== prevProps.productId) {
+      this.getQuestions();
+    }
+  }
+
   setSearchQuery(e) {
     this.setState({ searchQuery: e.target.value }, () => {
       this.filterQuestions();
@@ -31,7 +38,7 @@ class Main extends React.Component {
   }
 
   getQuestions() {
-    const productId = 16056; // Placeholder
+    const { productId } = this.props;
     axios.get(`/api/qa/questions/${productId}`)
       .then((response) => {
         const questions = response.data.results;
@@ -81,7 +88,8 @@ class Main extends React.Component {
   }
 
   render() {
-    const { filteredQuestions, searchQuery, productId } = this.state;
+    const { filteredQuestions, searchQuery } = this.state;
+    const { productId } = this.props;
     return (
       <div className="qa-main">
         <div className="qa-main-header">
