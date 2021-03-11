@@ -14,10 +14,16 @@ export default class ProductInfo extends React.Component {
       rating: null,
       reviews: 0,
     };
+    this.getRating = this.getRating.bind(this);
   }
 
   componentDidMount(){
-    this.getRating.call(this);
+    this.getRating();
+  }
+  componentDidUpdate(prevProps){
+    if(this.props.productId !== prevProps.productId) {
+      this.getRating();
+    }
   }
 
   getRating(){

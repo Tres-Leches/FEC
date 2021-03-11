@@ -5,6 +5,7 @@ import ProductDetail from './components/Product Detail/Main';
 import RelatedItems from './components/Related Items/Main';
 import QuestionsAnswers from './components/Questions Answers/Main';
 import Reviews from './components/Reviews/Main';
+import Interactions from './Interactions';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,9 +14,9 @@ class App extends React.Component {
       productId: '16392',
       product: null,
     };
-
     this.changeProductId = this.changeProductId.bind(this);
     this.getProduct = this.getProduct.bind(this);
+    this.postClick = this.postClick.bind(this);
   }
 
   componentDidMount() {
@@ -48,25 +49,32 @@ class App extends React.Component {
     return (
       <div>
         <h1> Hello from Apps!</h1>
-        <ProductDetail
-          productId={productId}
-          product={product}
-        />
-        <RelatedItems
-          productId={productId}
-          product={product}
-          changeProductId={this.changeProductId}
-        />
-        <QuestionsAnswers
-          productId={productId}
-        />
-        <Reviews
-          productId={productId}
-          product={product}
-        />
+        <Interactions render={(postClick) => (
+          <React.Fragment>
+            <ProductDetail
+              productId={productId}
+              product={product}
+              onClick={(e) => {postClick(e, "Product Detail")}}
+            />
+            <RelatedItems
+              productId={productId}
+              product={product}
+              changeProductId={this.changeProductId}
+            />
+            <QuestionsAnswers
+              productId={productId}
+            />
+            <Reviews
+              productId={productId}
+              product={product}
+            />
+          </React.Fragment>
+          )}>
+        </Interactions>
+
       </div>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App/>, document.getElementById('app'));
