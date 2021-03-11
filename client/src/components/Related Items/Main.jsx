@@ -68,11 +68,12 @@ class Main extends React.Component {
 
   render() {
     const { relatedProducts } = this.state;
+    const { changeProductId } = this.props;
 
     return (
       <div className="related-main">
         <div className="related-title">RELATED PRODUCTS</div>
-        <RelatedCarousel relatedProducts={relatedProducts} />
+        <RelatedCarousel relatedProducts={relatedProducts} changeProductId={changeProductId} />
       </div>
     );
   }

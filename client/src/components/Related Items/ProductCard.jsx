@@ -7,8 +7,8 @@ import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Rating from 'react-rating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar as fullStar} from '@fortawesome/free-solid-svg-icons';
-import { faStar as emptyStar} from '@fortawesome/free-regular-svg-icons';
+import { faStar as fullStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons';
 
 const styles = {
   cardImg: {
@@ -33,16 +33,18 @@ const styles = {
 };
 
 const ProductCard = (props) => {
+  const { product, changeProductId } = props;
+
   return (
     <Card style={{ height: '450px' }}>
-      <Card.Img variant="top" src={props.product.results[0].photos[0].thumbnail_url} style={styles.cardImg} />
+      <Card.Img variant="top" src={product.results[0].photos[0].thumbnail_url} style={styles.cardImg} onClick={() => changeProductId(product.product_id)}/>
       <Card.Body style={{ height: '30%' }}>
-        <Card.Text style={styles.cardText}>{props.product.category}</Card.Text>
-        <Card.Text style={styles.cardTitle}>{props.product.name}</Card.Text>
-        <Card.Text style={styles.cardText}>${props.product.default_price}</Card.Text>
+        <Card.Text style={styles.cardText}>{product.category}</Card.Text>
+        <Card.Text style={styles.cardTitle}>{product.name}</Card.Text>
+        <Card.Text style={styles.cardText}>${product.default_price}</Card.Text>
         <Card.Text>
           <Rating
-            initialRating={props.product.rating}
+            initialRating={product.rating}
             fractions={4}
             readonly
             emptySymbol={<FontAwesomeIcon icon={emptyStar} />}

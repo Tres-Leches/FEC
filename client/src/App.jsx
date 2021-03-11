@@ -32,7 +32,7 @@ class App extends React.Component {
   }
 
   changeProductId(productId) {
-    this.setState({ productId });
+    this.setState({ productId }, () => console.log(this.state.productId));
   }
 
   postClick(element, widget, time) {

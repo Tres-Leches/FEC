@@ -14,7 +14,7 @@ const style = {
 
 const RelatedCarousel = (props) => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
-  const { relatedProducts } = props;
+  const { relatedProducts, changeProductId } = props;
   const chevronWidth = 40;
 
   return (
@@ -30,7 +30,11 @@ const RelatedCarousel = (props) => {
         chevronWidth={chevronWidth}
       >
         {relatedProducts.map((product) => (
-          <ProductCard key={product.product_id} product={product} />
+          <ProductCard
+            key={product.product_id}
+            product={product}
+            changeProductId={changeProductId}
+          />
         ))}
       </ItemsCarousel>
     </div>
