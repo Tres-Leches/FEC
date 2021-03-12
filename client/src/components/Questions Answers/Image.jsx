@@ -29,12 +29,18 @@ class Image extends React.Component {
   render() {
     const { photo } = this.props;
     const { isOpen } = this.state;
+
+    const url = new URL(photo.url);
+    const searchParams = new URLSearchParams(url.search);
+    searchParams.set('w', '300');
+    const thumbnail = url.origin + url.pathname + '?' + searchParams.toString();
+
     return (
       <div>
         <div className="small-container">
           <img
             className="small-img"
-            src={photo.url}
+            src={thumbnail}
             onClick={this.handleShowDialog}
           />
         </div>
