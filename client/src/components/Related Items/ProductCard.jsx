@@ -33,10 +33,14 @@ const styles = {
 };
 
 const ProductCard = (props) => {
-  const { product, changeProductId } = props;
+  const { product, changeProductId, isDark } = props;
 
   return (
-    <Card style={{ height: '450px' }}>
+    <Card
+      bg={isDark ? 'dark' : 'light'}
+      text={isDark ? 'white' : 'dark'}
+      style={{ height: '450px' }}
+    >
       <Card.Img variant="top" src={product.results[0].photos[0].thumbnail_url} style={styles.cardImg} onClick={() => changeProductId(product.product_id)}/>
       <Card.Body style={{ height: '30%' }}>
         <Card.Text style={styles.cardText}>{product.category}</Card.Text>
