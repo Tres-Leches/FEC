@@ -11,11 +11,11 @@ import QuestionsAnswers from './components/Questions Answers/Main';
 import Reviews from './components/Reviews/Main';
 import withTracker from './Interactions';
 
-const HeaderTracker = withTracker(Header, "Header");
-const ProductDetailTracker = withTracker(ProductDetail, "Product Detail");
-const RelatedItemsTracker = withTracker(RelatedItems, "Related Items");
-const QuestionsAnswersTracker = withTracker(QuestionsAnswers, "Questions and Answers");
-const ReviewsTracker = withTracker(Reviews, "Reviews");
+const HeaderTracker = withTracker(Header, 'Header');
+const ProductDetailTracker = withTracker(ProductDetail, 'Product Detail');
+const RelatedItemsTracker = withTracker(RelatedItems, 'Related Items');
+const QuestionsAnswersTracker = withTracker(QuestionsAnswers, 'Questions and Answers');
+const ReviewsTracker = withTracker(Reviews, 'Reviews');
 
 class App extends React.Component {
   constructor(props) {
@@ -23,6 +23,7 @@ class App extends React.Component {
     this.state = {
       productId: '16060',
       product: null,
+<<<<<<< HEAD
       productIds:[],
       products: [],
       stylesData: [],
@@ -31,6 +32,9 @@ class App extends React.Component {
       relatedProductsData:[],
       relatedProducts: [],
       isDark:false,
+=======
+      isDark: false,
+>>>>>>> Implemented sort dropdown  radio buttons. rebase commit
     };
     this.changeProductId = this.changeProductId.bind(this);
     this.getProduct = this.getProduct.bind(this);
@@ -183,12 +187,12 @@ class App extends React.Component {
   }
 
   changeMode(e) {
-    if(e.target.innerText ==='Dark') {
-      document.body.classList.add("dark-scheme");
+    if (e.target.innerText === 'Dark') {
+      document.body.classList.add('dark-scheme');
     } else {
-      document.body.classList.remove("dark-scheme");
+      document.body.classList.remove('dark-scheme');
     }
-    this.setState({isDark: e.target.innerText === 'Dark'})
+    this.setState({ isDark: e.target.innerText === 'Dark' });
   }
 
   render() {
@@ -235,43 +239,51 @@ class App extends React.Component {
 
     return (
       <div>
-<<<<<<< HEAD
-          <React.Fragment>
-            <Header
-              isDark={isDark}
-              changeMode={this.changeMode}
-            />
-            <ProductDetailTracker
-              productId={productId}
-              product={product}
-              isDark={isDark}
-            />
-            <RelatedItemsTracker
-              productId={productId}
-              product={product}
-              changeProductId={this.changeProductId}
-              isDark={isDark}
-            />
-            <QuestionsAnswersTracker
-              productId={productId}
-              isDark={isDark}
-            />
-            <ReviewsTracker
-              productId={productId}
-              product={product}
-              isDark={isDark}
-            />
-          </React.Fragment>
-=======
-        <h1> Hello from Apps!</h1>
-        {/* <ProductDetail />
-        <QuestionsAnswers /> */}
-        <Reviews />
->>>>>>> implements review list and review tile in text
+        <Header
+          isDark={isDark}
+          changeMode={this.changeMode}
+        />
+        <ProductDetailTracker
+          productId={productId}
+          product={product}
+          isDark={isDark}
+        />
+        <RelatedItemsTracker
+          productId={productId}
+          product={product}
+          changeProductId={this.changeProductId}
+          isDark={isDark}
+        />
+        <QuestionsAnswersTracker
+          productId={productId}
+          isDark={isDark}
+        />
+        <ReviewsTracker
+          productId={productId}
+          product={product}
+          isDark={isDark}
+        />
+        <Header />
+        <ProductDetailTracker
+          productId={productId}
+          product={product}
+        />
+        <RelatedItemsTracker
+          productId={productId}
+          product={product}
+          changeProductId={this.changeProductId}
+        />
+        <QuestionsAnswersTracker
+          productId={productId}
+        />
+        <ReviewsTracker
+          productId={productId}
+          product={product}
+        />
       </div>
     );
 >>>>>>> implements review list and review tile in text
   }
 }
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));

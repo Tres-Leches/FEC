@@ -18,7 +18,7 @@ class ReviewTile extends React.Component {
     axios.put(`api/reviews/${this.props.review.review_id}/helpful`)
       .then(() => {
         this.setState({helpfulClicked: true});
-        this.props.getReviews();
+        this.props.getReviews(this.props.sortBy);
       });
   }
 

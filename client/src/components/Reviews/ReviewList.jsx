@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import TextSelect from './TextSelect.jsx';
 import ReviewTile from './ReviewTile.jsx';
 import ReviewModal from './ReviewModal.jsx';
 
@@ -10,6 +11,7 @@ class ReviewList extends React.Component {
       reviewCount: 2,
       reviews: this.props.reviews,
       showModal: false,
+      activeSort: 'relevant',
     };
   }
 
@@ -23,10 +25,16 @@ class ReviewList extends React.Component {
     });
   }
 
-  getReviews() {
-    axios.get(`/api/reviews/${this.state.reviews.product}`)
-      .then((res) => (this.setState({ reviews: res.data })));
+  onTextSelectChange(e) {
+    this.setState({
+      activeSort: e.target.value,
+    }, () => (this.props.getReviews(this.state.activeSort)));
   }
+
+  // getReviews() {
+  //   axios.get(`/api/reviews/${this.state.reviews.product}`)
+  //     .then((res) => (this.setState({ reviews: res.data })));
+  // }
 
   toggleModal() {
     this.setState({ showModal: !this.state.showModal }, () => console.log(this.state));
@@ -35,9 +43,27 @@ class ReviewList extends React.Component {
   render() {
     return (
       <div>
-        <div>{`${this.state.reviews.results.length} reviews, sorted by `}</div>
+        <div>
+          <span>
+            {`${this.state.reviews.results.length} reviews, sorted by `}
+          </span>
+          <span>
+            <TextSelect
+              options={['Relevant', 'Helpful', 'Newest']}
+              active={this.state.activeSort}
+              onChange={this.onTextSelectChange}
+            />
+          </span>
+        </div>
         {this.state.reviews.results.slice(0, this.state.reviewCount).map(
-          (reviews) => (<ReviewTile review={reviews} key={reviews.review_id} getReviews={this.getReviews.bind(this)} />),
+          (reviews) => (
+            <ReviewTile
+              review={reviews}
+              key={reviews.review_id}
+              getReviews={this.props.getReviews}
+              sortBy={this.state.activeSort}
+            />
+          ),
         )}
         <button
           type="button"

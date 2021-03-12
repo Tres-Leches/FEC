@@ -6,6 +6,7 @@ import Rating from 'react-rating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as fullStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons';
+import CharRadio from './CharacteristicRadio.jsx';
 
 const schema = yup.object().shape({
   summary: yup.string().max(60),
@@ -18,11 +19,20 @@ class ReviewModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      meta:this.props.meta,
+      meta: this.props.meta,
       rating: 0,
       recommend: true,
-
+      summary: '',
+      body: '',
     };
+  }
+
+  handleChange(e) {
+    const { value } = e.target;
+    const { name } = e.target;
+    this.setState({
+      [name]: value,
+    });
   }
 
   onRatingClick(value) {
@@ -51,11 +61,15 @@ class ReviewModal extends React.Component {
   }
 
   onRadioChange(e) {
-    this.setState({recommend: JSON.parse(e.target.value)}, () => console.log(this.state));
+    const { value } = e.target;
+    const { name } = e.target;
+    this.setState({
+      [name]: value,
+    }, () => console.log(this.state));
   }
 
   render() {
-    if (!this.props.show) {
+    if (!this.props.show || !this.state.meta) {
       return (null);
     }
     return (
@@ -86,28 +100,56 @@ class ReviewModal extends React.Component {
               <span>
                 {this.state.ratingStr}
               </span>
-              <div className="reviewModal-recommend" onChange={this.onRadioChange.bind(this)}>
-                <div>Do you recommend this product?</div>
-                <input
-                  type="radio"
-                  value="true"
-                  name="recommend"
-                  defaultChecked
-                />
-                Yes
-                <input
-                  type="radio"
-                  value="false"
-                  name="recommend"
-                />
-                No
-              </div>
-              <div className="reviewModal-characteristics">
-                {this.state.meta.keys.map((char) => {
-                  <CharateristicRadio charName={char} data={this.state.meta[char]} />;
-                })}
-              </div>
             </div>
+            <div className="reviewModal-recommend" onChange={this.onRadioChange.bind(this)}>
+              <div>Do you recommend this product?</div>
+              <input
+                type="radio"
+                value="true"
+                name="recommend"
+                defaultChecked
+              />
+              Yes
+              <input
+                type="radio"
+                value="false"
+                name="recommend"
+              />
+              No
+            </div>
+            <div
+              className="reviewModal-characteristics"
+              onChange={this.onRadioChange.bind(this)}
+            >
+              {Object.keys(this.state.meta.characteristics).map((char, index) => (
+                <CharRadio
+                  key={index}
+                  charName={char}
+                  data={this.state.meta.characteristics[char]}
+                />
+              ))}
+            </div>
+            <label htmlFor="reviewSummary">
+              <span className="label">Summary </span>
+              <span className="required">*</span>
+              <textarea
+                name="summary"
+                placeholder="Example: Best purchase ever!"
+                value={this.state.summary}
+                onChange={this.handleChange.bind(this)}
+              />
+            </label>
+            <label htmlFor="reviewBody">
+              <span className="label">Body</span>
+              <span className="required">*</span>
+              <textarea
+                name="body"
+                placeholder="Why did you like the product or not?"
+                value={this.state.body}
+                onChange={this.handleChange.bind(this)}
+              />
+            </label>
+
           </form>
         </div>
       </div>

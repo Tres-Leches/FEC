@@ -63,12 +63,14 @@ router
 
 // get all reviews from product id
 router
-  .route('/reviews/:id')
+  .route('/reviews/:id/:sort')
   .get((req, res) => {
     const productId = req.params.id;
+    const sortBy = req.params.sort;
     options.params = {
       product_id: productId,
-      count:1000
+      count:1000,
+      sort: sortBy,
     };
     axios.get('/reviews', options)
       .then((response) => {

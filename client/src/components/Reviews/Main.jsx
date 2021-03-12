@@ -15,16 +15,34 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/reviews/${this.state.productId}`)
+    Promise.all([
+      axios.get(`/api/reviews/${this.state.productId}/relevant`),
+      axios.get(`/api/reviews/meta/${this.state.productId}`),
+    ]).then(([res1, res2]) => {
+      this.setState({
+        reviews: res1.data,
+        metaData: res2.data,
+      }, () => console.log(this.state));
+    });
+    // axios.get(`/api/reviews/${this.state.productId}/relevant`)
+    //   .then((res) => {
+    //     this.setState({
+    //       reviews: res.data,
+    //     });
+    //   }).then(() => console.log(this.state)).catch((err) => (console.log(err)));
+    // axios.get(`/api/reviews/meta/${this.state.productId}`)
+    //   .then((res) => {
+    //     this.setState({
+    //       metaData: res.data,
+    //     });
+    //   }).then(() => console.log(this.state)).catch((err) => (console.log(err)));
+  }
+
+  getReviews(sort) {
+    axios.get(`/api/reviews/${this.state.productId}/${sort}`)
       .then((res) => {
         this.setState({
           reviews: res.data,
-        });
-      }).then(() => console.log(this.state)).catch((err) => (console.log(err)));
-    axios.get(`/api/reviews/meta/${this.state.productId}`)
-      .then((res) => {
-        this.setState({
-          metaData: res.data,
         });
       }).then(() => console.log(this.state)).catch((err) => (console.log(err)));
   }
@@ -39,7 +57,11 @@ class Main extends React.Component {
       <div>
         <div>Ratings &amp; Reviews</div>
         <MetaData metaData={this.state.metaData} />
-        <ReviewList reviews={this.state.reviews} meta={this.state.metaData} />
+        <ReviewList
+          reviews={this.state.reviews}
+          meta={this.state.metaData}
+          getReviews={this.getReviews.bind(this)}
+        />
       </div>
     );
   }
