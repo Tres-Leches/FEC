@@ -31,11 +31,11 @@ class Main extends React.Component {
     this.getStyles();
   }
   componentDidUpdate(prevProps){
-    if(this.props.product !== prevProps.product) {
+    if(this.props.product !== prevProps.product || this.props.productId !== prevProps.productId) {
       this.setState({
         product: this.props.product,
         product_id: this.props.productId,
-      }, () => this.getStyles())
+      }, () => {this.getStyles()})
     }
   }
 
