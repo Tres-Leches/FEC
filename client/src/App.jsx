@@ -5,7 +5,12 @@ import ProductDetail from './components/Product Detail/Main';
 import RelatedItems from './components/Related Items/Main';
 import QuestionsAnswers from './components/Questions Answers/Main';
 import Reviews from './components/Reviews/Main';
-import Interactions from './Interactions';
+import withTracker from './Interactions';
+
+const ProductDetailTracker = withTracker(ProductDetail, "Product Detail");
+const RelatedItemsTracker = withTracker(RelatedItems, "Related Items");
+const QuestionsAnswersTracker = withTracker(QuestionsAnswers, "Questions and Answers");
+const ReviewsTracker = withTracker(Reviews, "Reviews");
 
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +21,6 @@ class App extends React.Component {
     };
     this.changeProductId = this.changeProductId.bind(this);
     this.getProduct = this.getProduct.bind(this);
-    this.postClick = this.postClick.bind(this);
   }
 
   componentDidMount() {
@@ -37,41 +41,30 @@ class App extends React.Component {
     });
   }
 
-  postClick(element, widget, time) {
-    axios.post('/api/interactions',{element, widget, time})
-    .then(()=> console.log("posted click"))
-    .catch(err => console.error(err))
-  }
-
   render() {
     const { productId, product } = this.state;
 
     return (
       <div>
         <h1> Hello from Apps!</h1>
-        <Interactions render={(postClick) => (
           <React.Fragment>
-            <ProductDetail
+            <ProductDetailTracker
               productId={productId}
               product={product}
-              onClick={(e) => {postClick(e, "Product Detail")}}
             />
-            <RelatedItems
+            <RelatedItemsTracker
               productId={productId}
               product={product}
               changeProductId={this.changeProductId}
             />
-            <QuestionsAnswers
+            <QuestionsAnswersTracker
               productId={productId}
             />
-            <Reviews
+            <ReviewsTracker
               productId={productId}
               product={product}
             />
           </React.Fragment>
-          )}>
-        </Interactions>
-
       </div>
     );
   }
