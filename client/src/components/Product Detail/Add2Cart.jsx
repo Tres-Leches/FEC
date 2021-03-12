@@ -76,6 +76,7 @@ export default class Add2Cart extends React.Component {
                   borderRadius: '5px',
                   color:'black',
                   filter: this.props.isDark ? "brightness(.8) contrast(1.2)" : "",
+                  zIndex:'2',
                 }),
                 control: styles => ({...styles, height: '60px', border: '1px solid burlywood'})}}
               components={{IndicatorSeparator:() => null }}/>
