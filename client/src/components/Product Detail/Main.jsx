@@ -64,6 +64,7 @@ class Main extends React.Component {
       let expand;
       if (this.state.zoomed) {
         expand = <ExpandedView style={this.state.style}
+          isDark={this.props.isDark}
           mainPhoto={this.state.mainPhoto}
           changeMainPhoto={this.changeMainPhoto.bind(this)}
           changeView={this.changeView.bind(this)}/> ;
@@ -82,7 +83,7 @@ class Main extends React.Component {
               <div className="info">
               <ProductInfo product={this.state.product} productId={this.state.product_id}/>
               <StyleSelector styles={this.state.styles} style={this.state.style} changeStyle={this.changeStyle.bind(this)}/>
-              <Add2Cart style={this.state.style}/>
+              <Add2Cart style={this.state.style} isDark={this.props.isDark}/>
               <Share />
             </div>
             </div>
