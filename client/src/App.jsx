@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import Header from './components/Product Detail/Header';
 import ProductDetail from './components/Product Detail/Main';
 import RelatedItems from './components/Related Items/Main';
 import QuestionsAnswers from './components/Questions Answers/Main';
 import Reviews from './components/Reviews/Main';
 import withTracker from './Interactions';
 
+const HeaderTracker = withTracker(Header, "Header");
 const ProductDetailTracker = withTracker(ProductDetail, "Product Detail");
 const RelatedItemsTracker = withTracker(RelatedItems, "Related Items");
 const QuestionsAnswersTracker = withTracker(QuestionsAnswers, "Questions and Answers");
@@ -16,7 +18,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: '16392',
+      productId: '16072',
       product: null,
     };
     this.changeProductId = this.changeProductId.bind(this);
@@ -46,8 +48,8 @@ class App extends React.Component {
 
     return (
       <div>
-        <h1> Hello from Apps!</h1>
           <React.Fragment>
+            <Header />
             <ProductDetailTracker
               productId={productId}
               product={product}

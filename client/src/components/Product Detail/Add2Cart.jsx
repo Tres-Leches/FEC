@@ -70,7 +70,12 @@ export default class Add2Cart extends React.Component {
               onFocus={this.openMenu.bind(this)}
               onBlur={this.closeMenu.bind(this)}
               ref={node => (this.selectItem = node)}
-              styles={{container: styles => ({...styles, border: '1px solid black', borderRadius: '6%'}), control: styles => ({...styles, height: '60px', border: '1px solid black'})}}
+              styles={{container: styles => (
+                {...styles,
+                  border: '1px solid burlywood',
+                  borderRadius: '5px',
+                }),
+                control: styles => ({...styles, height: '60px', border: '1px solid burlywood'})}}
               components={{IndicatorSeparator:() => null }}/>
              :
              <Select placeholder="OUT OF STOCK"
@@ -93,7 +98,7 @@ export default class Add2Cart extends React.Component {
          <br/>
          <div className="add2">
           <button className="add2Bag" onClick={this.addHandler.bind(this)} style={sizes.length ? {visibility: "visible"} : {visibility:"hidden"}}>Add to Bag +</button>
-          <button className="add2Favorite"><FontAwesomeIcon icon={faStar}/></button>
+          <button className="add2Favorite"><FontAwesomeIcon className="starIcon" icon={faStar}/></button>
          </div>
 
       </div>
