@@ -1,8 +1,28 @@
+/*********** COLOR SCHEMES ***************/
+/* @media (prefers-color-scheme: dark) {
+  .dark-scheme { background: #121212; color:  #ddd; }
+  img {
+    filter: brightness(.8) contrast(1.2);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .light-scheme { background:  #eee; color: black; }
+} */
+.dark-scheme {
+  background: #121212;
+  color:  #ddd;
+}
+.dark-scheme img, .dark-scheme button, .dark-scheme .header, .dark-scheme .fa{
+  filter: brightness(.8) contrast(1.2);
+}
+
+/*********** hEADER ***************/
 .header{
   height: 10vh;
   width: 100vw;
   display:flex;
-  justify-content:flex-start;
+  justify-content:space-between;
   align-items:flex-end;
   overflow: hidden;
   background: linear-gradient(
@@ -21,6 +41,27 @@
   margin-left: 2%;
   top: 11vh;
 }
+.modeButtons {
+  margin-right: 15%;
+}
+.modeButtons button {
+  margin-right:10px;
+  height: 3vh;
+  width: 5vw;
+  min-height: 30px;
+  min-width:fit-content;
+  border-radius: 5px;
+  border-color:white;
+  color:white;
+}
+.lightMode {
+  background-color:burlywood;
+}
+.darkMode {
+  background-color:indianred;
+}
+
+/*********** MAIN OVERVIEW ***************/
 .productDetails {
   /* border: 3px solid black; */
   height:fit-content;
@@ -311,7 +352,6 @@
   margin: 0 auto;
   width: 70vw;
   min-height: 90vh;
-  background: white;
 }
 .expandedViewIcons {
   /* border: 3px solid black; */

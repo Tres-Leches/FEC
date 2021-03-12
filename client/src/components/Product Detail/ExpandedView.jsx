@@ -68,7 +68,7 @@ export default class ExpandedView extends React.Component {
 
             </div>
           :
-            <div>
+            <div style={this.props.isDark ? {background:"#121212"} : {background:"white"}}>
               <div className="expandedViewIcons">
                 {this.props.style.photos.map((photo, key) =>
                   <FontAwesomeIcon key={key} icon={faImage} size="2x"
