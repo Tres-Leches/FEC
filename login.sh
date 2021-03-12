@@ -1,0 +1,1 @@
+ssh -i "tres-leches.pem" ubuntu@ec2-18-223-21-189.us-east-2.compute.amazonaws.com
