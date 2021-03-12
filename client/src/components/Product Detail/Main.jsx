@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-// import './productDetail.css';
 
+import withTracker from '../../Interactions';
 import Add2Cart from './Add2Cart';
 import DefaultView from './DefaultView';
 import ExpandedView from './ExpandedView';
@@ -14,6 +14,7 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // componentName: "Product Detail",
       product_ids: [16392, 16465, 16056, 16084, 16154, 16060, 16072, 16073],
       // product_id: 16060,
       // product: null,
@@ -100,4 +101,4 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+export default Main
