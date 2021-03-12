@@ -1,10 +1,32 @@
+.header{
+  height: 10vh;
+  width: 100vw;
+  display:flex;
+  justify-content:flex-start;
+  align-items:flex-end;
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom,
+    burlywood,
+    burlywood 50%,
+    indianred 50%,
+    indianred
+  );
+  background-size: 100% 32px;
+}
+.header img {
+  position:relative;
+  height:31vh;
+  object-fit: cover;
+  margin-left: 2%;
+  top: 11vh;
+}
 .productDetails {
   /* border: 3px solid black; */
   height:fit-content;
   width:100vw;
   display:flex;
   justify-content: center;
-
 }
 
 .overview {
@@ -64,17 +86,19 @@
 /*********** ARROWS ***************/
 .upArrow, .downArrow {
   position: relative;
-  left: 70px;
+  left: 65px;
+  color:indianred;
 }
 .upArrow {
-  top: 20px;
+  top: 5px;
 }
 .downArrow {
-  bottom: 20px;
+  bottom: 18px;
 }
 .leftArrow, .rightArrow {
   position:absolute;
   align-self:center;
+  color:indianred;
 }
 .leftArrow {
   left: 100px;
@@ -87,14 +111,14 @@
   border: 3px solid transparent;
 }
 .leftArrow:hover, .rightArrow:hover, .upArrow:hover, .downArrow:hover,.thumbnails img:hover,.clickedThumbnail{
-  border: 3px solid white !important;
+  border: 3px solid burlywood !important;
   cursor:pointer;
 }
 
 /*********** VERTICAL THUMBNAILS ***************/
 .thumbnailContainer {
   position: relative;
-  top: -20px;
+  top: -5px;
   left: 85px;
   max-height: fit-content;
 
@@ -122,6 +146,7 @@
 /*********** RIGHT SIDE INFO ***************/
 .reviews{
   display: flex;
+  margin-bottom:15px;
 }
 
 .linkReviews{
@@ -130,7 +155,7 @@
 }
 
 .circleThumbnails img:hover{
-  border: 3px solid black;
+  border: 3px solid indianred;
   cursor:pointer;
 }
 
@@ -160,7 +185,7 @@
   top: 10px;
   left: 63px;
   z-index: 1;
-  color:slategray;
+  color:indianred;
 }
 
 /*********** SELECTORS AND ADD2BAG ***************/
@@ -180,34 +205,48 @@
 .quantitySelector select{
   width: 100%;
   height: 60px;
+  background-color: white;
+  border-radius: 5px;
+  border-color:burlywood;
 }
 
 .add2 {
   width: 425px;
 
 }
-.add2Bag{
+
+.add2Bag, .add2Favorite {
   height: 60px;
+  background-color: white;
+  border-radius: 5px;
+  border-color:indianred;
+
+}
+.add2Bag{
   width: 80%;
 }
 .add2Favorite{
-  height: 60px;
   width: 15%;
   margin-left:5%;
+}
+.starIcon {
+  color:burlywood;
 }
 
 .shareIcons {
   display:flex;
   justify-content:space-between;
   margin: 20px 0px;
-  color:slategray;
+  color:indianred;
   width: 425px;
 }
 
 .shareIcons a:visited {
-  color:darkcyan;
+  color:burlywood;
 }
-
+.shareIcons a{
+  color:indianred;
+}
 /*********** BOTTOM INFO ***************/
 
 .endInfo {
@@ -225,7 +264,7 @@
 .features {
   /* border: 3px solid black; */
 
-  border-left: 4px solid slategray;
+  border-left: 4px solid indianred;
   max-height: 100%;
   min-width: 430px;
   margin: 15px 0px 15px 15px;
@@ -262,7 +301,8 @@
 .closeIcon {
   position:relative;
   right: 1vw;
-  top:1vh;
+  top: 1vh;
+  color:indianred;
 }
 
 .expandedView div{
@@ -272,7 +312,6 @@
   width: 70vw;
   min-height: 90vh;
   background: white;
-
 }
 .expandedViewIcons {
   /* border: 3px solid black; */
@@ -281,6 +320,7 @@
   justify-content: space-evenly !important;
   max-width:fit-content;
   padding: 0 15px;
+  color:indianred;
 }
 .expandedImgContainer{
   /* border: 3px solid black; */
@@ -305,8 +345,10 @@
   position: relative;
   top: 60vh;
   margin: 20px;
+  color:indianred;
+
 }
-.expandedRighttArrow {
+.expandedRightArrow {
   right:0;
 }
 .expandedLeftArrow {

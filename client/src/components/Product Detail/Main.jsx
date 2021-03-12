@@ -14,7 +14,6 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // componentName: "Product Detail",
       product_ids: [16392, 16465, 16056, 16084, 16154, 16060, 16072, 16073],
       // product_id: 16060,
       // product: null,
