@@ -76,6 +76,7 @@ export default class DefaultView extends React.Component {
   render() {
     let thumbnails = [];
     for (let i = this.state.startInd; i <= this.state.endInd; i++) {
+      if(this.props.style.photos[i])
       thumbnails.push(this.props.style.photos[i]);
     }
     return (
