@@ -18,6 +18,7 @@ class ReviewModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      meta:this.props.meta,
       rating: 0,
       recommend: true,
 
@@ -92,17 +93,19 @@ class ReviewModal extends React.Component {
                   value="true"
                   name="recommend"
                   defaultChecked
-
                 />
                 Yes
                 <input
                   type="radio"
                   value="false"
                   name="recommend"
-
                 />
                 No
-
+              </div>
+              <div className="reviewModal-characteristics">
+                {this.state.meta.keys.map((char) => {
+                  <CharateristicRadio charName={char} data={this.state.meta[char]} />;
+                })}
               </div>
             </div>
           </form>

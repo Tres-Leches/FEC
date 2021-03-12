@@ -39,7 +39,7 @@ class Main extends React.Component {
       <div>
         <div>Ratings &amp; Reviews</div>
         <MetaData metaData={this.state.metaData} />
-        <ReviewList reviews={this.state.reviews} />
+        <ReviewList reviews={this.state.reviews} meta={this.state.metaData} />
       </div>
     );
   }

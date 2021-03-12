@@ -57,6 +57,7 @@ class ReviewList extends React.Component {
           show={this.state.showModal}
           toggleModal={this.toggleModal.bind(this)}
           productId={this.state.reviews.product}
+          meta={this.props.meta}
         />
       </div>
     );
