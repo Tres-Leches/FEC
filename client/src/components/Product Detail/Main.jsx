@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-import withTracker from '../../Interactions';
 import Add2Cart from './Add2Cart';
 import DefaultView from './DefaultView';
 import ExpandedView from './ExpandedView';
@@ -77,15 +76,14 @@ class Main extends React.Component {
         <div className="productDetails">
           {expand}
           <div className="overview">
-
             <div className="view">
               <DefaultView style={this.state.style} changeView={this.changeView.bind(this)} mainPhoto={this.state.mainPhoto} changeMainPhoto={this.changeMainPhoto.bind(this)}/>
               <div className="info">
-              <ProductInfo product={this.state.product} productId={this.state.product_id}/>
-              <StyleSelector styles={this.state.styles} style={this.state.style} changeStyle={this.changeStyle.bind(this)}/>
-              <Add2Cart style={this.state.style} isDark={this.props.isDark}/>
-              <Share />
-            </div>
+                <ProductInfo product={this.state.product} productId={this.state.product_id}/>
+                <StyleSelector styles={this.state.styles} style={this.state.style} changeStyle={this.changeStyle.bind(this)}/>
+                <Add2Cart style={this.state.style} isDark={this.props.isDark}/>
+                <Share />
+              </div>
             </div>
             <div className="viewLastInfo">
               <EndInfo product={this.state.product}/>

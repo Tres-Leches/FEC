@@ -2,7 +2,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import axios from 'axios';
-import Moment from 'react-moment';
 import Image from './Image';
 
 class Answer extends React.Component {
@@ -50,6 +49,10 @@ class Answer extends React.Component {
     const { disabled, reported } = this.state;
     const havePhotos = answer.photos.length > 0;
 
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const date = new Date(answer.date);
+    const formattedDate = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+
     return (
       <div className="answer-body-container">
         <div className="answer-body">
@@ -67,7 +70,7 @@ class Answer extends React.Component {
             by &nbsp;
             {answer.answerer_name}
             , &nbsp;
-            <Moment format="LL">{answer.date}</Moment>
+            {formattedDate}
           </div>
           <div className="text-divider"> | </div>
           <div className="answer-info-actions">

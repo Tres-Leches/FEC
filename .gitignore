@@ -17,5 +17,6 @@ jspm_packages/
 config.js
 server.test.js
 
-client/dist/bundle.js
+client/dist/*.js
+client/dist/*.js.gz
 tres-leches.pem

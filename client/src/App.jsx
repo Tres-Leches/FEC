@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import $ from 'jquery';
 
 import Header from './components/Product Detail/Header';
 import ProductDetail from './components/Product Detail/Main';
@@ -10,7 +9,6 @@ import QuestionsAnswers from './components/Questions Answers/Main';
 import Reviews from './components/Reviews/Main';
 import withTracker from './Interactions';
 
-const HeaderTracker = withTracker(Header, "Header");
 const ProductDetailTracker = withTracker(ProductDetail, "Product Detail");
 const RelatedItemsTracker = withTracker(RelatedItems, "Related Items");
 const QuestionsAnswersTracker = withTracker(QuestionsAnswers, "Questions and Answers");
@@ -61,32 +59,32 @@ class App extends React.Component {
 
     return (
       <div>
-          <React.Fragment>
-            <Header
-              isDark={isDark}
-              changeMode={this.changeMode}
-            />
-            <ProductDetailTracker
-              productId={productId}
-              product={product}
-              isDark={isDark}
-            />
-            <RelatedItemsTracker
-              productId={productId}
-              product={product}
-              changeProductId={this.changeProductId}
-              isDark={isDark}
-            />
-            <QuestionsAnswersTracker
-              productId={productId}
-              isDark={isDark}
-            />
-            <ReviewsTracker
-              productId={productId}
-              product={product}
-              isDark={isDark}
-            />
-          </React.Fragment>
+        <React.Fragment>
+          <Header
+            isDark={isDark}
+            changeMode={this.changeMode}
+          />
+          <ProductDetailTracker
+            productId={productId}
+            product={product}
+            isDark={isDark}
+          />
+          <RelatedItemsTracker
+            productId={productId}
+            product={product}
+            changeProductId={this.changeProductId}
+            isDark={isDark}
+          />
+          <QuestionsAnswersTracker
+            productId={productId}
+            isDark={isDark}
+          />
+          <ReviewsTracker
+            productId={productId}
+            product={product}
+            isDark={isDark}
+          />
+        </React.Fragment>
       </div>
     );
   }

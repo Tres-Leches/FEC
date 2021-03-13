@@ -7,7 +7,7 @@ const DIST_DIR = path.join(__dirname, '/client/dist');
 module.exports = {
   entry: `${SRC_DIR}/App.jsx`,
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: DIST_DIR,
   },
   mode: 'development',
@@ -45,5 +45,16 @@ module.exports = {
         ],
       },
     ],
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
   },
 };
