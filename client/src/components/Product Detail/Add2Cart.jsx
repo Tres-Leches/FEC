@@ -19,12 +19,20 @@ export default class Add2Cart extends React.Component {
 
   componentDidUpdate(prevProps){
     if (this.props.style !== prevProps.style) {
-      this.setState({quantity: 'default', selectedSize: ""})
+      this.setState({quantity: 'default', selectedSize: "", selectedQuantity:null})
     }
   }
 
   changeQuantity(obj) {
-    this.setState({quantity: obj.value >= 15 ? 15 : obj.value, selectedSize: obj.label, clicked: false})
+    this.setState({
+      quantity: obj.value >= 15 ? 15 : obj.value,
+      selectedSize: obj.label,
+      selectedQuantity:{value:1, label:1},
+      clicked: false
+    })
+  }
+  changeSelectedQuantity(obj) {
+    this.setState({selectedQuantity: obj})
   }
 
   addHandler(e) {
@@ -38,24 +46,34 @@ export default class Add2Cart extends React.Component {
   openMenu() {
     this.setState({ clicked: true });
     this.selectItem.focus();
-    //to do open react select menu
   }
   closeMenu() {
     this.setState({ clicked: false });
-    //to do close react select menu
   }
 
   render() {
     let sizes = [];
+    let quantities = [];
     Object.keys(this.props.style.skus).forEach((sku, ind) => {
       if(this.props.style.skus[sku].quantity){
         sizes.push({value: `${this.props.style.skus[sku].quantity}`,label: `${this.props.style.skus[sku].size}`}
         )
       }
     })
-    let quantities = [];
-    for(let i = 1; i<=this.state.quantity;i++) {
-      quantities.push(<option key={i}>{i}</option>);
+    for(let i =1; i<= this.state.quantity; i++){
+      quantities.push({value: i, label: i});
+    }
+
+    let containerStyles = {
+      border: '1px solid burlywood',
+      borderRadius: '5px',
+      color:'black',
+      filter: this.props.isDark ? "brightness(.8) contrast(1.2)" : "",
+      zIndex:'2',
+    }
+    let controlStyles = {
+      height: '60px',
+      border: '1px solid burlywood'
     }
 
     return (
@@ -63,37 +81,57 @@ export default class Add2Cart extends React.Component {
         <div className="selectors">
           <div>
             {sizes.length ?
-              <Select className="sizeSelector" id="sizeSelector" name="size" placeholder="Select Size" onChange={this.changeQuantity.bind(this)}
-              options={sizes}
-              value= {this.state.selectedSize === "" ? null: [{value: this.state.selectedSize, label: this.state.selectedSize}]}
-              menuIsOpen={this.state.clicked}
-              onFocus={this.openMenu.bind(this)}
-              onBlur={this.closeMenu.bind(this)}
-              ref={node => (this.selectItem = node)}
-              styles={{container: styles => (
-                {...styles,
-                  border: '1px solid burlywood',
-                  borderRadius: '5px',
-                  color:'black',
-                  filter: this.props.isDark ? "brightness(.8) contrast(1.2)" : "",
-                  zIndex:'2',
-                }),
-                control: styles => ({...styles, height: '60px', border: '1px solid burlywood'})}}
-              components={{IndicatorSeparator:() => null }}/>
+              <Select className="sizeSelector" id="sizeSelector" name="size"
+                placeholder="Select Size"
+                onChange={this.changeQuantity.bind(this)}
+                options={sizes}
+                value= {this.state.selectedSize === "" ? null: [{value: this.state.selectedSize, label: this.state.selectedSize}]}
+                menuIsOpen={this.state.clicked}
+                onFocus={this.openMenu.bind(this)}
+                onBlur={this.closeMenu.bind(this)}
+                ref={node => (this.selectItem = node)}
+                styles={{
+                  container: styles => ({...styles, ...containerStyles}),
+                  control: styles => ({...styles, ...controlStyles})
+                }}
+                components={{IndicatorSeparator:() => null }}
+              />
              :
-             <Select placeholder="OUT OF STOCK"
-             isDisabled="true"
-             components={{IndicatorSeparator:() => null }}/>}
+             <Select className="sizeSelector" placeholder="OUT OF STOCK"
+              styles={{
+                container: styles => ({...styles, ...containerStyles}),
+                control: styles => ({...styles, ...controlStyles})
+              }}
+              isDisabled={true}
+              components={{IndicatorSeparator:() => null }}
+             />
+            }
           </div>
-          <div className="quantitySelector" >
+          <div>
             {this.state.quantity !== 'default'?
-              <select id="quantitySelector" name="quantity" >
-                {quantities}
-              </select>
+              // <select id="quantitySelector" name="quantity" >
+              //   {quantities}
+              // </select>
+              <Select className="quantitySelector" id="quantitySelector" name="quantity"
+                options={quantities}
+                value={this.state.selectedQuantity}
+                onChange={this.changeSelectedQuantity.bind(this)}
+                styles={{
+                  container: styles => ({...styles, ...containerStyles}),
+                  control: styles => ({...styles, ...controlStyles})
+                }}
+                components={{IndicatorSeparator:() => null }}
+              />
             :
-              <select name = "quantity" disabled>
-                <option >-</option>
-              </select>
+            <Select className="quantitySelector" id="quantitySelector" placeholder="-"
+              value={{value:"-", label:"-"}}
+              styles={{
+                container: styles => ({...styles, ...containerStyles}),
+                control: styles => ({...styles, ...controlStyles})
+              }}
+              isDisabled={true}
+              components={{IndicatorSeparator:() => null }}
+            />
             }
           </div>
         </div>
