@@ -61,26 +61,6 @@ router
 
 /** ******************* REVIEWS ROUTES ******************** */
 
-// get all reviews from product id
-router
-  .route('/reviews/:id/:sort')
-  .get((req, res) => {
-    const productId = req.params.id;
-    const sortBy = req.params.sort;
-    options.params = {
-      product_id: productId,
-      count:1000,
-      sort: sortBy,
-    };
-    axios.get('/reviews', options)
-      .then((response) => {
-        res.status(200).send(response.data);
-      })
-      .catch((err) => {
-        res.status(404).send(err);
-      });
-  });
-
 // get all specific reviews from product id
 router
   .route('/reviews/meta/:id')
@@ -91,6 +71,26 @@ router
       count: 1000
     };
     axios.get('/reviews/meta', options)
+      .then((response) => {
+        res.status(200).send(response.data);
+      })
+      .catch((err) => {
+        res.status(404).send(err);
+      });
+  });
+
+// get all reviews from product id
+router
+  .route('/reviews/:id/:sort')
+  .get((req, res) => {
+    const productId = req.params.id;
+    const sortBy = req.params.sort;
+    options.params = {
+      product_id: productId,
+      count:1000,
+      sort: JSON.stringify(sortBy),
+    };
+    axios.get('/reviews', options)
       .then((response) => {
         res.status(200).send(response.data);
       })

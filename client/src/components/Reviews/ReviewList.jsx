@@ -15,6 +15,13 @@ class ReviewList extends React.Component {
     };
   }
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.reviews !== state.reviews) {
+      return { reviews: props.reviews };
+    }
+    return null;
+  }
+
   componentDidMount() {
     console.log(this.state);
   }
@@ -28,7 +35,11 @@ class ReviewList extends React.Component {
   onTextSelectChange(e) {
     this.setState({
       activeSort: e.target.value,
-    }, () => (this.props.getReviews(this.state.activeSort)));
+    }, () => {
+      console.log(this.state);
+      this.props.getReviews(this.state.activeSort);
+      this.forceUpdate();
+    });
   }
 
   // getReviews() {
@@ -45,13 +56,13 @@ class ReviewList extends React.Component {
       <div>
         <div>
           <span>
-            {`${this.state.reviews.results.length} reviews, sorted by `}
-          </span>
-          <span>
+            {this.state.reviews.results.length}
+            {' '}
+            reviews, sorted by
             <TextSelect
-              options={['Relevant', 'Helpful', 'Newest']}
+              options={['relevant', 'helpful', 'newest']}
               active={this.state.activeSort}
-              onChange={this.onTextSelectChange}
+              onTextSelectChange={this.onTextSelectChange.bind(this)}
             />
           </span>
         </div>

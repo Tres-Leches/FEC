@@ -1,15 +1,14 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import lodashMap from 'lodash.map';
 
 class TextSelect extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+    };
   }
 
-  handleChange(event) {
-    this.props.onChange(event, event.target.value, this.props.options[event.target.value]);
+  componentDidMount() {
+    console.log(this.props);
   }
 
   render() {
@@ -22,9 +21,18 @@ class TextSelect extends React.Component {
       <span className={classes}>
         {options[active]}
 
-        <select className="react-textselect-input" onChange={this.handleChange} value={active}>
-          {lodashMap(options, (value, key) => (
-            <option value={key} key={key}>{value}</option>
+        <select
+          className="react-textselect-input"
+          onChange={this.props.onTextSelectChange}
+          defaultValue={this.props.active}
+        >
+          {options.map((sortOption, index) => (
+            <option
+              value={sortOption}
+              key={index}
+            >
+              {sortOption}
+            </option>
           ))}
         </select>
       </span>

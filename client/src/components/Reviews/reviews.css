@@ -21,17 +21,6 @@
   border-radius: .3rem;
 }
 
-/* .reviewModal-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 1rem 1rem;
-  border-bottom: 1px solid #dee2e6;
-  border-top-left-radius: .3rem;
-  border-top-right-radius: .3rem;
-
-} */
-
 input[type="radio"] {
   margin-right: 5px;
 }

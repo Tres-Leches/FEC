@@ -1,4 +1,5 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
@@ -16,9 +17,10 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     alias: {
       React: require('path').resolve('./node_modules/react'),
-      reactDOM: require('path').resolve('./node_modules/react-dom')
+      reactDOM: require('path').resolve('./node_modules/react-dom'),
     },
   },
+<<<<<<< HEAD
 <<<<<<< HEAD
   plugins: [
     new CompressionPlugin({
@@ -38,6 +40,9 @@ module.exports = {
 =======
 
 >>>>>>> Implemented rating and recommended radio input on reviewModal
+=======
+  plugins: [new MiniCssExtractPlugin()],
+>>>>>>> rebase ci
   module: {
     rules: [
       {
@@ -50,6 +55,8 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
+          MiniCssExtractPlugin.loader,
+          'css-loader',
         ],
       },
       {
@@ -58,11 +65,11 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 8192
-            }
-          }
-        ]
-      }
+              limit: 8192,
+            },
+          },
+        ],
+      },
     ],
   },
 };

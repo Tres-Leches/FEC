@@ -77,6 +77,7 @@ class App extends React.Component {
     let promises=[];
     return axios.get(`/api/products/${id}/related`)
       .then((response) => {
+<<<<<<< HEAD
         relatedProducts =response.data.map(id => (String(id)))
         response.data.forEach((relatedProduct) => {
           if(this.state.productIds.indexOf(String(relatedProduct)) === -1 && newIds.indexOf(String(relatedProduct)) === -1) {
@@ -104,6 +105,11 @@ class App extends React.Component {
         .catch(err => console.error(err))
       })
 
+=======
+        this.setState({ product: response.data });
+      }, () => console.log(this.state))
+      .catch((err) => console.error(err));
+>>>>>>> rebase ci
   }
 
   changeProductId(id) {
@@ -262,23 +268,6 @@ class App extends React.Component {
           productId={productId}
           product={product}
           isDark={isDark}
-        />
-        <Header />
-        <ProductDetailTracker
-          productId={productId}
-          product={product}
-        />
-        <RelatedItemsTracker
-          productId={productId}
-          product={product}
-          changeProductId={this.changeProductId}
-        />
-        <QuestionsAnswersTracker
-          productId={productId}
-        />
-        <ReviewsTracker
-          productId={productId}
-          product={product}
         />
       </div>
     );

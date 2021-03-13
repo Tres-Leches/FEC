@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
-import './Reviews.css';
 import Rating from 'react-rating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as fullStar } from '@fortawesome/free-solid-svg-icons';
