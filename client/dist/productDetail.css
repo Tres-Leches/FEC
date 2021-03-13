@@ -13,7 +13,7 @@
   background: #121212;
   color:  #ddd;
 }
-.dark-scheme img, .dark-scheme button, .dark-scheme .header, .dark-scheme .fa{
+.dark-scheme img, .dark-scheme button, .dark-scheme .header, .dark-scheme select .dark-scheme select option{
   filter: brightness(.8) contrast(1.2);
 }
 
@@ -240,20 +240,12 @@
   width: 270px;
 }
 
-.quantitySelector {
+.quantitySelector{
   width: 130px;
-}
-.quantitySelector select{
-  width: 100%;
-  height: 60px;
-  background-color: white;
-  border-radius: 5px;
-  border-color:burlywood;
 }
 
 .add2 {
   width: 425px;
-
 }
 
 .add2Bag, .add2Favorite {
