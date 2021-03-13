@@ -111,9 +111,12 @@ class AnswerModal extends React.Component {
         file: imgURL,
         upload_preset: preset,
       })
-        .then((response) => (
-          response.data.url
-        ))
+        .then((response) => {
+          console.log(response.data);
+          return (
+            response.data.url
+          );
+        })
         .catch((err) => err)
     );
   }

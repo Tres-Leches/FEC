@@ -1,4 +1,5 @@
 const path = require('path');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
@@ -13,6 +14,11 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
+  plugins: [
+    new CompressionPlugin({
+      algorithm: 'gzip',
+    }),
+  ],
   module: {
     rules: [
       {
@@ -25,7 +31,7 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
-        ]
+        ],
       },
       {
         test: /\.(png|jpg|gif)$/i,
@@ -33,11 +39,11 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 8192
-            }
-          }
-        ]
-      }
+              limit: 8192,
+            },
+          },
+        ],
+      },
     ],
   },
 };

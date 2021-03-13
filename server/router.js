@@ -1,8 +1,15 @@
 const express = require('express');
+const path = require('path');
 const axios = require('axios');
 const options = require('./config.js');
 
 const router = express.Router();
+router
+  .route('/')
+  .get((req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+  });
+
 /** ******************* PRODUCTS ROUTES ******************** */
 
 // get all products
