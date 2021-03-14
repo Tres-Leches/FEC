@@ -27,8 +27,6 @@ class Main extends React.Component {
     });
   }
 
-  Com
-
   getReviews(sort) {
     axios.get(`/api/reviews/${this.props.productId}/${sort}`)
       .then((res) => {
