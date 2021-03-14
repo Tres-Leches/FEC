@@ -23,7 +23,6 @@ class App extends React.Component {
     this.state = {
       productId: '16060',
       product: null,
-<<<<<<< HEAD
       productIds:[],
       products: [],
       stylesData: [],
@@ -32,9 +31,6 @@ class App extends React.Component {
       relatedProductsData:[],
       relatedProducts: [],
       isDark:false,
-=======
-      isDark: false,
->>>>>>> Implemented sort dropdown  radio buttons. rebase commit
     };
     this.changeProductId = this.changeProductId.bind(this);
     this.getProduct = this.getProduct.bind(this);
@@ -77,7 +73,6 @@ class App extends React.Component {
     let promises=[];
     return axios.get(`/api/products/${id}/related`)
       .then((response) => {
-<<<<<<< HEAD
         relatedProducts =response.data.map(id => (String(id)))
         response.data.forEach((relatedProduct) => {
           if(this.state.productIds.indexOf(String(relatedProduct)) === -1 && newIds.indexOf(String(relatedProduct)) === -1) {
@@ -105,11 +100,6 @@ class App extends React.Component {
         .catch(err => console.error(err))
       })
 
-=======
-        this.setState({ product: response.data });
-      }, () => console.log(this.state))
-      .catch((err) => console.error(err));
->>>>>>> rebase ci
   }
 
   changeProductId(id) {
@@ -203,7 +193,6 @@ class App extends React.Component {
 
   render() {
     const { productId, product, isDark } = this.state;
-<<<<<<< HEAD
     if(this.state.stylesData.length){
       return (
         <div>
@@ -241,37 +230,6 @@ class App extends React.Component {
     } else {
       return(<div></div>)
     }
-=======
-
-    return (
-      <div>
-        <Header
-          isDark={isDark}
-          changeMode={this.changeMode}
-        />
-        <ProductDetailTracker
-          productId={productId}
-          product={product}
-          isDark={isDark}
-        />
-        <RelatedItemsTracker
-          productId={productId}
-          product={product}
-          changeProductId={this.changeProductId}
-          isDark={isDark}
-        />
-        <QuestionsAnswersTracker
-          productId={productId}
-          isDark={isDark}
-        />
-        <ReviewsTracker
-          productId={productId}
-          product={product}
-          isDark={isDark}
-        />
-      </div>
-    );
->>>>>>> implements review list and review tile in text
   }
 }
 

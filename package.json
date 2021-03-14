@@ -51,11 +51,6 @@
     "identity-obj-proxy": "^3.0.0",
     "jquery": "^3.6.0",
     "lodash": "^4.17.21",
-<<<<<<< HEAD
-=======
-    "lodash.map": "^4.6.0",
-    "moment": "^2.29.1",
->>>>>>> Implemented sort dropdown  radio buttons. rebase commit
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
