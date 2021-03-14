@@ -8,7 +8,7 @@ const BrotliPlugin = require('brotli-webpack-plugin');
 module.exports = {
   entry: `${SRC_DIR}/App.jsx`,
   output: {
-    filename: 'bundle.js',
+  //   filename: 'bundle.js',
     path: DIST_DIR,
   },
   mode: 'development',
