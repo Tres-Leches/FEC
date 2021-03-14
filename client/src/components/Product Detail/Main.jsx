@@ -67,7 +67,7 @@ class Main extends React.Component {
             <div className="view">
               <DefaultView style={this.state.style} changeView={this.changeView.bind(this)} mainPhoto={this.state.mainPhoto} changeMainPhoto={this.changeMainPhoto.bind(this)}/>
               <div className="info">
-              <ProductInfo product={this.state.product} productId={this.state.product_id} rating={this.props.rating} reviews={this.props.reviews}/>
+              <ProductInfo product={this.state.product} productId={this.state.product_id} rating={this.props.rating} reviews={this.props.review}/>
               <StyleSelector styles={this.props.styles} style={this.state.style} changeStyle={this.changeStyle.bind(this)}/>
               <Add2Cart style={this.state.style} isDark={this.props.isDark}/>
               <Share />
