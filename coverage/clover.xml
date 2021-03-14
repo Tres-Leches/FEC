@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1615527742608" clover="3.2.0">
-  <project timestamp="1615527742608" name="All files">
-    <metrics statements="373" coveredstatements="145" conditionals="147" coveredconditionals="42" methods="156" coveredmethods="54" elements="676" coveredelements="241" complexity="0" loc="373" ncloc="373" packages="5" files="20" classes="20"/>
+<coverage generated="1615655922070" clover="3.2.0">
+  <project timestamp="1615655922071" name="All files">
+    <metrics statements="384" coveredstatements="143" conditionals="155" coveredconditionals="43" methods="160" coveredmethods="51" elements="699" coveredelements="237" complexity="0" loc="384" ncloc="384" packages="5" files="20" classes="20"/>
     <package name="client.src">
       <metrics statements="9" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
       <file name="Interactions.jsx" path="/home/nmai601/hrla42/FEC/client/src/Interactions.jsx">
@@ -18,36 +18,48 @@
       </file>
     </package>
     <package name="client.src.components.Product Detail">
-      <metrics statements="128" coveredstatements="49" conditionals="88" coveredconditionals="25" methods="61" coveredmethods="25"/>
+      <metrics statements="135" coveredstatements="47" conditionals="96" coveredconditionals="26" methods="65" coveredmethods="22"/>
       <file name="Add2Cart.jsx" path="/home/nmai601/hrla42/FEC/client/src/components/Product Detail/Add2Cart.jsx">
-        <metrics statements="24" coveredstatements="9" conditionals="18" coveredconditionals="5" methods="14" coveredmethods="3"/>
+        <metrics statements="36" coveredstatements="11" conditionals="20" coveredconditionals="6" methods="23" coveredmethods="3"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="22" count="0" type="stmt"/>
-        <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="31" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="39" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="40" count="0" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="49" count="1" type="stmt"/>
-        <line num="50" count="1" type="stmt"/>
-        <line num="51" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="52" count="1" type="stmt"/>
+        <line num="41" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
         <line num="56" count="1" type="stmt"/>
         <line num="57" count="1" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="61" count="1" type="stmt"/>
-        <line num="72" count="0" type="stmt"/>
-        <line num="73" count="0" type="stmt"/>
-        <line num="74" count="0" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
+        <line num="58" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="79" count="1" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="102" count="0" type="stmt"/>
+        <line num="103" count="0" type="stmt"/>
+        <line num="106" count="0" type="stmt"/>
+        <line num="120" count="0" type="stmt"/>
+        <line num="121" count="0" type="stmt"/>
+        <line num="123" count="0" type="stmt"/>
+        <line num="129" count="0" type="stmt"/>
+        <line num="130" count="0" type="stmt"/>
+        <line num="133" count="0" type="stmt"/>
       </file>
       <file name="DefaultView.jsx" path="/home/nmai601/hrla42/FEC/client/src/components/Product Detail/DefaultView.jsx">
-        <metrics statements="34" coveredstatements="11" conditionals="36" coveredconditionals="8" methods="13" coveredmethods="5"/>
+        <metrics statements="35" coveredstatements="12" conditionals="38" coveredconditionals="9" methods="13" coveredmethods="5"/>
         <line num="12" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
@@ -75,13 +87,14 @@
         <line num="72" count="0" type="stmt"/>
         <line num="77" count="2" type="stmt"/>
         <line num="78" count="2" type="stmt"/>
-        <line num="79" count="2" type="stmt"/>
-        <line num="81" count="2" type="stmt"/>
-        <line num="84" count="0" type="cond" truecount="1" falsecount="1"/>
-        <line num="86" count="0" type="cond" truecount="1" falsecount="1"/>
-        <line num="89" count="0" type="cond" truecount="1" falsecount="1"/>
-        <line num="92" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="95" count="0" type="cond" truecount="1" falsecount="1"/>
+        <line num="79" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="80" count="2" type="stmt"/>
+        <line num="82" count="2" type="stmt"/>
+        <line num="85" count="0" type="cond" truecount="1" falsecount="1"/>
+        <line num="87" count="0" type="cond" truecount="1" falsecount="1"/>
+        <line num="90" count="0" type="cond" truecount="1" falsecount="1"/>
+        <line num="93" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="96" count="0" type="cond" truecount="1" falsecount="1"/>
       </file>
       <file name="EndInfo.jsx" path="/home/nmai601/hrla42/FEC/client/src/components/Product Detail/EndInfo.jsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
@@ -90,7 +103,7 @@
         <line num="14" count="1" type="stmt"/>
       </file>
       <file name="ExpandedView.jsx" path="/home/nmai601/hrla42/FEC/client/src/components/Product Detail/ExpandedView.jsx">
-        <metrics statements="21" coveredstatements="5" conditionals="12" coveredconditionals="4" methods="9" coveredmethods="3"/>
+        <metrics statements="21" coveredstatements="5" conditionals="14" coveredconditionals="5" methods="9" coveredmethods="3"/>
         <line num="12" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
@@ -114,28 +127,22 @@
         <line num="82" count="0" type="cond" truecount="1" falsecount="1"/>
       </file>
       <file name="Main.jsx" path="/home/nmai601/hrla42/FEC/client/src/components/Product Detail/Main.jsx">
-        <metrics statements="21" coveredstatements="7" conditionals="8" coveredconditionals="2" methods="11" coveredmethods="4"/>
+        <metrics statements="15" coveredstatements="2" conditionals="10" coveredconditionals="0" methods="6" coveredmethods="1"/>
         <line num="15" count="2" type="stmt"/>
         <line num="16" count="2" type="stmt"/>
-        <line num="27" count="2" type="stmt"/>
-        <line num="31" count="2" type="stmt"/>
-        <line num="34" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="43" count="2" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="63" count="2" type="cond" truecount="2" falsecount="2"/>
-        <line num="65" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="70" count="0" type="stmt"/>
+        <line num="28" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="61" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="63" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
         <line num="72" count="0" type="stmt"/>
-        <line num="73" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="96" count="2" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
       </file>
       <file name="ProductInfo.jsx" path="/home/nmai601/hrla42/FEC/client/src/components/Product Detail/ProductInfo.jsx">
         <metrics statements="17" coveredstatements="7" conditionals="6" coveredconditionals="2" methods="7" coveredmethods="4"/>
@@ -173,7 +180,7 @@
       </file>
     </package>
     <package name="client.src.components.Questions Answers">
-      <metrics statements="231" coveredstatements="90" conditionals="59" coveredconditionals="17" methods="87" coveredmethods="26"/>
+      <metrics statements="235" coveredstatements="90" conditionals="59" coveredconditionals="17" methods="87" coveredmethods="26"/>
       <file name="Answer.jsx" path="/home/nmai601/hrla42/FEC/client/src/components/Questions Answers/Answer.jsx">
         <metrics statements="26" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="9" coveredmethods="0"/>
         <line num="10" count="0" type="stmt"/>
@@ -269,7 +276,7 @@
         <line num="188" count="0" type="stmt"/>
       </file>
       <file name="Image.jsx" path="/home/nmai601/hrla42/FEC/client/src/components/Questions Answers/Image.jsx">
-        <metrics statements="13" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <metrics statements="17" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
@@ -282,7 +289,11 @@
         <line num="24" count="0" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
       </file>
       <file name="Main.jsx" path="/home/nmai601/hrla42/FEC/client/src/components/Questions Answers/Main.jsx">
         <metrics statements="41" coveredstatements="21" conditionals="10" coveredconditionals="2" methods="16" coveredmethods="8"/>

@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">35.14% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/36</span>
+                <span class='fraction'>13/37</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">22.22% </span>
+                <span class="strong">23.68% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>8/36</span>
+                <span class='fraction'>9/38</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">32.35% </span>
+                <span class="strong">34.29% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/34</span>
+                <span class='fraction'>12/35</span>
             </div>
         
             
@@ -157,7 +157,8 @@
 <a name='L98'></a><a href='#L98'>98</a>
 <a name='L99'></a><a href='#L99'>99</a>
 <a name='L100'></a><a href='#L100'>100</a>
-<a name='L101'></a><a href='#L101'>101</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -233,6 +234,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -335,23 +337,24 @@ export default class DefaultView extends React.Component {
   render() {
     let thumbnails = [];
     for (let i = this.state.startInd; i &lt;= this.state.endInd; i++) {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if(this.props.style.photos[i])
       thumbnails.push(this.props.style.photos[i]);
     }
     return (
       &lt;div className="display"&gt;
         &lt;div className="mainDisplay"&gt;
-          &lt;FontAwesomeIcon icon={faArrowLeft} size='lg' className="leftArrow" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >this.arrowChangePhoto('backward')}</span>} style={this.state.currentInd === 0 ? <span class="branch-0 cbranch-no" title="branch not covered" >{visibility:"hidden"} </span>: {visibility:"visible"}}/&gt;
+          &lt;FontAwesomeIcon icon={faArrowLeft} size='2x' className="leftArrow" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >this.arrowChangePhoto('backward')}</span>} style={this.state.currentInd === 0 ? <span class="branch-0 cbranch-no" title="branch not covered" >{visibility:"hidden"} </span>: {visibility:"visible"}}/&gt;
           &lt;img src={this.state.currentPhoto.url} onClick={this.props.changeView}/&gt;
-          &lt;FontAwesomeIcon icon={faArrowRight} size='lg' className="rightArrow" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >this.arrowChangePhoto('forward')}</span>} style={this.state.currentInd === this.props.style.photos.length-1 ? <span class="branch-0 cbranch-no" title="branch not covered" >{visibility:"hidden"} </span>: {visibility:"visible"}}/&gt;
+          &lt;FontAwesomeIcon icon={faArrowRight} size='2x' className="rightArrow" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >this.arrowChangePhoto('forward')}</span>} style={this.state.currentInd === this.props.style.photos.length-1 ? <span class="branch-0 cbranch-no" title="branch not covered" >{visibility:"hidden"} </span>: {visibility:"visible"}}/&gt;
         &lt;/div&gt;
       &lt;div className="thumbnailContainer"&gt;
-        &lt;FontAwesomeIcon icon={faAngleUp} className="upArrow" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >this.arrowChangePhoto('backward')}</span>} style={this.state.currentInd === 0 ? <span class="branch-0 cbranch-no" title="branch not covered" >{visibility:"hidden"} </span>: {visibility:"visible"}}/&gt;
+        &lt;FontAwesomeIcon icon={faAngleUp} className="upArrow" size="2x" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >this.arrowChangePhoto('backward')}</span>} style={this.state.currentInd === 0 ? <span class="branch-0 cbranch-no" title="branch not covered" >{visibility:"hidden"} </span>: {visibility:"visible"}}/&gt;
           &lt;ul className="thumbnails"&gt;
           {thumbnails.map((photo, key) =&gt; (
             &lt;li key={key} id={"slide"+key} &gt;&lt;img src={photo.url} className={key + this.state.startInd === this.state.currentInd ? <span class="branch-0 cbranch-no" title="branch not covered" >"clickedThumbnail" </span>: ""} onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >this.changeCurrentPhoto(photo)}</span>}/&gt; &lt;/li&gt;
           ))}
           &lt;/ul&gt;
-          &lt;FontAwesomeIcon icon={faAngleDown} className="downArrow" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >this.arrowChangePhoto('forward')}</span>} style={this.state.currentInd === this.props.style.photos.length-1 ? <span class="branch-0 cbranch-no" title="branch not covered" >{visibility:"hidden"} </span>: {visibility:"visible"}}/&gt;
+          &lt;FontAwesomeIcon icon={faAngleDown} className="downArrow" size="2x" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >this.arrowChangePhoto('forward')}</span>} style={this.state.currentInd === this.props.style.photos.length-1 ? <span class="branch-0 cbranch-no" title="branch not covered" >{visibility:"hidden"} </span>: {visibility:"visible"}}/&gt;
       &lt;/div&gt;
       &lt;/div&gt;
 &nbsp;
@@ -364,7 +367,7 @@ export default class DefaultView extends React.Component {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Mar 11 2021 21:42:22 GMT-0800 (Pacific Standard Time)
+                at Sat Mar 13 2021 09:18:41 GMT-0800 (Pacific Standard Time)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>

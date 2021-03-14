@@ -7,8 +7,6 @@ export default class StyleSelector extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productInfo: [],
-
     };
   }
 

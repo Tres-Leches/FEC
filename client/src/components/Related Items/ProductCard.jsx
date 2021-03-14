@@ -41,7 +41,7 @@ const ProductCard = (props) => {
       text={isDark ? 'white' : 'dark'}
       style={{ height: '450px' }}
     >
-      <Card.Img variant="top" src={product.results[0].photos[0].thumbnail_url} style={styles.cardImg} onClick={() => changeProductId(product.product_id)}/>
+      <Card.Img variant="top" src={product.style.photos[0].thumbnail_url} style={styles.cardImg} onClick={() => changeProductId(product.id)}/>
       <Card.Body style={{ height: '30%' }}>
         <Card.Text style={styles.cardText}>{product.category}</Card.Text>
         <Card.Text style={styles.cardTitle}>{product.name}</Card.Text>
