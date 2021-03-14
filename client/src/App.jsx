@@ -21,7 +21,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: '16060',
+      productId: '16154',
       product: null,
       productIds:[],
       products: [],
@@ -170,7 +170,7 @@ class App extends React.Component {
             }
 
           })
-          relatedProducts = relatedData.filter(data=>data.rating !== undefined && data.id !== id)
+          relatedProducts = relatedData.filter(data=>data.rating !== undefined && data.id !== id && data.style.photos[0].url)
         })
         .then(() => {
           this.setState({
