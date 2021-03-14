@@ -27,9 +27,7 @@ class App extends React.Component {
       products: [],
       stylesData: [],
       rating: null,
-      review: 0,
       ratings: [],
-      reviews: [],
       relatedProductsData:[],
       relatedProducts: [],
       isDark:false,
@@ -61,7 +59,7 @@ class App extends React.Component {
         count += Number(response.data.ratings[rating]);
         total += Number(rating)*Number(response.data.ratings[rating])
       }
-      return {rating: (Math.round(total/count * 4) / 4).toFixed(2), review: count};
+      return {rating: (Math.round(total/count * 4) / 4).toFixed(2)};
     })
     .catch(err=>console.error(err))
   }
@@ -70,7 +68,6 @@ class App extends React.Component {
     let relatedProducts= [];
     let newIds =[];
     let newRatings=[];
-    let newReviews=[];
     let newProducts=[];
     let newStyles=[];
     let promises=[];
@@ -92,14 +89,13 @@ class App extends React.Component {
           responses.forEach((response, i) => {
             if(response.rating) {
               newRatings.push(response.rating);
-              newReviews.push(response.review);
             } else if (response.data.results) {
               newStyles.push(response.data)
             } else if (response.data.description) {
               newProducts.push(response.data)
             }
           })
-          return {newIds, newRatings, newReviews, newProducts, newStyles, relatedProducts}
+          return {newIds, newRatings, newProducts, newStyles, relatedProducts}
         }))
         .catch(err => console.error(err))
       })
@@ -111,11 +107,9 @@ class App extends React.Component {
     let product;
     let styles;
     let rating;
-    let review;
     let relatedProducts= [];
     let newIds =[];
     let newRatings=[];
-    let newReviews=[];
     let newProducts=[];
     let newStyles=[];
     if(ind !== -1){
@@ -123,7 +117,6 @@ class App extends React.Component {
         productId: id,
         product: this.state.products[ind],
         rating: this.state.ratings[ind],
-        review: this.state.reviews[ind],
         relatedProducts: this.state.relatedProductsData[ind]
       })
     } else {
@@ -143,16 +136,13 @@ class App extends React.Component {
         .then(()=> { return this.getRating(id)})
         .then((response) => {
           rating= response.rating;
-          review= response.review;
           newRatings.push(rating);
-          newReviews.push(review);
         })
         .then(() => (this.getRelatedProducts(id)))
         .then(data => {
           newIds = newIds.concat(data.newIds)
 
           newRatings = newRatings.concat(data.newRatings);
-          newReviews = newReviews.concat(data.newReviews);
           newProducts = newProducts.concat(data.newProducts);
           newStyles = newStyles.concat(data.newStyles);
 
@@ -173,7 +163,6 @@ class App extends React.Component {
 
           })
           relatedProducts = relatedData.filter(data=>data.rating !== undefined && data.id !== id)
-          console.log('related', relatedProducts)
         })
         .then(() => {
 
@@ -184,9 +173,7 @@ class App extends React.Component {
             products: this.state.products.concat([product]),
             stylesData: this.state.stylesData.concat([styles]),
             ratings: this.state.ratings.concat([rating]),
-            reviews: this.state.reviews.concat([review]),
             rating: rating,
-            review: review,
             relatedProductsData: this.state.relatedProductsData.concat([relatedProducts]),
             relatedProducts: relatedProducts,
           });
@@ -219,7 +206,6 @@ class App extends React.Component {
                 product={product}
                 styles={this.state.stylesData.filter((style)=> style.product_id === String(this.state.productId))[0].results}
                 isDark={isDark}
-                reviews={this.state.review}
                 rating={this.state.rating}
               />
               <RelatedItemsTracker
