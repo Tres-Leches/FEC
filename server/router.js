@@ -88,7 +88,7 @@ router
     options.params = {
       product_id: productId,
       count:1000,
-      sort: JSON.stringify(sortBy),
+      sort: sortBy.toString(),
     };
     axios.get('/reviews', options)
       .then((response) => {

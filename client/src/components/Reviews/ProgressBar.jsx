@@ -1,14 +1,18 @@
 import React from 'react';
-import { Progress } from 'semantic-ui-react';
-
 
 const ProgressBar = (props) => (
   <div>
-    <Progress
-      percent={props.progress.toFixed(0)}
-      color='green'
-      size='tiny'
-    />
+    {props.starCount}
+    {' '}
+    <span>
+      <div className="progress-bar">
+        <div
+          data={props.percent}
+          className="progress"
+          style={{ width: props.percent + '%' }}
+        />
+      </div>
+    </span>
   </div>
 
 );

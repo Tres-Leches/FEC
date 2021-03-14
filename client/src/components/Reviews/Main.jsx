@@ -3,7 +3,6 @@ import React from 'react';
 import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
 import MetaData from './MetaData.jsx';
-import './reviews.css';
 
 class Main extends React.Component {
   constructor(props) {
@@ -24,7 +23,7 @@ class Main extends React.Component {
       this.setState({
         reviews: res1.data,
         metaData: res2.data,
-      }, () => console.log(this.state));
+      }, () => console.log('componentdidmount', this.state));
     });
   }
 
@@ -34,7 +33,7 @@ class Main extends React.Component {
         this.setState({
           reviews: res.data,
         });
-      }).then(() => console.log(this.state)).catch((err) => (console.log(err)));
+      }).then(() => console.log('getReviws', this.state.reviews)).catch((err) => (console.log(err)));
   }
 
   render() {

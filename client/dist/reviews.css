@@ -25,36 +25,40 @@ input[type="radio"] {
   margin-right: 5px;
 }
 
-.react-textselect {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.33);
-  overflow: hidden;
-  padding-right: 1em;
-  margin-right: .17em;
-  cursor: pointer;
-  position: relative;
+.react-textselect select {
+  border: 0px;
+  border-bottom: 1px solid;
+  outline: 0px;
+  background-color: transparent;
 }
-.react-textselect::after {
-  position: absolute;
-  top: 50%;
-  right: 0;
+
+/* .react-textselect input {
+  text-decoration: underline;
+} */
+
+.progress-bar {
+  background: grey;
+  height: 7px;
+  width: 250px;
+  max-width: 100%;
+  box-shadow: 0 1px 3px rgba(63, 61, 61, 0.2);
+  display:inline-block;
+}
+
+.progress {
+  background:green;
+  border-radius: 3px;
+  height: 7px;
+}
+
+.multiProgressSegment {
+  display: inline-block;
+  background: grey;
+  height: 7px;
+  width: 80px;
+  max-width: 100%;
+}
+
+.multiProgressContainer {
   display: block;
-  content: '';
-  height: 0;
-  width: 100%;
-  border: .33em solid transparent;
-  border-top: 0.33em solid rgba(0, 0, 0, 0.33);
-  margin-top: -0.17em;
-}
-.react-textselect-input {
-  font-size: 1.2em;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  opacity: 0;
-  z-index: 1;
-}
-.react-textselect.bright::after {
-  border-top: 0.33em solid rgba(255, 255, 255, 0.33);
 }

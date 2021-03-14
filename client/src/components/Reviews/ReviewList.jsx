@@ -23,7 +23,15 @@ class ReviewList extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.state);
+    console.log(this.props.reviews);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.reviews !== this.props.reviews) {
+      this.setState({
+        reviews: this.props.reviews
+      }, () => console.log('ReviewList Props', this.props.reviews));
+    }
   }
 
   handleMoreReviews() {
@@ -53,7 +61,7 @@ class ReviewList extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="reviewList">
         <div>
           <span>
             {this.state.reviews.results.length}
