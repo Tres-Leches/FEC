@@ -4,6 +4,7 @@ import Rating from 'react-rating';
 import { faCheck, faStar as fullStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons';
 import axios from 'axios';
+import Image from './Image.jsx';
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class ReviewTile extends React.Component {
   onHelpfulClick() {
     axios.put(`api/reviews/${this.props.review.review_id}/helpful`)
       .then(() => {
-        this.setState({helpfulClicked: true});
+        this.setState({ helpfulClicked: true });
         this.props.getReviews(this.props.sortBy);
       });
   }
@@ -25,7 +26,7 @@ class ReviewTile extends React.Component {
   onReportClick() {
     axios.put(`api/reviews/${this.props.review.review_id}/report`)
       .then(() => {
-        this.setState({reported: true});
+        this.setState({ reported: true });
         this.props.getReviews();
       });
   }
@@ -45,8 +46,19 @@ class ReviewTile extends React.Component {
           <span className="reviewDate">{this.props.review.date.slice(0, 10)}</span>
         </span>
         <div className="reviewSummary">{this.props.review.summary}</div>
-        <div className="reviewBody">{this.props.review.body}</div>
-        <span className="reviewRecommend">
+        <div className="reviewBody">
+          {this.props.review.body}
+          <div className="review-photos">
+            {this.props.review.photos.map((photo) => (
+              <Image
+                src={photo.url}
+                key={photo.id}
+              />
+            ))}
+          </div>
+
+        </div>
+        <div className="reviewRecommend">
           {this.props.review.recommend ? (
             <span>
               <FontAwesomeIcon icon={faCheck} />
@@ -54,7 +66,13 @@ class ReviewTile extends React.Component {
               I recommend this product
             </span>
           ) : null}
-        </span>
+        </div>
+        <div className="review-response">
+          <div>
+            Response:
+          </div>
+          {this.props.review.response}
+        </div>
         <div>
           <span>Helpful? </span>
           <button

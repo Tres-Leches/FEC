@@ -8,7 +8,7 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: this.props.productId,
+
       product: this.props.product,
       reviews: '',
       metaData: '',
@@ -17,8 +17,8 @@ class Main extends React.Component {
 
   componentDidMount() {
     Promise.all([
-      axios.get(`/api/reviews/${this.state.productId}/relevant`),
-      axios.get(`/api/reviews/meta/${this.state.productId}`),
+      axios.get(`/api/reviews/${this.props.productId}/relevant`),
+      axios.get(`/api/reviews/meta/${this.props.productId}`),
     ]).then(([res1, res2]) => {
       this.setState({
         reviews: res1.data,
@@ -27,13 +27,15 @@ class Main extends React.Component {
     });
   }
 
+  Com
+
   getReviews(sort) {
-    axios.get(`/api/reviews/${this.state.productId}/${sort}`)
+    axios.get(`/api/reviews/${this.props.productId}/${sort}`)
       .then((res) => {
         this.setState({
           reviews: res.data,
         });
-      }).then(() => console.log('getReviws', this.state.reviews)).catch((err) => (console.log(err)));
+      }).then(() => console.log('getReviews', this.state.reviews)).catch((err) => (console.log(err)));
   }
 
   render() {

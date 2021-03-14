@@ -62,3 +62,26 @@ input[type="radio"] {
 .multiProgressContainer {
   display: block;
 }
+
+.thumbnail-container {
+  padding: 5px 5px 0px 0px;
+}
+
+.thumbnail {
+  border: 2px solid transparent;
+  border-color: #aaaaaa;
+  image-rendering: pixelated;
+  height: 100px;
+  width: 150px;
+  margin: 5px 5px 0px 0px;
+}
+.photo {
+  height: calc(100vh - 200px);
+  max-width: 100%;
+  object-fit: contain;
+  margin: auto;
+}
+.review-photos {
+  display: flex;
+  flex-direction: row;
+}

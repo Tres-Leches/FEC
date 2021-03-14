@@ -33,7 +33,7 @@ class MetaData extends React.Component {
     return (
       <div className="metadata">
         <div className="metadata-content">
-          <span>Avg Rating</span>
+          <span>{this.state.avgRating}{' '}</span>
           <Rating
             initialRating={this.state.avgRating.toFixed(2)}
             fractions={4}

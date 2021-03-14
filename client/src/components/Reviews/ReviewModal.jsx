@@ -23,6 +23,9 @@ class ReviewModal extends React.Component {
       recommend: true,
       summary: '',
       body: '',
+      files: [],
+      name: '',
+      email: '',
     };
   }
 
@@ -32,6 +35,13 @@ class ReviewModal extends React.Component {
     this.setState({
       [name]: value,
     });
+  }
+
+  handleFileUpload(e) {
+    console.log(e.target);
+    this.setState({
+      files: this.state.files.concat(e.target.files[0]),
+    }, () => console.log(this.state.files));
   }
 
   onRatingClick(value) {
@@ -128,27 +138,67 @@ class ReviewModal extends React.Component {
                 />
               ))}
             </div>
-            <label htmlFor="reviewSummary">
-              <span className="label">Summary </span>
-              <span className="required">*</span>
-              <textarea
-                name="summary"
-                placeholder="Example: Best purchase ever!"
-                value={this.state.summary}
-                onChange={this.handleChange.bind(this)}
-              />
-            </label>
-            <label htmlFor="reviewBody">
-              <span className="label">Body</span>
-              <span className="required">*</span>
-              <textarea
-                name="body"
-                placeholder="Why did you like the product or not?"
-                value={this.state.body}
-                onChange={this.handleChange.bind(this)}
-              />
-            </label>
+            <label htmlFor="reviewModalSummary">
+              <div>
+                <div>
+                  <span className="label">Summary </span>
+                  <span className="required">*</span>
+                </div>
 
+                <textarea
+                  name="summary"
+                  placeholder="Example: Best purchase ever!"
+                  value={this.state.summary}
+                  onChange={this.handleChange.bind(this)}
+                />
+              </div>
+            </label>
+            <label htmlFor="reviewModalBody">
+              <div>
+                <div>
+                  <span className="label">Body</span>
+                  <span className="required">*</span>
+                </div>
+                <textarea
+                  name="body"
+                  placeholder="Why did you like the product or not?"
+                  value={this.state.body}
+                  onChange={this.handleChange.bind(this)}
+                />
+              </div>
+            </label>
+            <label htmlFor="reviewModalPhotos">
+              <div>Photos</div>
+              <div>
+                <input
+                  type="file"
+                  onChange={this.handleFileUpload.bind(this)}
+                />
+                {/* {this.state.files.length > 0 && this.state.files.map((src) => (
+                  <Image key={src} src={src} />
+                ))} */}
+              </div>
+            </label>
+            <label htmlFor="reviewModalNickname">
+              <div>Nickname</div>
+              <input
+                type="text"
+                name="name"
+                placeholder="Example: jackson11!"
+                value={this.state.name}
+                onChange={this.handleChange.bind(this)}
+              />
+            </label>
+            <label htmlFor="reviewModalEmail">
+              <div>Email</div>
+              <input
+                type="text"
+                name="name"
+                placeholder="Example: jackson11@email.com"
+                value={this.state.email}
+                onChange={this.handleChange.bind(this)}
+              />
+            </label>
           </form>
         </div>
       </div>
