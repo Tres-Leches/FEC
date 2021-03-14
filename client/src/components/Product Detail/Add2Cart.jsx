@@ -109,9 +109,6 @@ export default class Add2Cart extends React.Component {
           </div>
           <div>
             {this.state.quantity !== 'default'?
-              // <select id="quantitySelector" name="quantity" >
-              //   {quantities}
-              // </select>
               <Select className="quantitySelector" id="quantitySelector" name="quantity"
                 options={quantities}
                 value={this.state.selectedQuantity}

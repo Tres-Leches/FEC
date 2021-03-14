@@ -16,7 +16,6 @@ const RelatedCarousel = (props) => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const { relatedProducts, changeProductId, isDark } = props;
   const chevronWidth = 40;
-
   return (
     <div>
       <ItemsCarousel

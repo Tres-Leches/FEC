@@ -14,44 +14,30 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_ids: [16392, 16465, 16056, 16084, 16154, 16060, 16072, 16073],
-      // product_id: 16060,
-      // product: null,
       product_id: Number(this.props.productId),
       product: this.props.product,
       zoomed: false,
-      styles: [],
-      style: null,
-      mainPhoto: null,
+      style: this.props.styles[0],
+      mainPhoto: this.props.styles[0].photos[0],
     };
-    this.getStyles = this.getStyles.bind(this);
   }
 
-  componentDidMount() {
-    this.getStyles();
-  }
-  componentDidUpdate(prevProps){
-    if(this.props.product !== prevProps.product || this.props.productId !== prevProps.productId) {
+  componentDidUpdate(prevProps) {
+    if(this.props.product !== prevProps.product || this.props.productId !== prevProps.productId || this.props.styles !== prevProps.styles) {
       this.setState({
         product: this.props.product,
         product_id: this.props.productId,
-      }, () => {this.getStyles()})
-    }
-  }
-
-  getStyles() {
-    axios.get(`/api/products/${this.state.product_id}/styles`)
-      .then((response) => {
-        this.setState({styles: response.data.results, style: response.data.results[0], mainPhoto: response.data.results[0].photos[0]})
+        style: this.props.styles[0],
+        mainPhoto: this.props.styles[0].photos[0]
       })
-      .catch(err => console.error(err))
+    }
   }
 
   changeStyle(style) {
     this.setState({style})
   }
 
-  changeMainPhoto (photo) {
+  changeMainPhoto(photo) {
     this.setState({mainPhoto: photo})
   }
 
@@ -81,8 +67,8 @@ class Main extends React.Component {
             <div className="view">
               <DefaultView style={this.state.style} changeView={this.changeView.bind(this)} mainPhoto={this.state.mainPhoto} changeMainPhoto={this.changeMainPhoto.bind(this)}/>
               <div className="info">
-              <ProductInfo product={this.state.product} productId={this.state.product_id}/>
-              <StyleSelector styles={this.state.styles} style={this.state.style} changeStyle={this.changeStyle.bind(this)}/>
+              <ProductInfo product={this.state.product} productId={this.state.product_id} rating={this.props.rating} reviews={this.props.reviews}/>
+              <StyleSelector styles={this.props.styles} style={this.state.style} changeStyle={this.changeStyle.bind(this)}/>
               <Add2Cart style={this.state.style} isDark={this.props.isDark}/>
               <Share />
             </div>
