@@ -1,0 +1,60 @@
+.reviewModal {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Overlay effect: translucent background: black w/ partial opacity */
+  z-index: 2; /* Overlay effect: positioned over other containers */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  position: fixed; /* Fix position on the top-left corner*/
+  top: 0;
+  left: 0;
+  overflow: auto; /* Enable scroll if needed */
+  padding-top: 80px; /* Location of the content container */
+}
+
+.reviewModal-content {
+  background-color: white;
+  width: 70%; /* Width in proportion to its parent container*/
+  max-width: 640px; /* Max width where it stops expanding */
+  height: auto; /* Height in proportion to its parent container */
+  margin: auto; /* Auto margin according to the element width */
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: .3rem;
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+.react-textselect {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.33);
+  overflow: hidden;
+  padding-right: 1em;
+  margin-right: .17em;
+  cursor: pointer;
+  position: relative;
+}
+.react-textselect::after {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  display: block;
+  content: '';
+  height: 0;
+  width: 100%;
+  border: .33em solid transparent;
+  border-top: 0.33em solid rgba(0, 0, 0, 0.33);
+  margin-top: -0.17em;
+}
+.react-textselect-input {
+  font-size: 1.2em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  opacity: 0;
+  z-index: 1;
+}
+.react-textselect.bright::after {
+  border-top: 0.33em solid rgba(255, 255, 255, 0.33);
+}

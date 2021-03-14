@@ -1,4 +1,5 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
@@ -14,21 +15,27 @@ module.exports = {
   mode: 'development',
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: {
+      React: require('path').resolve('./node_modules/react'),
+      reactDOM: require('path').resolve('./node_modules/react-dom'),
+    },
   },
   plugins: [
-    new CompressionPlugin({
-    filename: '[path].gz[query]',
-    algorithm: 'gzip',
-    test: /\.(js|css|html|svg)$/,
-    threshold: 8192,
-    minRatio: 0.8
-    }),
+    // new CompressionPlugin({
+    // filename: '[path].gz[query]',
+    // algorithm: 'gzip',
+    // test: /\.(js|css|html|svg)$/,
+    // threshold: 8192,
+    // minRatio: 0.8
+    // }),
     new BrotliPlugin({ //brotli plugin
       asset: '[path].br[query]',
       test: /\.(js|css|html|svg)$/,
       threshold: 10240,
       minRatio: 0.8
-    })
+    }),
+
+    new MiniCssExtractPlugin()
   ],
   module: {
     rules: [
@@ -38,11 +45,13 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: [
           'style-loader',
           'css-loader',
-        ]
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+        ],
       },
       {
         test: /\.(png|jpg|gif)$/i,
@@ -50,11 +59,11 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 8192
-            }
-          }
-        ]
-      }
+              limit: 8192,
+            },
+          },
+        ],
+      },
     ],
   },
 };

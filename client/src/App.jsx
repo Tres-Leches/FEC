@@ -11,11 +11,11 @@ import QuestionsAnswers from './components/Questions Answers/Main';
 import Reviews from './components/Reviews/Main';
 import withTracker from './Interactions';
 
-const HeaderTracker = withTracker(Header, "Header");
-const ProductDetailTracker = withTracker(ProductDetail, "Product Detail");
-const RelatedItemsTracker = withTracker(RelatedItems, "Related Items");
-const QuestionsAnswersTracker = withTracker(QuestionsAnswers, "Questions and Answers");
-const ReviewsTracker = withTracker(Reviews, "Reviews");
+const HeaderTracker = withTracker(Header, 'Header');
+const ProductDetailTracker = withTracker(ProductDetail, 'Product Detail');
+const RelatedItemsTracker = withTracker(RelatedItems, 'Related Items');
+const QuestionsAnswersTracker = withTracker(QuestionsAnswers, 'Questions and Answers');
+const ReviewsTracker = withTracker(Reviews, 'Reviews');
 
 class App extends React.Component {
   constructor(props) {
@@ -183,12 +183,12 @@ class App extends React.Component {
   }
 
   changeMode(e) {
-    if(e.target.innerText ==='Dark') {
-      document.body.classList.add("dark-scheme");
+    if (e.target.innerText === 'Dark') {
+      document.body.classList.add('dark-scheme');
     } else {
-      document.body.classList.remove("dark-scheme");
+      document.body.classList.remove('dark-scheme');
     }
-    this.setState({isDark: e.target.innerText === 'Dark'})
+    this.setState({ isDark: e.target.innerText === 'Dark' });
   }
 
   render() {
@@ -233,4 +233,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));

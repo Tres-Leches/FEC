@@ -61,15 +61,16 @@ router
 
 /** ******************* REVIEWS ROUTES ******************** */
 
-// get all reviews from product id
+// get all specific reviews from product id
 router
-  .route('/reviews/:id')
+  .route('/reviews/meta/:id')
   .get((req, res) => {
     const productId = req.params.id;
     options.params = {
       product_id: productId,
+      count: 1000
     };
-    axios.get('/reviews', options)
+    axios.get('/reviews/meta', options)
       .then((response) => {
         res.status(200).send(response.data);
       })
@@ -78,15 +79,18 @@ router
       });
   });
 
-// get all specific reviews from product id
+// get all reviews from product id
 router
-  .route('/reviews/meta/:id')
+  .route('/reviews/:id/:sort')
   .get((req, res) => {
     const productId = req.params.id;
+    const sortBy = req.params.sort;
     options.params = {
       product_id: productId,
+      count:1000,
+      sort: sortBy.toString(),
     };
-    axios.get('/reviews/meta', options)
+    axios.get('/reviews', options)
       .then((response) => {
         res.status(200).send(response.data);
       })
