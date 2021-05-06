@@ -45,7 +45,7 @@ Tres Leches is a mock E-Commerce web application that modernizes the experience 
   ```
   npm run start
   ```
-7. Navigate to ```localhost:8000```
+7. Navigate to ```localhost:8000``` in the browser.
 
 <!------
 GIT SET-UP INSTRUCTIONS
